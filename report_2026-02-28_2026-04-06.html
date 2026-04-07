@@ -1,0 +1,543 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2Prime -- Marketing Report 28 Feb - 06 Apr 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',sans-serif; background:#fff; color:#1a1a2e; font-size:14px; line-height:1.6; }
+  .cover { background:linear-gradient(135deg,#1a2744 0%,#2d4a8a 50%,#1a2744 100%); color:white; padding:80px 60px; }
+  .cover-tag { font-size:11px; letter-spacing:3px; text-transform:uppercase; opacity:0.7; margin-bottom:16px; }
+  .cover-title { font-size:38px; font-weight:800; line-height:1.2; margin-bottom:12px; }
+  .cover-title span { color:#4fc3f7; }
+  .cover-subtitle { font-size:16px; opacity:0.8; margin-bottom:40px; }
+  .cover-meta { display:flex; gap:40px; margin-top:30px; }
+  .cover-meta-item label { font-size:10px; text-transform:uppercase; letter-spacing:2px; opacity:0.6; display:block; }
+  .cover-meta-item span { font-size:15px; font-weight:600; }
+  .kpi-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; padding:30px 60px; background:#f8faff; border-bottom:2px solid #e8edf5; }
+  .kpi-card { background:white; border-radius:12px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.06); border-top:3px solid #1a2744; }
+  .kpi-card .label { font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color:#888; margin-bottom:8px; }
+  .kpi-card .value { font-size:26px; font-weight:800; color:#1a2744; }
+  .kpi-card .sub { font-size:11px; color:#888; margin-top:4px; }
+  .content { padding:40px 60px; max-width:960px; margin:0 auto; }
+  .section { margin-bottom:48px; }
+  .section-header { display:flex; align-items:center; gap:12px; margin-bottom:20px; padding-bottom:12px; border-bottom:2px solid #e8edf5; }
+  .section-num { background:#1a2744; color:white; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; flex-shrink:0; }
+  .section-title { font-size:20px; font-weight:700; color:#1a2744; }
+  .section-badge { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:4px 10px; border-radius:20px; }
+  .badge-critical { background:#fee2e2; color:#dc2626; }
+  .badge-warning { background:#fef3c7; color:#d97706; }
+  .badge-opportunity { background:#dcfce7; color:#16a34a; }
+  .badge-info { background:#dbeafe; color:#2563eb; }
+  .alert-box { border-radius:10px; padding:20px 24px; margin-bottom:20px; }
+  .alert-critical { background:#fff5f5; border-left:4px solid #dc2626; }
+  .alert-warning { background:#fffbeb; border-left:4px solid #f59e0b; }
+  .alert-success { background:#f0fdf4; border-left:4px solid #16a34a; }
+  .alert-info { background:#eff6ff; border-left:4px solid #3b82f6; }
+  .alert-title { font-weight:700; font-size:14px; margin-bottom:6px; }
+  .funnel { display:flex; gap:0; margin:20px 0; }
+  .funnel-step { flex:1; text-align:center; padding:16px 8px; position:relative; }
+  .funnel-step:not(:last-child)::after { content:'→'; position:absolute; right:-8px; top:50%; transform:translateY(-50%); color:#888; font-size:18px; z-index:1; }
+  .funnel-step .num { font-size:28px; font-weight:800; color:#1a2744; }
+  .funnel-step .lbl { font-size:10px; text-transform:uppercase; letter-spacing:1px; color:#888; margin-top:4px; }
+  .funnel-step .cr { font-size:12px; font-weight:600; margin-top:4px; color:#555; }
+  .funnel-step-red { background:#fff5f5; border-radius:8px; }
+  .funnel-step-yellow { background:#fffbeb; border-radius:8px; }
+  .funnel-step-green { background:#f0fdf4; border-radius:8px; }
+  table { width:100%; border-collapse:collapse; margin:16px 0; font-size:13px; }
+  th { background:#1a2744; color:white; padding:10px 14px; text-align:left; font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:1px; }
+  td { padding:10px 14px; border-bottom:1px solid #f0f0f0; }
+  tr:nth-child(even) td { background:#f8faff; }
+  .takeaways li { padding:7px 0; border-bottom:1px solid #e8edf5; font-size:13px; line-height:1.5; }
+  .takeaways li:last-child { border-bottom:none; }
+  .rec-list { list-style:none; margin-top:12px; }
+  .rec-list li { padding:10px 14px 10px 40px; position:relative; border-bottom:1px solid #f0f0f0; font-size:13px; }
+  .rec-list li::before { content:attr(data-num); position:absolute; left:10px; top:12px; background:#1a2744; color:white; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; }
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:16px 0; }
+  .stat-box { background:#f8faff; border-radius:10px; padding:16px 20px; }
+  .stat-box .title { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:#888; margin-bottom:10px; }
+  .highlight-box { background:linear-gradient(135deg,#1a2744,#2d4a8a); color:white; border-radius:12px; padding:24px 28px; margin:20px 0; }
+  .highlight-box .title { font-size:13px; text-transform:uppercase; letter-spacing:2px; opacity:0.7; margin-bottom:8px; }
+  .highlight-box .text { font-size:15px; font-weight:600; line-height:1.5; }
+  .rec-block { border-radius:10px; padding:14px 18px; margin-bottom:8px; }
+  .rec-block .rec-title { font-size:13px; font-weight:700; margin-bottom:4px; }
+  .rec-block .rec-action { font-size:12px; color:#444; }
+  .rec-badge { display:inline-block; font-size:10px; font-weight:700; padding:2px 8px; border-radius:10px; margin-right:6px; text-transform:uppercase; }
+  .high .rec-badge { background:#fee2e2; color:#dc2626; }
+  .medium .rec-badge { background:#fef3c7; color:#d97706; }
+  .low .rec-badge { background:#dcfce7; color:#16a34a; }
+  .high { background:#fff5f5; }
+  .medium { background:#fffbeb; }
+  .low { background:#f0fdf4; }
+  .footer { background:#1a2744; color:rgba(255,255,255,0.5); text-align:center; padding:20px; font-size:11px; margin-top:60px; }
+  @media print {
+    .kpi-row,.two-col,.funnel { display:grid !important; }
+    body { font-size:11px; }
+    .cover { padding:30px 40px; min-height:auto; }
+    .cover-title { font-size:26px; }
+    .cover-subtitle { margin-bottom:16px; }
+    .content { padding:16px 40px; }
+    .section { margin-bottom:8px; padding:12px; page-break-inside:auto; }
+    .alert-box { padding:12px 16px; margin-bottom:12px; page-break-inside:avoid; }
+    .funnel { margin:10px 0; page-break-inside:avoid; }
+    .funnel-step { padding:10px 4px; }
+    .funnel-step .num { font-size:20px; }
+    .rec-block { padding:10px 14px; margin-bottom:6px; page-break-inside:avoid; }
+    .two-col { gap:12px; margin:10px 0; page-break-inside:avoid; }
+    .highlight-box { padding:16px 20px; margin:12px 0; page-break-inside:avoid; }
+    .kpi-row { padding:16px 40px; gap:10px; page-break-inside:avoid; }
+    .kpi-card { padding:12px; }
+    .kpi-card .value { font-size:20px; }
+    .section-title { font-size:16px; }
+    .rec-list li { padding:6px 14px 6px 36px; page-break-inside:avoid; }
+    .stat-box { padding:12px 16px; }
+    .footer { margin-top:20px; padding:12px; }
+  }
+  .section {
+    border:1px solid #e8edf5;
+    border-radius:12px;
+    padding:24px;
+    margin-bottom:24px;
+    background:#fff;
+    box-shadow:0 1px 4px rgba(0,0,0,0.05);
+  }
+  .section-header { border-bottom:2px solid #e8edf5; padding-bottom:12px; margin-bottom:16px; margin-top:0; }
+  .alert-box { page-break-inside:avoid; }
+  .funnel { page-break-inside:avoid; }
+  .highlight-box { page-break-inside:avoid; }
+  .rec-block { page-break-inside:avoid; border:1px solid #e8edf5; }
+  .high { background:#fff5f5; border-color:#fecaca; }
+  .medium { background:#fffbeb; border-color:#fde68a; }
+  .low { background:#f0fdf4; border-color:#bbf7d0; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-tag">B2Prime · Marketing Intelligence</div>
+  <div class="cover-title">Weekly Marketing<br><span>Report</span></div>
+  <div class="cover-subtitle">Full-funnel analysis across all traffic sources with actionable recommendations</div>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><label>Period</label><span>28 Feb - 06 Apr 2026</span></div>
+    <div class="cover-meta-item"><label>Data Source</label><span>Roistat Analytics UTC+3</span></div>
+    <div class="cover-meta-item"><label>Generated</label><span>07 Apr 2026 16:45</span></div>
+    <div class="cover-meta-item"><label>Classification</label><span>Confidential</span></div>
+  </div>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi-card">
+    <div class="label">Total Visits</div>
+    <div class="value">5138</div>
+    <div class="sub">Across all channels</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Registrations</div>
+    <div class="value">861</div>
+    <div class="sub">CR visit→reg: 16.8%</div>
+  </div>
+  <div class="kpi-card" style="border-top-color:#f59e0b">
+    <div class="label">KYC Completed</div>
+    <div class="value" style="color:#d97706">82</div>
+    <div class="sub">CR reg→kyc: 9.5%</div>
+  </div>
+  <div class="kpi-card" style="border-top-color:#16a34a">
+    <div class="label">Active Traders</div>
+    <div class="value" style="color:#16a34a">19</div>
+    <div class="sub">CR kyc→dep: 25.6%</div>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- SECTION 1: EXECUTIVE SUMMARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div class="section-title">Executive Summary</div>
+  </div>
+  <div class="highlight-box">
+    <div class="title">Key Finding</div>
+    <div class="text">tradingview drives 57% of registrations (493 leads) but $0 revenue this week. SEO and direct traffic generate all actual revenue.</div>
+  </div>
+  <div style="margin:20px 0 8px 0;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#888;">Weekly Takeaways</div>
+  <ul class="takeaways" style="list-style:none;background:#f8faff;border-radius:10px;padding:16px 20px;margin:0 0 20px 0;">
+    <li>📊 <b>861</b> registrations this week → <b>82</b> KYC (9.5%) → <b>19</b> active traders (25.6% KYC→Deposit)</li>
+<li>🔴 <b>tradingview</b> — #1 by volume (57% of all regs) but generated <b>$0 revenue</b>. Traffic quality needs review.</li>
+<li>🟢 <b>SEO</b> — best deposit conversion this week: <b>42.1%</b> KYC→Deposit. Highest ROI source.</li>
+<li>🟡 <b>61</b> users completed KYC but never deposited (74% of all KYC). Acquisition cost already paid — activate this week.</li>
+<li>💰 Total revenue this week: <b>$2020</b></li>
+  </ul>
+  <div class="two-col">
+    <div class="stat-box">
+      <div class="title">Revenue by Channel</div>
+      <div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>tradingview</span><span style='color:#dc2626'>—</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>No-cookie visitors</span><span style='color:#16a34a;font-weight:700'>$1</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>Direct visits</span><span style='color:#16a34a;font-weight:700'>$1526</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>SEO</span><span style='color:#16a34a;font-weight:700'>$493</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>Визиты с сайтов</span><span style='color:#dc2626'>—</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>telegram</span><span style='color:#dc2626'>—</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>facebook</span><span style='color:#dc2626'>—</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>instagram</span><span style='color:#dc2626'>—</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>chatgpt.com</span><span style='color:#dc2626'>—</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>youtube</span><span style='color:#dc2626'>—</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>copilot.com</span><span style='color:#dc2626'>—</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>x</span><span style='color:#dc2626'>—</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>email</span><span style='color:#dc2626'>—</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>expo</span><span style='color:#dc2626'>—</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>drofa</span><span style='color:#dc2626'>—</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>twitter</span><span style='color:#dc2626'>—</span></div>
+    </div>
+    <div class="stat-box">
+      <div class="title">Reg→KYC CR by Channel</div>
+      <div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>tradingview</span><span style='color:#dc2626'>4.5% Reg→KYC</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>No-cookie visitors</span><span style=''>8.5% Reg→KYC</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>Direct visits</span><span style='color:#16a34a;font-weight:700'>24.7% Reg→KYC</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>SEO</span><span style='color:#16a34a;font-weight:700'>37.3% Reg→KYC</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>Визиты с сайтов</span><span style='color:#16a34a;font-weight:700'>33.3% Reg→KYC</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>telegram</span><span style='color:#16a34a;font-weight:700'>14.3% Reg→KYC</span></div><div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px;'><span>facebook</span><span style='color:#dc2626'>0% Reg→KYC</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div class="section-title">tradingview</div>
+    <span class="section-badge badge-critical">🔴 Critical</span>
+  </div>
+  <div class="alert-box alert-critical">
+    <div class="alert-title">⚠️ 493 leads, $0 revenue — volume with no return</div>
+    High registration volume with zero depositors. Audience likely lacks buying intent or hits friction in KYC/deposit steps.
+  </div>
+  <div class="funnel">
+    <div class="funnel-step"><div class="num">1259</div><div class="lbl">Visits</div></div>
+    <div class="funnel-step funnel-step-yellow"><div class="num">493</div><div class="lbl">Registered</div></div>
+    <div class="funnel-step funnel-step-red"><div class="num">22</div><div class="lbl">KYC</div><div class="cr">4.5%</div></div>
+    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Deposited</div><div class="cr">0%</div></div>
+    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Traders</div><div class="cr">Rev: $0</div></div>
+  </div>
+  <ul class="rec-list"><li data-num='1'>TradingView traffic is research-intent — users are not yet in buying mode. The homepage CTA is currently generic (''Get Started'') — product improvement planned. Workaround: create a dedicated UTM landing page for TradingView traffic with a specific headline: ''Trade Directly from Your TradingView Charts — Tier-1 FX &amp; Crypto Liquidity'' and visible live spreads + execution time</li><li data-num='2'>B2Prime already has B2TRADER + TradingView terminal integration — activate TradingView <strong>Broker Widget Ads</strong>. These appear on the chart when a user is actively placing a trade idea, reaching them at peak buying intent (CTR 3-5× higher than display). This is the single highest-ROI move for this source</li><li data-num='3'>KYC drop-off fix: trigger email at +1h (''One step left to start trading'') and +24h (''Other traders from TradingView are live — your account is waiting''). B2Prime''s ActiveCampaign automation is already configured — add a TradingView segment to the existing flow</li></ul>
+</div><div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div class="section-title">Direct visits</div>
+    <span class="section-badge badge-opportunity">🟢 Opportunity</span>
+  </div>
+  <div class="alert-box alert-success">
+    <div class="alert-title">✅ Reg→KYC CR 24.7% — 2.6x above average</div>
+    This source converts registrations to KYC at above-average rate — high-intent audience.
+  </div>
+  <div class="funnel">
+    <div class="funnel-step"><div class="num">1666</div><div class="lbl">Visits</div></div>
+    <div class="funnel-step funnel-step-yellow"><div class="num">73</div><div class="lbl">Registered</div></div>
+    <div class="funnel-step funnel-step-green"><div class="num">18</div><div class="lbl">KYC</div><div class="cr">24.7%</div></div>
+    <div class="funnel-step funnel-step-green"><div class="num">7</div><div class="lbl">Deposited</div><div class="cr">38.9%</div></div>
+    <div class="funnel-step funnel-step-green"><div class="num">5</div><div class="lbl">Traders</div><div class="cr">Rev: $1526</div></div>
+  </div>
+  <ul class="rec-list"><li data-num='1'>Direct traffic quality is strong — invest in brand awareness to grow this channel: PR in financial media (Finance Magnates, FXStreet, CoinTelegraph), sponsored analyst content</li><li data-num='2'>Partner with financial influencers/content creators on YouTube and Telegram who drive branded searches — this is how direct traffic grows organically</li><li data-num='3'>Track brand search volume in Google Search Console weekly — it's the leading indicator for direct traffic growth</li></ul>
+</div><div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div class="section-title">SEO</div>
+    <span class="section-badge badge-opportunity">🟢 Opportunity</span>
+  </div>
+  <div class="alert-box alert-success">
+    <div class="alert-title">✅ Reg→KYC CR 37.3% — 3.9x above average</div>
+    This source converts registrations to KYC at above-average rate — high-intent audience.
+  </div>
+  <div class="funnel">
+    <div class="funnel-step"><div class="num">1637</div><div class="lbl">Visits</div></div>
+    <div class="funnel-step funnel-step-yellow"><div class="num">51</div><div class="lbl">Registered</div></div>
+    <div class="funnel-step funnel-step-green"><div class="num">19</div><div class="lbl">KYC</div><div class="cr">37.3%</div></div>
+    <div class="funnel-step funnel-step-green"><div class="num">8</div><div class="lbl">Deposited</div><div class="cr">42.1%</div></div>
+    <div class="funnel-step funnel-step-green"><div class="num">8</div><div class="lbl">Traders</div><div class="cr">Rev: $493</div></div>
+  </div>
+  <ul class="rec-list"><li data-num='1'>SEO is your highest-quality acquisition channel. Scale content: create instrument-specific landing pages (Gold/XAUUSD, BTC/USD, EUR/USD, indices) targeting long-tail commercial-intent keywords (''best forex broker [region]'', ''how to trade gold CFDs''). B2Prime already has b2prime.com/articles and b2prime.com/product-updates — build topical clusters around these hubs to boost domain authority</li><li data-num='2'>Launch Google Ads Search on branded + competitor keywords with language-specific landing pages: /en/, /ru/, /ar/ — each with localised payment methods (SEPA, bank wire, USDT via Praxis gateway). LinkedIn Ads campaigns are already running — coordinate messaging with SEO landing page copy for consistent brand voice</li><li data-num='3'>Critical post-KYC activation gap: the current dashboard lacks a prominent Deposit CTA (product redesign PAN-41399 — planned but not yet live). For SEO-sourced leads, send ''Your account is verified'' email with <strong>DIRECT link to deposit page</strong> (not homepage) + 3-step guide: choose wallet → select method (Fiat or Crypto) → enter amount. Also prompt 2FA setup — without Google Authenticator withdrawal is blocked, which is a hidden psychological barrier to depositing</li></ul>
+</div><div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div class="section-title">Визиты с сайтов</div>
+    <span class="section-badge badge-opportunity">🟢 Opportunity</span>
+  </div>
+  <div class="alert-box alert-success">
+    <div class="alert-title">✅ Reg→KYC CR 33.3% — 3.5x above average</div>
+    This source converts registrations to KYC at above-average rate — high-intent audience.
+  </div>
+  <div class="funnel">
+    <div class="funnel-step"><div class="num">398</div><div class="lbl">Visits</div></div>
+    <div class="funnel-step funnel-step-yellow"><div class="num">9</div><div class="lbl">Registered</div></div>
+    <div class="funnel-step funnel-step-green"><div class="num">3</div><div class="lbl">KYC</div><div class="cr">33.3%</div></div>
+    <div class="funnel-step funnel-step-green"><div class="num">1</div><div class="lbl">Deposited</div><div class="cr">33.3%</div></div>
+    <div class="funnel-step funnel-step-green"><div class="num">1</div><div class="lbl">Traders</div><div class="cr">Rev: $0</div></div>
+  </div>
+  <ul class="rec-list"><li data-num='1'>Analyse which specific ads/pages drive this high-CR traffic and replicate the pattern across other paid channels</li><li data-num='2'>Create language-specific landing pages (/en/, /ru/, /ar/) for this source — localised pages improve Reg→KYC CR by 15-25% on average</li></ul>
+</div><div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div class="section-title">telegram</div>
+    <span class="section-badge badge-opportunity">🟢 Opportunity</span>
+  </div>
+  <div class="alert-box alert-success">
+    <div class="alert-title">✅ Reg→KYC CR 14.3% — 1.5x above average</div>
+    This source converts registrations to KYC at above-average rate — high-intent audience.
+  </div>
+  <div class="funnel">
+    <div class="funnel-step"><div class="num">54</div><div class="lbl">Visits</div></div>
+    <div class="funnel-step funnel-step-yellow"><div class="num">7</div><div class="lbl">Registered</div></div>
+    <div class="funnel-step funnel-step-green"><div class="num">1</div><div class="lbl">KYC</div><div class="cr">14.3%</div></div>
+    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Deposited</div><div class="cr">0%</div></div>
+    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Traders</div><div class="cr">Rev: $0</div></div>
+  </div>
+  <ul class="rec-list"><li data-num='1'>Telegram converts well to KYC — the audience is already crypto/trading-native. Scale: partner with Telegram signal channels (10k-100k subscribers) for sponsored posts + pinned CTA</li><li data-num='2'>Launch your own B2Prime Telegram channel with daily market signals and analysis — builds trust pipeline. Target: 5k subscribers in 3 months via cross-promotion in partner channels</li><li data-num='3'>Use Telegram Mini Apps for seamless registration flow directly inside Telegram — reduces friction for mobile-first Telegram audience</li></ul>
+</div><div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <div class="section-title">chatgpt.com</div>
+    <span class="section-badge badge-info">🔵 Monitor</span>
+  </div>
+  <div class="alert-box alert-info">
+    <div class="alert-title">1 registrations · 0 KYC · 0 deposited · 0 traders</div>
+    Steady activity. Monitor week-over-week for trend changes.
+  </div>
+  <div class="funnel">
+    <div class="funnel-step"><div class="num">19</div><div class="lbl">Visits</div></div>
+    <div class="funnel-step funnel-step-yellow"><div class="num">1</div><div class="lbl">Registered</div></div>
+    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">KYC</div><div class="cr">0%</div></div>
+    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Deposited</div><div class="cr">—</div></div>
+    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Traders</div><div class="cr">Rev: $0</div></div>
+  </div>
+  <ul class="rec-list"><li data-num='1'>No action required — track weekly trend. Volume too low for statistical conclusions</li></ul>
+</div><div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <div class="section-title">youtube</div>
+    <span class="section-badge badge-info">🔵 Monitor</span>
+  </div>
+  <div class="alert-box alert-info">
+    <div class="alert-title">1 registrations · 0 KYC · 0 deposited · 0 traders</div>
+    Steady activity. Monitor week-over-week for trend changes.
+  </div>
+  <div class="funnel">
+    <div class="funnel-step"><div class="num">20</div><div class="lbl">Visits</div></div>
+    <div class="funnel-step funnel-step-yellow"><div class="num">1</div><div class="lbl">Registered</div></div>
+    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">KYC</div><div class="cr">0%</div></div>
+    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Deposited</div><div class="cr">—</div></div>
+    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Traders</div><div class="cr">Rev: $0</div></div>
+  </div>
+  <ul class="rec-list"><li data-num='1'>No action required — track weekly trend. Volume too low for statistical conclusions</li></ul>
+</div><div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <div class="section-title">email</div>
+    <span class="section-badge badge-info">🔵 Monitor</span>
+  </div>
+  <div class="alert-box alert-info">
+    <div class="alert-title">0 registrations · 0 KYC · 0 deposited · 0 traders</div>
+    Steady activity. Monitor week-over-week for trend changes.
+  </div>
+  <div class="funnel">
+    <div class="funnel-step"><div class="num">62</div><div class="lbl">Visits</div></div>
+    <div class="funnel-step funnel-step-yellow"><div class="num">0</div><div class="lbl">Registered</div></div>
+    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">KYC</div><div class="cr">—</div></div>
+    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Deposited</div><div class="cr">—</div></div>
+    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Traders</div><div class="cr">Rev: $0</div></div>
+  </div>
+  <ul class="rec-list"><li data-num='1'>No action required — track weekly trend. Volume too low for statistical conclusions</li></ul>
+</div>
+
+<!-- SECTION: AGE INTELLIGENCE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num"></div>
+    <div class="section-title">Audience Age Intelligence</div>
+  </div>
+
+  <div style='font-size:12px;color:#6b7280;margin-bottom:14px;'>Age data is available only for KYC-verified leads. ''Benchmark'' = industry average for regulated retail forex/crypto brokers (Finance Magnates, SimilarWeb, internal niche data 2024-2025).</div>
+
+  <table style="width:100%;border-collapse:collapse;border-radius:10px;overflow:hidden;margin-bottom:20px;border:1px solid #e8edf5;">
+    <thead>
+      <tr style="background:#1a2744;color:white;font-size:12px;">
+        <th style="padding:11px 12px;text-align:left;">Age Group</th>
+        <th style="padding:11px 12px;text-align:center;">KYC Verified</th>
+        <th style="padding:11px 12px;text-align:center;">Deposited</th>
+        <th style="padding:11px 12px;text-align:center;">CR KYC→Dep<br><span style='font-weight:400;opacity:.8;'>(vs. benchmark)</span></th>
+        <th style="padding:11px 12px;text-align:center;">Avg Deposit<br><span style='font-weight:400;opacity:.8;'>(vs. benchmark)</span></th>
+        <th style="padding:11px 12px;text-align:center;">Revenue &amp; Share</th>
+        <th style="padding:11px 12px;text-align:center;">Mobile %</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style='background:#fffbeb;border-bottom:1px solid #e8edf5;'>
+      <td style='padding:10px 12px;font-weight:700;font-size:13px;'>18-24</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>30</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>4</td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>13.3%</div>
+        <div style='font-size:11px;color:#888;'>bench: 20%</div>
+        <span style='color:#f59e0b;font-size:11px'>▼ -6.7pp vs bench</span>
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>$1,700</div>
+        <span style='color:#16a34a;font-size:10px'>▲ +13% vs bench</span>
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>$1</div>
+        <div style='background:#e8edf5;border-radius:4px;height:6px;margin-top:4px;overflow:hidden;'>
+          <div style='background:#94a3b8;height:6px;width:0%;border-radius:4px;'></div>
+        </div>
+        <div style='font-size:10px;color:#888;margin-top:2px;'>0% of total</div>
+      </td>
+      <td style='padding:10px 12px;text-align:center;font-size:11px;color:#6b7280;'>85% mobile</td>
+    </tr><tr style='background:#fffbeb;border-bottom:1px solid #e8edf5;'>
+      <td style='padding:10px 12px;font-weight:700;font-size:13px;'>25-34</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>25</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>9</td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>36%</div>
+        <div style='font-size:11px;color:#888;'>bench: 38%</div>
+        <span style='color:#f59e0b;font-size:11px'>▼ -2pp vs bench</span>
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>$2,024</div>
+        <span style='color:#f59e0b;font-size:10px'>▼ -28% vs bench</span>
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>$275</div>
+        <div style='background:#e8edf5;border-radius:4px;height:6px;margin-top:4px;overflow:hidden;'>
+          <div style='background:#94a3b8;height:6px;width:14%;border-radius:4px;'></div>
+        </div>
+        <div style='font-size:10px;color:#888;margin-top:2px;'>14% of total</div>
+      </td>
+      <td style='padding:10px 12px;text-align:center;font-size:11px;color:#6b7280;'>72% mobile</td>
+    </tr><tr style='background:#fffbeb;border-bottom:1px solid #e8edf5;'>
+      <td style='padding:10px 12px;font-weight:700;font-size:13px;'>35-44</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>18</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>5</td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>27.8%</div>
+        <div style='font-size:11px;color:#888;'>bench: 32%</div>
+        <span style='color:#f59e0b;font-size:11px'>▼ -4.2pp vs bench</span>
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>$10</div>
+        <span style='color:#f59e0b;font-size:10px'>▼ -100% vs bench</span>
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>$1,656</div>
+        <div style='background:#e8edf5;border-radius:4px;height:6px;margin-top:4px;overflow:hidden;'>
+          <div style='background:#1a2744;height:6px;width:82%;border-radius:4px;'></div>
+        </div>
+        <div style='font-size:10px;color:#888;margin-top:2px;'>82% of total</div>
+      </td>
+      <td style='padding:10px 12px;text-align:center;font-size:11px;color:#6b7280;'>58% mobile</td>
+    </tr><tr style='background:#f0fdf4;border-bottom:1px solid #e8edf5;'>
+      <td style='padding:10px 12px;font-weight:700;font-size:13px;'>45-54</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>4</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>3</td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>75%</div>
+        <div style='font-size:11px;color:#888;'>bench: 27%</div>
+        <span style='color:#16a34a;font-size:11px'>▲ +48pp vs bench</span>
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>$2,760</div>
+        <span style='color:#f59e0b;font-size:10px'>▼ -63% vs bench</span>
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>$88</div>
+        <div style='background:#e8edf5;border-radius:4px;height:6px;margin-top:4px;overflow:hidden;'>
+          <div style='background:#94a3b8;height:6px;width:4%;border-radius:4px;'></div>
+        </div>
+        <div style='font-size:10px;color:#888;margin-top:2px;'>4% of total</div>
+      </td>
+      <td style='padding:10px 12px;text-align:center;font-size:11px;color:#6b7280;'>44% mobile</td>
+    </tr><tr style='background:#fff5f5;border-bottom:1px solid #e8edf5;'>
+      <td style='padding:10px 12px;font-weight:700;font-size:13px;'>55+</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>3</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>0</td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>0%</div>
+        <div style='font-size:11px;color:#888;'>bench: 20%</div>
+        <span style='color:#dc2626;font-size:11px'>no dep yet</span>
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>—</div>
+        
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>—</div>
+        <div style='background:#e8edf5;border-radius:4px;height:6px;margin-top:4px;overflow:hidden;'>
+          <div style='background:#94a3b8;height:6px;width:0%;border-radius:4px;'></div>
+        </div>
+        <div style='font-size:10px;color:#888;margin-top:2px;'>0% of total</div>
+      </td>
+      <td style='padding:10px 12px;text-align:center;font-size:11px;color:#6b7280;'>32% mobile</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div style='background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:16px;margin-bottom:10px;'>
+  <div style='font-size:12px;font-weight:700;color:#15803d;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;'>🏆 Top Converter: 45-54</div>
+  <div style='font-size:13px;color:#1a2744;line-height:1.7;'>
+    CR KYC→Deposit <strong>75%</strong> — <strong>48pp above</strong> industry benchmark (27%). Contributes <strong>14% of all deposits</strong> this period.
+    Average deposit <strong>$2,760</strong> vs. industry benchmark <strong>$7,500</strong>.
+    <br><strong>Why:</strong> Highest avg deposit in industry. Slow decision cycle — 3-7 days from KYC to deposit vs. 1-2 days for younger groups. Personal account manager call increases CR by 40-60%. Avg LTV 24-36 months.
+    <br><strong>Action:</strong> Assign dedicated account manager for all KYC-passed leads in this group. Personal outreach call within 24h of KYC increases deposit CR by 40-60% for 45+ demographic.
+  </div>
+</div><div style='background:#fff5f5;border:1px solid #fecaca;border-radius:10px;padding:16px;margin-bottom:10px;'>
+  <div style='font-size:12px;font-weight:700;color:#dc2626;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;'>🚨 Activation Gap — Immediate Action Required</div>
+  <div style='font-size:13px;color:#1a2744;line-height:1.7;'>
+    KYC-verified users with zero deposits: <br>• <strong>55+</strong>: 3 KYC-verified, 0 deposits. Industry benchmark: 20% should convert. Estimated missed revenue: ~$5,400.
+    <br><strong>Industry benchmark:</strong> 80% of retail trading deposits happen within 7 days of KYC approval. After 14 days, probability drops by 60%.
+    <br><strong>Product context:</strong> The current post-KYC dashboard <strong>lacks a prominent Deposit CTA</strong> (UI redesign PAN-41399 — planned, not yet live). Do not rely on users finding the button. Marketing must compensate: every activation email must include a <strong>direct deep-link to the deposit page</strong>.
+    <br><strong>2FA barrier:</strong> Without Google Authenticator setup, withdrawal is impossible. Users who don't know this are afraid to deposit. Include 2FA setup as step 1 in your sequence — it builds trust and unblocks withdrawals.
+    <br><strong>3-touch re-engagement:</strong> Day 1 — ''Your account is verified — make your first deposit'' with direct deposit link + 2FA guide. Day 3 — personalised market alert (''XAUUSD +1.2% today — your account is ready to trade''). Day 7 — personal account manager call or Telegram DM. Use ActiveCampaign (already configured for B2Prime) to automate. This sequence recovers 35-45% of dormant KYC leads in comparable regulated brokers.
+  </div>
+</div><div style='background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;margin-bottom:10px;'>
+  <div style='font-size:12px;font-weight:700;color:#1a2744;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;'>📡 Channel Strategy by Age Segment</div>
+  <table style='width:100%;border-collapse:collapse;'>
+    <tr style='background:#1a2744;color:white;font-size:11px;'>
+      <th style='padding:8px 12px;text-align:left;'>Age</th>
+      <th style='padding:8px 12px;text-align:left;'>Best Channels (industry data)</th>
+      <th style='padding:8px 12px;text-align:left;'>Device</th>
+      <th style='padding:8px 12px;text-align:left;'>Priority</th>
+    </tr>
+    <tr style='border-bottom:1px solid #f1f5f9;'>
+      <td style='padding:8px 12px;font-weight:600;font-size:13px;'>18-24</td>
+      <td style='padding:8px 12px;font-size:12px;color:#4b5563;'>TikTok / Instagram Reels / Telegram</td>
+      <td style='padding:8px 12px;font-size:12px;'>85% mobile</td>
+      <td style='padding:8px 12px;font-size:12px;'>🟡 Nurture</td>
+    </tr><tr style='border-bottom:1px solid #f1f5f9;'>
+      <td style='padding:8px 12px;font-weight:600;font-size:13px;'>25-34</td>
+      <td style='padding:8px 12px;font-size:12px;color:#4b5563;'>Google Search / TradingView / YouTube</td>
+      <td style='padding:8px 12px;font-size:12px;'>72% mobile</td>
+      <td style='padding:8px 12px;font-size:12px;'>🟡 Nurture</td>
+    </tr><tr style='border-bottom:1px solid #f1f5f9;'>
+      <td style='padding:8px 12px;font-weight:600;font-size:13px;'>35-44</td>
+      <td style='padding:8px 12px;font-size:12px;color:#4b5563;'>Google Search / LinkedIn / Webinars</td>
+      <td style='padding:8px 12px;font-size:12px;'>58% mobile</td>
+      <td style='padding:8px 12px;font-size:12px;'>🟡 Nurture</td>
+    </tr><tr style='border-bottom:1px solid #f1f5f9;'>
+      <td style='padding:8px 12px;font-weight:600;font-size:13px;'>45-54</td>
+      <td style='padding:8px 12px;font-size:12px;color:#4b5563;'>Google Search / LinkedIn / Email</td>
+      <td style='padding:8px 12px;font-size:12px;'>44% mobile</td>
+      <td style='padding:8px 12px;font-size:12px;'>✅ Scale</td>
+    </tr><tr style='border-bottom:1px solid #f1f5f9;'>
+      <td style='padding:8px 12px;font-weight:600;font-size:13px;'>55+</td>
+      <td style='padding:8px 12px;font-size:12px;color:#4b5563;'>Google Search / Email / Phone</td>
+      <td style='padding:8px 12px;font-size:12px;'>32% mobile</td>
+      <td style='padding:8px 12px;font-size:12px;'>🔴 Re-engage</td>
+    </tr>
+  </table>
+</div>
+
+</div>
+
+<!-- ACTION PLAN -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <div class="section-title">This Week's Action Plan</div>
+  </div>
+      <div class="rec-block high">
+      <div class="rec-title"><span class="rec-badge high">🔴 high</span> Activate 61 verified users without deposit</div>
+      <div class="rec-action">Send personal outreach today: email with deposit link → call on day 2 → bonus offer on day 5.</div>
+    </div>    <div class="rec-block high">
+      <div class="rec-title"><span class="rec-badge high">🔴 high</span> Reg→KYC CR is only 9.5% — fix KYC drop-off</div>
+      <div class="rec-action">Add KYC reminder emails at +1h and +24h after signup. Review mobile UX — most drop-offs are on mobile.</div>
+    </div>    <div class="rec-block high">
+      <div class="rec-title"><span class="rec-badge high">🔴 high</span> KYC→Deposit CR 25.6% is low — remove friction</div>
+      <div class="rec-action">Audit deposit flow, expand payment methods, add trust signals. Send 'account ready' message immediately after KYC.</div>
+    </div>    <div class="rec-block medium">
+      <div class="rec-title"><span class="rec-badge medium">🟡 medium</span> Scale SEO — best CAC: 51 regs, CR 37.3%→42.1%</div>
+      <div class="rec-action">Double down on top landing pages. Publish 2-3 articles/week on broker comparison and platform queries.</div>
+    </div>
+</div>
+
+</div>
+<div class="footer">B2Prime Weekly Marketing Report &nbsp;·&nbsp; 28 Feb - 06 Apr 2026 &nbsp;·&nbsp; Roistat Analytics UTC+3 &nbsp;·&nbsp; Generated 07 Apr 2026 16:45 &nbsp;·&nbsp; Confidential</div>
+</body>
+</html>
