@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2Prime Marketing Reports</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f6fb; min-height: 100vh; }
+  .header { background: #1a2744; color: white; padding: 40px 60px; }
+  .header h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+  .header p { color: rgba(255,255,255,0.6); margin-top: 6px; font-size: 14px; }
+  .content { max-width: 800px; margin: 40px auto; padding: 0 24px; }
+  .section-title { font-size: 13px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 16px; }
+  .report-list { display: flex; flex-direction: column; gap: 10px; }
+  .report-card { background: white; border: 1px solid #e8edf5; border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: inherit; transition: box-shadow 0.15s, border-color 0.15s; }
+  .report-card:hover { box-shadow: 0 4px 16px rgba(26,39,68,0.12); border-color: #c5d0e6; }
+  .report-info { display: flex; align-items: center; gap: 16px; }
+  .report-icon { width: 40px; height: 40px; background: #eef2fb; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .report-name { font-size: 15px; font-weight: 600; color: #1a2744; }
+  .report-date { font-size: 12px; color: #888; margin-top: 3px; }
+  .report-arrow { color: #c5d0e6; font-size: 20px; font-weight: 300; }
+  .badge { background: #1a2744; color: white; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 20px; margin-left: 8px; vertical-align: middle; }
+  .badge.new { background: #16a34a; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 B2Prime Marketing Reports</h1>
+  <p>Weekly analytics · Roistat data · Auto-updated every Monday</p>
+</div>
+
+<div class="content">
+  <div class="section-title">All Reports</div>
+  <div class="report-list">
+
+    <a href="report_2026-03-31_2026-04-06.html" class="report-card">
+      <div class="report-info">
+        <div class="report-icon">📈</div>
+        <div>
+          <div class="report-name">Weekly Report <span class="badge new">latest</span></div>
+          <div class="report-date">Mar 31 – Apr 6, 2026</div>
+        </div>
+      </div>
+      <div class="report-arrow">›</div>
+    </a>
+
+    <a href="report_2026-03-01_2026-04-06.html" class="report-card">
+      <div class="report-info">
+        <div class="report-icon">📊</div>
+        <div>
+          <div class="report-name">Full March Report</div>
+          <div class="report-date">Mar 1 – Apr 6, 2026</div>
+        </div>
+      </div>
+      <div class="report-arrow">›</div>
+    </a>
+
+  </div>
+</div>
+
+</body>
+</html>
