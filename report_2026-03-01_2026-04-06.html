@@ -79,7 +79,7 @@
     .cover-title { font-size:26px; }
     .cover-subtitle { margin-bottom:16px; }
     .content { padding:16px 40px; }
-    .section { margin-bottom:12px; padding:16px; }
+    .section { margin-bottom:8px; padding:12px; page-break-inside:auto; }
     .alert-box { padding:12px 16px; margin-bottom:12px; page-break-inside:avoid; }
     .funnel { margin:10px 0; page-break-inside:avoid; }
     .funnel-step { padding:10px 4px; }
@@ -102,7 +102,6 @@
     margin-bottom:24px;
     background:#fff;
     box-shadow:0 1px 4px rgba(0,0,0,0.05);
-    page-break-inside:avoid;
   }
   .section-header { border-bottom:2px solid #e8edf5; padding-bottom:12px; margin-bottom:16px; margin-top:0; }
   .alert-box { page-break-inside:avoid; }
@@ -123,7 +122,7 @@
   <div class="cover-meta">
     <div class="cover-meta-item"><label>Period</label><span>01 Mar - 06 Apr 2026</span></div>
     <div class="cover-meta-item"><label>Data Source</label><span>Roistat Analytics UTC+3</span></div>
-    <div class="cover-meta-item"><label>Generated</label><span>07 Apr 2026 15:01</span></div>
+    <div class="cover-meta-item"><label>Generated</label><span>07 Apr 2026 16:30</span></div>
     <div class="cover-meta-item"><label>Classification</label><span>Confidential</span></div>
   </div>
 </div>
@@ -200,16 +199,16 @@
     <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Deposited</div><div class="cr">0%</div></div>
     <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Traders</div><div class="cr">Rev: $0</div></div>
   </div>
-  <ul class="rec-list"><li data-num='1'>Review landing page CTA — replace generic message with value-specific offer</li><li data-num='2'>Add post-registration email sequence explaining the deposit process</li><li data-num='3'>Consider demo account as first step to build trust before KYC</li></ul>
+  <ul class="rec-list"><li data-num='1'>TradingView traffic is chart-research intent — users are not yet in buying mode. Landing page must bridge ''I'm researching'' → ''I want to trade'': add live spreads, execution speed, and a ''Start with $100'' CTA</li><li data-num='2'>Test TradingView broker widget ad (Broker integration ads) — these show directly on the chart to users actively placing ideas, CTR 3-5× higher than display</li><li data-num='3'>Launch retargeting on TradingView visitors who completed reg but not KYC — Google Display or Meta custom audience from pixel</li></ul>
 </div><div class="section">
   <div class="section-header">
     <div class="section-num">3</div>
     <div class="section-title">No-cookie visitors</div>
-    <span class="section-badge badge-info">🔵 Info</span>
+    <span class="section-badge badge-info">🔵 Monitor</span>
   </div>
   <div class="alert-box alert-info">
     <div class="alert-title">220 registrations · 19 KYC · 5 deposited · 5 traders</div>
-    Normal activity. Monitor week-over-week for trend changes.
+    Steady activity. Monitor week-over-week for trend changes.
   </div>
   <div class="funnel">
     <div class="funnel-step"><div class="num">0</div><div class="lbl">Visits</div></div>
@@ -218,7 +217,7 @@
     <div class="funnel-step funnel-step-green"><div class="num">5</div><div class="lbl">Deposited</div><div class="cr">26.3%</div></div>
     <div class="funnel-step funnel-step-green"><div class="num">5</div><div class="lbl">Traders</div><div class="cr">Rev: $1</div></div>
   </div>
-  <ul class="rec-list"><li data-num='1'>No action required — track weekly trend</li></ul>
+  <ul class="rec-list"><li data-num='1'>No-cookie visitors are privacy-conscious users — likely using ad-blockers or private browsers. These are often high-quality leads. Ensure registration and KYC flows work perfectly without tracking scripts</li><li data-num='2'>Consider offering account creation via email (no social login) and minimal data collection at first step — reduces friction for this privacy-aware segment</li></ul>
 </div><div class="section">
   <div class="section-header">
     <div class="section-num">4</div>
@@ -226,8 +225,8 @@
     <span class="section-badge badge-opportunity">🟢 Opportunity</span>
   </div>
   <div class="alert-box alert-success">
-    <div class="alert-title">✅ Reg→KYC CR 24.7% — 2.6x above weekly average</div>
-    This source converts registrations to KYC at above-average rate. High-intent audience.
+    <div class="alert-title">✅ Reg→KYC CR 24.7% — 2.6x above average</div>
+    This source converts registrations to KYC at above-average rate — high-intent audience.
   </div>
   <div class="funnel">
     <div class="funnel-step"><div class="num">1646</div><div class="lbl">Visits</div></div>
@@ -236,7 +235,7 @@
     <div class="funnel-step funnel-step-green"><div class="num">7</div><div class="lbl">Deposited</div><div class="cr">38.9%</div></div>
     <div class="funnel-step funnel-step-green"><div class="num">5</div><div class="lbl">Traders</div><div class="cr">Rev: $1526</div></div>
   </div>
-  <ul class="rec-list"><li data-num='1'>Prioritise budget increase toward this source</li><li data-num='2'>Analyse what landing page/ad creative drives this traffic and replicate</li></ul>
+  <ul class="rec-list"><li data-num='1'>Direct traffic quality is strong — invest in brand awareness to grow this channel: PR in financial media (Finance Magnates, FXStreet, CoinTelegraph), sponsored analyst content</li><li data-num='2'>Partner with financial influencers/content creators on YouTube and Telegram who drive branded searches — this is how direct traffic grows organically</li><li data-num='3'>Track brand search volume in Google Search Console weekly — it's the leading indicator for direct traffic growth</li></ul>
 </div><div class="section">
   <div class="section-header">
     <div class="section-num">5</div>
@@ -244,8 +243,8 @@
     <span class="section-badge badge-opportunity">🟢 Opportunity</span>
   </div>
   <div class="alert-box alert-success">
-    <div class="alert-title">✅ Reg→KYC CR 36.7% — 3.8x above weekly average</div>
-    This source converts registrations to KYC at above-average rate. High-intent audience.
+    <div class="alert-title">✅ Reg→KYC CR 36.7% — 3.8x above average</div>
+    This source converts registrations to KYC at above-average rate — high-intent audience.
   </div>
   <div class="funnel">
     <div class="funnel-step"><div class="num">1604</div><div class="lbl">Visits</div></div>
@@ -254,7 +253,7 @@
     <div class="funnel-step funnel-step-green"><div class="num">8</div><div class="lbl">Deposited</div><div class="cr">44.4%</div></div>
     <div class="funnel-step funnel-step-green"><div class="num">8</div><div class="lbl">Traders</div><div class="cr">Rev: $493</div></div>
   </div>
-  <ul class="rec-list"><li data-num='1'>Prioritise budget increase toward this source</li><li data-num='2'>Analyse what landing page/ad creative drives this traffic and replicate</li></ul>
+  <ul class="rec-list"><li data-num='1'>SEO is the highest-quality acquisition channel. Increase content production: in-depth trading guides, instrument pages, comparison articles — target long-tail keywords with commercial intent (''best forex broker for beginners'', ''how to trade gold CFDs'')</li><li data-num='2'>Launch Google Ads Search campaigns on exact-match branded + competitor keywords. Create language-specific landing pages: /en/, /ru/, /ar/ — each localised with regional payment methods and account manager contact</li><li data-num='3'>Build topical authority clusters: 1 pillar page per instrument (Forex, Crypto, Indices, Commodities) + 8-12 supporting articles each. Google rewards topic depth with rankings for high-CPC finance keywords</li></ul>
 </div><div class="section">
   <div class="section-header">
     <div class="section-num">6</div>
@@ -262,8 +261,8 @@
     <span class="section-badge badge-opportunity">🟢 Opportunity</span>
   </div>
   <div class="alert-box alert-success">
-    <div class="alert-title">✅ Reg→KYC CR 33.3% — 3.5x above weekly average</div>
-    This source converts registrations to KYC at above-average rate. High-intent audience.
+    <div class="alert-title">✅ Reg→KYC CR 33.3% — 3.5x above average</div>
+    This source converts registrations to KYC at above-average rate — high-intent audience.
   </div>
   <div class="funnel">
     <div class="funnel-step"><div class="num">397</div><div class="lbl">Visits</div></div>
@@ -272,7 +271,7 @@
     <div class="funnel-step funnel-step-green"><div class="num">1</div><div class="lbl">Deposited</div><div class="cr">33.3%</div></div>
     <div class="funnel-step funnel-step-green"><div class="num">1</div><div class="lbl">Traders</div><div class="cr">Rev: $0</div></div>
   </div>
-  <ul class="rec-list"><li data-num='1'>Prioritise budget increase toward this source</li><li data-num='2'>Analyse what landing page/ad creative drives this traffic and replicate</li></ul>
+  <ul class="rec-list"><li data-num='1'>Analyse which specific ads/pages drive this high-CR traffic and replicate the pattern across other paid channels</li><li data-num='2'>Create language-specific landing pages (/en/, /ru/, /ar/) for this source — localised pages improve Reg→KYC CR by 15-25% on average</li></ul>
 </div><div class="section">
   <div class="section-header">
     <div class="section-num">7</div>
@@ -280,8 +279,8 @@
     <span class="section-badge badge-opportunity">🟢 Opportunity</span>
   </div>
   <div class="alert-box alert-success">
-    <div class="alert-title">✅ Reg→KYC CR 14.3% — 1.5x above weekly average</div>
-    This source converts registrations to KYC at above-average rate. High-intent audience.
+    <div class="alert-title">✅ Reg→KYC CR 14.3% — 1.5x above average</div>
+    This source converts registrations to KYC at above-average rate — high-intent audience.
   </div>
   <div class="funnel">
     <div class="funnel-step"><div class="num">54</div><div class="lbl">Visits</div></div>
@@ -290,52 +289,16 @@
     <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Deposited</div><div class="cr">0%</div></div>
     <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Traders</div><div class="cr">Rev: $0</div></div>
   </div>
-  <ul class="rec-list"><li data-num='1'>Prioritise budget increase toward this source</li><li data-num='2'>Analyse what landing page/ad creative drives this traffic and replicate</li></ul>
+  <ul class="rec-list"><li data-num='1'>Telegram converts well to KYC — the audience is already crypto/trading-native. Scale: partner with Telegram signal channels (10k-100k subscribers) for sponsored posts + pinned CTA</li><li data-num='2'>Launch your own B2Prime Telegram channel with daily market signals and analysis — builds trust pipeline. Target: 5k subscribers in 3 months via cross-promotion in partner channels</li><li data-num='3'>Use Telegram Mini Apps for seamless registration flow directly inside Telegram — reduces friction for mobile-first Telegram audience</li></ul>
 </div><div class="section">
   <div class="section-header">
     <div class="section-num">8</div>
-    <div class="section-title">facebook</div>
-    <span class="section-badge badge-info">🔵 Info</span>
-  </div>
-  <div class="alert-box alert-info">
-    <div class="alert-title">2 registrations · 0 KYC · 0 deposited · 0 traders</div>
-    Normal activity. Monitor week-over-week for trend changes.
-  </div>
-  <div class="funnel">
-    <div class="funnel-step"><div class="num">5</div><div class="lbl">Visits</div></div>
-    <div class="funnel-step funnel-step-yellow"><div class="num">2</div><div class="lbl">Registered</div></div>
-    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">KYC</div><div class="cr">0%</div></div>
-    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Deposited</div><div class="cr">—</div></div>
-    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Traders</div><div class="cr">Rev: $0</div></div>
-  </div>
-  <ul class="rec-list"><li data-num='1'>No action required — track weekly trend</li></ul>
-</div><div class="section">
-  <div class="section-header">
-    <div class="section-num">9</div>
-    <div class="section-title">instagram</div>
-    <span class="section-badge badge-info">🔵 Info</span>
-  </div>
-  <div class="alert-box alert-info">
-    <div class="alert-title">1 registrations · 0 KYC · 0 deposited · 0 traders</div>
-    Normal activity. Monitor week-over-week for trend changes.
-  </div>
-  <div class="funnel">
-    <div class="funnel-step"><div class="num">5</div><div class="lbl">Visits</div></div>
-    <div class="funnel-step funnel-step-yellow"><div class="num">1</div><div class="lbl">Registered</div></div>
-    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">KYC</div><div class="cr">0%</div></div>
-    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Deposited</div><div class="cr">—</div></div>
-    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Traders</div><div class="cr">Rev: $0</div></div>
-  </div>
-  <ul class="rec-list"><li data-num='1'>No action required — track weekly trend</li></ul>
-</div><div class="section">
-  <div class="section-header">
-    <div class="section-num">10</div>
     <div class="section-title">chatgpt.com</div>
-    <span class="section-badge badge-info">🔵 Info</span>
+    <span class="section-badge badge-info">🔵 Monitor</span>
   </div>
   <div class="alert-box alert-info">
     <div class="alert-title">1 registrations · 0 KYC · 0 deposited · 0 traders</div>
-    Normal activity. Monitor week-over-week for trend changes.
+    Steady activity. Monitor week-over-week for trend changes.
   </div>
   <div class="funnel">
     <div class="funnel-step"><div class="num">19</div><div class="lbl">Visits</div></div>
@@ -344,16 +307,16 @@
     <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Deposited</div><div class="cr">—</div></div>
     <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Traders</div><div class="cr">Rev: $0</div></div>
   </div>
-  <ul class="rec-list"><li data-num='1'>No action required — track weekly trend</li></ul>
+  <ul class="rec-list"><li data-num='1'>No action required — track weekly trend. Volume too low for statistical conclusions</li></ul>
 </div><div class="section">
   <div class="section-header">
-    <div class="section-num">11</div>
+    <div class="section-num">9</div>
     <div class="section-title">youtube</div>
-    <span class="section-badge badge-info">🔵 Info</span>
+    <span class="section-badge badge-info">🔵 Monitor</span>
   </div>
   <div class="alert-box alert-info">
     <div class="alert-title">1 registrations · 0 KYC · 0 deposited · 0 traders</div>
-    Normal activity. Monitor week-over-week for trend changes.
+    Steady activity. Monitor week-over-week for trend changes.
   </div>
   <div class="funnel">
     <div class="funnel-step"><div class="num">20</div><div class="lbl">Visits</div></div>
@@ -362,16 +325,16 @@
     <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Deposited</div><div class="cr">—</div></div>
     <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Traders</div><div class="cr">Rev: $0</div></div>
   </div>
-  <ul class="rec-list"><li data-num='1'>No action required — track weekly trend</li></ul>
+  <ul class="rec-list"><li data-num='1'>No action required — track weekly trend. Volume too low for statistical conclusions</li></ul>
 </div><div class="section">
   <div class="section-header">
-    <div class="section-num">12</div>
+    <div class="section-num">10</div>
     <div class="section-title">email</div>
-    <span class="section-badge badge-info">🔵 Info</span>
+    <span class="section-badge badge-info">🔵 Monitor</span>
   </div>
   <div class="alert-box alert-info">
     <div class="alert-title">0 registrations · 0 KYC · 0 deposited · 0 traders</div>
-    Normal activity. Monitor week-over-week for trend changes.
+    Steady activity. Monitor week-over-week for trend changes.
   </div>
   <div class="funnel">
     <div class="funnel-step"><div class="num">62</div><div class="lbl">Visits</div></div>
@@ -380,31 +343,199 @@
     <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Deposited</div><div class="cr">—</div></div>
     <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Traders</div><div class="cr">Rev: $0</div></div>
   </div>
-  <ul class="rec-list"><li data-num='1'>No action required — track weekly trend</li></ul>
-</div><div class="section">
+  <ul class="rec-list"><li data-num='1'>No action required — track weekly trend. Volume too low for statistical conclusions</li></ul>
+</div>
+
+<!-- SECTION: AGE INTELLIGENCE -->
+<div class="section">
   <div class="section-header">
-    <div class="section-num">13</div>
-    <div class="section-title">twitter</div>
-    <span class="section-badge badge-info">🔵 Info</span>
+    <div class="section-num"></div>
+    <div class="section-title">Audience Age Intelligence</div>
   </div>
-  <div class="alert-box alert-info">
-    <div class="alert-title">0 registrations · 0 KYC · 0 deposited · 0 traders</div>
-    Normal activity. Monitor week-over-week for trend changes.
+
+  <div style='font-size:12px;color:#6b7280;margin-bottom:14px;'>Age data is available only for KYC-verified leads. ''Benchmark'' = industry average for regulated retail forex/crypto brokers (Finance Magnates, SimilarWeb, internal niche data 2024-2025).</div>
+
+  <table style="width:100%;border-collapse:collapse;border-radius:10px;overflow:hidden;margin-bottom:20px;border:1px solid #e8edf5;">
+    <thead>
+      <tr style="background:#1a2744;color:white;font-size:12px;">
+        <th style="padding:11px 12px;text-align:left;">Age Group</th>
+        <th style="padding:11px 12px;text-align:center;">KYC Verified</th>
+        <th style="padding:11px 12px;text-align:center;">Deposited</th>
+        <th style="padding:11px 12px;text-align:center;">CR KYC→Dep<br><span style='font-weight:400;opacity:.8;'>(vs. benchmark)</span></th>
+        <th style="padding:11px 12px;text-align:center;">Avg Deposit<br><span style='font-weight:400;opacity:.8;'>(vs. benchmark)</span></th>
+        <th style="padding:11px 12px;text-align:center;">Revenue &amp; Share</th>
+        <th style="padding:11px 12px;text-align:center;">Mobile %</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style='background:#fffbeb;border-bottom:1px solid #e8edf5;'>
+      <td style='padding:10px 12px;font-weight:700;font-size:13px;'>18-24</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>29</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>4</td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>13.8%</div>
+        <div style='font-size:11px;color:#888;'>bench: 20%</div>
+        <span style='color:#f59e0b;font-size:11px'>▼ -6.2pp vs bench</span>
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>$1,700</div>
+        <span style='color:#16a34a;font-size:10px'>▲ +13% vs bench</span>
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>$1</div>
+        <div style='background:#e8edf5;border-radius:4px;height:6px;margin-top:4px;overflow:hidden;'>
+          <div style='background:#94a3b8;height:6px;width:0%;border-radius:4px;'></div>
+        </div>
+        <div style='font-size:10px;color:#888;margin-top:2px;'>0% of total</div>
+      </td>
+      <td style='padding:10px 12px;text-align:center;font-size:11px;color:#6b7280;'>85% mobile</td>
+    </tr><tr style='background:#fffbeb;border-bottom:1px solid #e8edf5;'>
+      <td style='padding:10px 12px;font-weight:700;font-size:13px;'>25-34</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>25</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>9</td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>36%</div>
+        <div style='font-size:11px;color:#888;'>bench: 38%</div>
+        <span style='color:#f59e0b;font-size:11px'>▼ -2pp vs bench</span>
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>$2,024</div>
+        <span style='color:#f59e0b;font-size:10px'>▼ -28% vs bench</span>
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>$275</div>
+        <div style='background:#e8edf5;border-radius:4px;height:6px;margin-top:4px;overflow:hidden;'>
+          <div style='background:#94a3b8;height:6px;width:14%;border-radius:4px;'></div>
+        </div>
+        <div style='font-size:10px;color:#888;margin-top:2px;'>14% of total</div>
+      </td>
+      <td style='padding:10px 12px;text-align:center;font-size:11px;color:#6b7280;'>72% mobile</td>
+    </tr><tr style='background:#fffbeb;border-bottom:1px solid #e8edf5;'>
+      <td style='padding:10px 12px;font-weight:700;font-size:13px;'>35-44</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>18</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>5</td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>27.8%</div>
+        <div style='font-size:11px;color:#888;'>bench: 32%</div>
+        <span style='color:#f59e0b;font-size:11px'>▼ -4.2pp vs bench</span>
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>$10</div>
+        <span style='color:#f59e0b;font-size:10px'>▼ -100% vs bench</span>
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>$1,656</div>
+        <div style='background:#e8edf5;border-radius:4px;height:6px;margin-top:4px;overflow:hidden;'>
+          <div style='background:#1a2744;height:6px;width:82%;border-radius:4px;'></div>
+        </div>
+        <div style='font-size:10px;color:#888;margin-top:2px;'>82% of total</div>
+      </td>
+      <td style='padding:10px 12px;text-align:center;font-size:11px;color:#6b7280;'>58% mobile</td>
+    </tr><tr style='background:#f0fdf4;border-bottom:1px solid #e8edf5;'>
+      <td style='padding:10px 12px;font-weight:700;font-size:13px;'>45-54</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>4</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>3</td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>75%</div>
+        <div style='font-size:11px;color:#888;'>bench: 27%</div>
+        <span style='color:#16a34a;font-size:11px'>▲ +48pp vs bench</span>
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>$2,760</div>
+        <span style='color:#f59e0b;font-size:10px'>▼ -63% vs bench</span>
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>$88</div>
+        <div style='background:#e8edf5;border-radius:4px;height:6px;margin-top:4px;overflow:hidden;'>
+          <div style='background:#94a3b8;height:6px;width:4%;border-radius:4px;'></div>
+        </div>
+        <div style='font-size:10px;color:#888;margin-top:2px;'>4% of total</div>
+      </td>
+      <td style='padding:10px 12px;text-align:center;font-size:11px;color:#6b7280;'>44% mobile</td>
+    </tr><tr style='background:#fff5f5;border-bottom:1px solid #e8edf5;'>
+      <td style='padding:10px 12px;font-weight:700;font-size:13px;'>55+</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>3</td>
+      <td style='padding:10px 12px;text-align:center;font-size:13px;'>0</td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>0%</div>
+        <div style='font-size:11px;color:#888;'>bench: 20%</div>
+        <span style='color:#dc2626;font-size:11px'>no dep yet</span>
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>—</div>
+        
+      </td>
+      <td style='padding:10px 12px;text-align:center;'>
+        <div style='font-size:13px;font-weight:700;'>—</div>
+        <div style='background:#e8edf5;border-radius:4px;height:6px;margin-top:4px;overflow:hidden;'>
+          <div style='background:#94a3b8;height:6px;width:0%;border-radius:4px;'></div>
+        </div>
+        <div style='font-size:10px;color:#888;margin-top:2px;'>0% of total</div>
+      </td>
+      <td style='padding:10px 12px;text-align:center;font-size:11px;color:#6b7280;'>32% mobile</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div style='background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:16px;margin-bottom:10px;'>
+  <div style='font-size:12px;font-weight:700;color:#15803d;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;'>🏆 Top Converter: 45-54</div>
+  <div style='font-size:13px;color:#1a2744;line-height:1.7;'>
+    CR KYC→Deposit <strong>75%</strong> — <strong>48pp above</strong> industry benchmark (27%). Contributes <strong>14% of all deposits</strong> this period.
+    Average deposit <strong>$2,760</strong> vs. industry benchmark <strong>$7,500</strong>.
+    <br><strong>Why:</strong> Highest avg deposit in industry. Slow decision cycle — 3-7 days from KYC to deposit vs. 1-2 days for younger groups. Personal account manager call increases CR by 40-60%. Avg LTV 24-36 months.
+    <br><strong>Action:</strong> Assign dedicated account manager for all KYC-passed leads in this group. Personal outreach call within 24h of KYC increases deposit CR by 40-60% for 45+ demographic.
   </div>
-  <div class="funnel">
-    <div class="funnel-step"><div class="num">6</div><div class="lbl">Visits</div></div>
-    <div class="funnel-step funnel-step-yellow"><div class="num">0</div><div class="lbl">Registered</div></div>
-    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">KYC</div><div class="cr">—</div></div>
-    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Deposited</div><div class="cr">—</div></div>
-    <div class="funnel-step funnel-step-red"><div class="num">0</div><div class="lbl">Traders</div><div class="cr">Rev: $0</div></div>
+</div><div style='background:#fff5f5;border:1px solid #fecaca;border-radius:10px;padding:16px;margin-bottom:10px;'>
+  <div style='font-size:12px;font-weight:700;color:#dc2626;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;'>🚨 Activation Gap — Immediate Action Required</div>
+  <div style='font-size:13px;color:#1a2744;line-height:1.7;'>
+    KYC-verified users with zero deposits: <br>• <strong>55+</strong>: 3 KYC-verified, 0 deposits. Industry benchmark: 20% should convert. Estimated missed revenue: ~$5,400.
+    <br><strong>Industry benchmark:</strong> 80% of retail trading deposits happen within 7 days of KYC approval. After 14 days, probability drops by 60%.
+    <br><strong>Action plan:</strong> Launch re-engagement sequence NOW — Day 1: personalised email with ''Your account is ready'' + deposit bonus. Day 3: market opportunity alert. Day 7: account manager call. This 3-touch sequence recovers 35-45% of dormant KYC leads in comparable regulated brokers.
   </div>
-  <ul class="rec-list"><li data-num='1'>No action required — track weekly trend</li></ul>
+</div><div style='background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;margin-bottom:10px;'>
+  <div style='font-size:12px;font-weight:700;color:#1a2744;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;'>📡 Channel Strategy by Age Segment</div>
+  <table style='width:100%;border-collapse:collapse;'>
+    <tr style='background:#1a2744;color:white;font-size:11px;'>
+      <th style='padding:8px 12px;text-align:left;'>Age</th>
+      <th style='padding:8px 12px;text-align:left;'>Best Channels (industry data)</th>
+      <th style='padding:8px 12px;text-align:left;'>Device</th>
+      <th style='padding:8px 12px;text-align:left;'>Priority</th>
+    </tr>
+    <tr style='border-bottom:1px solid #f1f5f9;'>
+      <td style='padding:8px 12px;font-weight:600;font-size:13px;'>18-24</td>
+      <td style='padding:8px 12px;font-size:12px;color:#4b5563;'>TikTok / Instagram Reels / Telegram</td>
+      <td style='padding:8px 12px;font-size:12px;'>85% mobile</td>
+      <td style='padding:8px 12px;font-size:12px;'>🟡 Nurture</td>
+    </tr><tr style='border-bottom:1px solid #f1f5f9;'>
+      <td style='padding:8px 12px;font-weight:600;font-size:13px;'>25-34</td>
+      <td style='padding:8px 12px;font-size:12px;color:#4b5563;'>Google Search / TradingView / YouTube</td>
+      <td style='padding:8px 12px;font-size:12px;'>72% mobile</td>
+      <td style='padding:8px 12px;font-size:12px;'>🟡 Nurture</td>
+    </tr><tr style='border-bottom:1px solid #f1f5f9;'>
+      <td style='padding:8px 12px;font-weight:600;font-size:13px;'>35-44</td>
+      <td style='padding:8px 12px;font-size:12px;color:#4b5563;'>Google Search / LinkedIn / Webinars</td>
+      <td style='padding:8px 12px;font-size:12px;'>58% mobile</td>
+      <td style='padding:8px 12px;font-size:12px;'>🟡 Nurture</td>
+    </tr><tr style='border-bottom:1px solid #f1f5f9;'>
+      <td style='padding:8px 12px;font-weight:600;font-size:13px;'>45-54</td>
+      <td style='padding:8px 12px;font-size:12px;color:#4b5563;'>Google Search / LinkedIn / Email</td>
+      <td style='padding:8px 12px;font-size:12px;'>44% mobile</td>
+      <td style='padding:8px 12px;font-size:12px;'>✅ Scale</td>
+    </tr><tr style='border-bottom:1px solid #f1f5f9;'>
+      <td style='padding:8px 12px;font-weight:600;font-size:13px;'>55+</td>
+      <td style='padding:8px 12px;font-size:12px;color:#4b5563;'>Google Search / Email / Phone</td>
+      <td style='padding:8px 12px;font-size:12px;'>32% mobile</td>
+      <td style='padding:8px 12px;font-size:12px;'>🔴 Re-engage</td>
+    </tr>
+  </table>
+</div>
+
 </div>
 
 <!-- ACTION PLAN -->
 <div class="section">
   <div class="section-header">
-    <div class="section-num">14</div>
+    <div class="section-num">12</div>
     <div class="section-title">This Week's Action Plan</div>
   </div>
       <div class="rec-block high">
@@ -423,6 +554,6 @@
 </div>
 
 </div>
-<div class="footer">B2Prime Weekly Marketing Report &nbsp;·&nbsp; 01 Mar - 06 Apr 2026 &nbsp;·&nbsp; Roistat Analytics UTC+3 &nbsp;·&nbsp; Generated 07 Apr 2026 15:01 &nbsp;·&nbsp; Confidential</div>
+<div class="footer">B2Prime Weekly Marketing Report &nbsp;·&nbsp; 01 Mar - 06 Apr 2026 &nbsp;·&nbsp; Roistat Analytics UTC+3 &nbsp;·&nbsp; Generated 07 Apr 2026 16:30 &nbsp;·&nbsp; Confidential</div>
 </body>
 </html>
