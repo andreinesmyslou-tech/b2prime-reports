@@ -499,14 +499,14 @@
   </div>
 
   <div class="report-footer">
-    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-08 12:44 &middot; Roistat API &middot; Project 295989
+    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-08 12:46 &middot; Roistat API &middot; Project 295989
   </div>
 </div>
 
 <script>
 function setLang(lang) {
   document.querySelectorAll('[data-en]').forEach(function(el) {
-    el.textContent = el.getAttribute('data-' + lang);
+    el.innerHTML = el.getAttribute('data-' + lang);
   });
   document.querySelectorAll('.lang-btn').forEach(function(btn) {
     btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
