@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2Broker Marketing Report</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* Site Switcher */
+  .site-switcher { display: flex; justify-content: center; margin-bottom: 16px; }
+  .site-switcher-inner { display: flex; background: #1e293b; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+  .site-btn { padding: 10px 24px; font-size: 13px; font-weight: 700; color: #94a3b8; background: transparent; border: none; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
+  .site-btn:hover { color: #e2e8f0; }
+  .site-btn.active { background: #f97316; color: #fff; }
+
+  .report-header { text-align: center; margin-bottom: 48px; }
+  .report-header h1 { font-size: 28px; font-weight: 700; color: #111827; margin-bottom: 8px; }
+  .report-header .period { font-size: 15px; color: #6b7280; }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 48px; }
+  @media (max-width: 900px) { .kpi-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 560px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+  .kpi-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px 20px; text-align: center; border-top: 3px solid #f97316; }
+  .kpi-card:nth-child(1) { border-top-color: #f97316; }
+  .kpi-card:nth-child(2) { border-top-color: #3b82f6; }
+  .kpi-card:nth-child(3) { border-top-color: #8b5cf6; }
+  .kpi-card:nth-child(4) { border-top-color: #06b6d4; }
+  .kpi-card:nth-child(5) { border-top-color: #22c55e; }
+  .kpi-card .label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; margin-bottom: 12px; }
+  .kpi-card .value { font-size: 32px; font-weight: 700; color: #0f172a; line-height: 1; margin-bottom: 8px; }
+  .kpi-card .cr { font-size: 13px; color: #94a3b8; }
+  .kpi-card .cr span { color: #16a34a; font-weight: 600; }
+
+  .funnel-bar { display: flex; align-items: center; justify-content: center; margin-bottom: 56px; background: #f8fafc; border-radius: 12px; padding: 20px 16px; border: 1px solid #e2e8f0; }
+  .funnel-step { text-align: center; flex: 1; }
+  .funnel-step .bar { height: 8px; border-radius: 4px; margin: 0 2px; }
+  .funnel-arrow { color: #cbd5e1; font-size: 20px; margin: 0 4px; flex-shrink: 0; }
+  .funnel-step .step-label { font-size: 11px; color: #64748b; margin-top: 8px; }
+  .funnel-step .step-value { font-size: 15px; font-weight: 700; color: #0f172a; margin-top: 2px; }
+
+  .source-section { margin-bottom: 32px; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; }
+  .source-header { display: flex; align-items: center; gap: 14px; padding: 20px 24px; border-bottom: 1px solid #e2e8f0; }
+  .source-color { width: 5px; height: 32px; border-radius: 3px; flex-shrink: 0; }
+  .source-header h2 { font-size: 18px; font-weight: 700; color: #fff; }
+
+  .source-metrics { display: flex; flex-wrap: wrap; gap: 0; padding: 0; border-bottom: 1px solid #e2e8f0; }
+  .sm { flex: 1; min-width: 100px; padding: 16px 12px; text-align: center; border-right: 1px solid rgba(0,0,0,0.05); }
+  .sm:last-child { border-right: none; }
+  .sm-val { display: block; font-size: 20px; font-weight: 700; color: #0f172a; }
+  .sm-label { display: block; font-size: 11px; color: #64748b; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
+
+  .source-body { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: #fff; }
+  @media (max-width: 700px) { .source-body { grid-template-columns: 1fr; } }
+  .source-col { padding: 24px; }
+  .source-col:first-child { border-right: 1px solid #f1f5f9; }
+  .source-col h3 { font-size: 13px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
+
+  .insight-list, .action-list { padding-left: 20px; margin-bottom: 20px; }
+  .insight-list li, .action-list li { font-size: 14px; line-height: 1.6; color: #475569; margin-bottom: 10px; }
+  .result-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 16px 18px; border-radius: 0 10px 10px 0; margin-top: 8px; }
+  .result-box strong { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #1d4ed8; display: block; margin-bottom: 6px; }
+  .result-box ul { padding-left: 18px; }
+  .result-box li { font-size: 14px; line-height: 1.6; color: #1e40af; margin-bottom: 4px; }
+
+  .section-title { font-size: 22px; font-weight: 700; color: #0f172a; margin-bottom: 28px; padding-bottom: 12px; border-bottom: 3px solid #f97316; display: inline-block; }
+
+  .lang-toggle { display: flex; justify-content: center; margin-bottom: 24px; }
+  .lang-toggle-inner { display: flex; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .lang-btn { padding: 8px 18px; font-size: 13px; font-weight: 600; color: #94a3b8; background: transparent; border: none; cursor: pointer; transition: all 0.2s; }
+  .lang-btn.active { background: #f97316; color: #fff; }
+  .lang-btn:hover:not(.active) { color: #334155; }
+
+  .report-nav { display: flex; justify-content: center; gap: 4px; margin-bottom: 32px; background: #fff; border-radius: 12px; padding: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); max-width: 520px; margin-left: auto; margin-right: auto; }
+  .nav-link { flex: 1; text-align: center; padding: 10px 16px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 600; color: #64748b; transition: all 0.2s; white-space: nowrap; }
+  .nav-link:hover { color: #1e293b; background: #f1f5f9; }
+  .nav-link.active { color: #fff; background: #f97316; box-shadow: 0 2px 4px rgba(249,115,22,0.3); }
+
+  .report-footer { text-align: center; padding-top: 32px; border-top: 1px solid #e2e8f0; color: #94a3b8; font-size: 12px; }
+
+  /* Pipeline tables */
+  .pipe-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; font-size: 13px; }
+  .pipe-table th { background: #1e293b; color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .pipe-table th:first-child { border-radius: 8px 0 0 0; }
+  .pipe-table th:last-child { border-radius: 0 8px 0 0; }
+  .pipe-table td { padding: 10px 12px; border-bottom: 1px solid #e2e8f0; }
+  .pipe-table tr:hover { background: #f1f5f9; }
+  .pipe-table td:nth-child(2), .pipe-table td:nth-child(3) { text-align: center; }
+
+  /* Geo table */
+  .geo-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; font-size: 13px; }
+  .geo-table th { background: #1e293b; color: #fff; padding: 10px 12px; text-align: center; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .geo-table th:first-child { text-align: center; width: 40px; border-radius: 8px 0 0 0; }
+  .geo-table th:nth-child(2) { text-align: left; }
+  .geo-table th:last-child { border-radius: 0 8px 0 0; }
+  .geo-table td { padding: 10px 12px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+  .geo-table td:nth-child(2) { text-align: left; font-weight: 600; }
+  .geo-table tr:hover { background: #f1f5f9; }
+
+  .insight-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; }
+  .insight-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
+  .insight-card ul { padding-left: 20px; margin: 0; }
+  .insight-card li { font-size: 13px; line-height: 1.7; color: #475569; margin-bottom: 6px; }
+
+  i { font-style: normal; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="site-switcher">
+    <div class="site-switcher-inner">
+      <a href="index.html" class="site-btn" data-en="B2Prime" data-ru="B2Prime">B2Prime</a>
+      <a href="b2broker.html" class="site-btn active" data-en="B2Broker" data-ru="B2Broker">B2Broker</a>
+    </div>
+  </div>
+  <div class="lang-toggle">
+    <div class="lang-toggle-inner">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ru')">RU</button>
+    </div>
+  </div>
+  <nav class="report-nav">
+    <a href="b2broker.html" class="nav-link active" data-en="Sources" data-ru="&#1048;&#1089;&#1090;&#1086;&#1095;&#1085;&#1080;&#1082;&#1080;">Sources</a>
+    <a href="b2broker-pipeline.html" class="nav-link " data-en="Pipeline" data-ru="&#1055;&#1072;&#1081;&#1087;&#1083;&#1072;&#1081;&#1085;">Pipeline</a>
+    <a href="b2broker-geo.html" class="nav-link " data-en="Geography" data-ru="&#1043;&#1077;&#1086;&#1075;&#1088;&#1072;&#1092;&#1080;&#1103;">Geography</a>
+  </nav>
+  <div class="report-header">
+    <h1 data-en="B2Broker Marketing Report" data-ru="B2Broker &#1052;&#1072;&#1088;&#1082;&#1077;&#1090;&#1080;&#1085;&#1075;&#1086;&#1074;&#1099;&#1081; &#1054;&#1090;&#1095;&#1105;&#1090;">B2Broker Marketing Report</h1>
+    <div class="period">2026-03-09 - 2026-04-08</div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="label" data-en="Visits" data-ru="&#1042;&#1080;&#1079;&#1080;&#1090;&#1099;">Visits</div>
+      <div class="value">59,970</div>
+      <div class="cr" data-en="site traffic" data-ru="&#1090;&#1088;&#1072;&#1092;&#1080;&#1082; &#1089;&#1072;&#1081;&#1090;&#1072;">site traffic</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label" data-en="Leads" data-ru="&#1051;&#1080;&#1076;&#1099;">Leads</div>
+      <div class="value">582</div>
+      <div class="cr"><span>1%</span> <i data-en="of visits" data-ru="&#1086;&#1090; &#1074;&#1080;&#1079;&#1080;&#1090;&#1086;&#1074;">of visits</i></div>
+    </div>
+    <div class="kpi-card">
+      <div class="label" data-en="Active Pipeline" data-ru="&#1040;&#1082;&#1090;&#1080;&#1074;&#1085;&#1099;&#1081; &#1087;&#1072;&#1081;&#1087;&#1083;&#1072;&#1081;&#1085;">Active Pipeline</div>
+      <div class="value">512</div>
+      <div class="cr"><span>88%</span> <i data-en="of leads" data-ru="&#1086;&#1090; &#1083;&#1080;&#1076;&#1086;&#1074;">of leads</i></div>
+    </div>
+    <div class="kpi-card">
+      <div class="label" data-en="Deals" data-ru="&#1057;&#1076;&#1077;&#1083;&#1082;&#1080;">Deals</div>
+      <div class="value">144</div>
+      <div class="cr"><span>24.7%</span> <i data-en="of leads" data-ru="&#1086;&#1090; &#1083;&#1080;&#1076;&#1086;&#1074;">of leads</i></div>
+    </div>
+    <div class="kpi-card">
+      <div class="label" data-en="Closed Won" data-ru="&#1047;&#1072;&#1082;&#1088;&#1099;&#1090;&#1086; (&#1074;&#1099;&#1080;&#1075;&#1088;.)">Closed Won</div>
+      <div class="value">13</div>
+      <div class="cr"><span>68.4%</span> <i data-en="win rate" data-ru="&#1074;&#1080;&#1085;-&#1088;&#1077;&#1081;&#1090;">win rate</i></div>
+    </div>
+  </div>
+
+  <div class="funnel-bar">
+    <div class="funnel-step"><div class="bar" style="background:#f97316;"></div><div class="step-label" data-en="Visits" data-ru="&#1042;&#1080;&#1079;&#1080;&#1090;&#1099;">Visits</div><div class="step-value">59,970</div></div>
+    <div class="funnel-arrow">&#8594;</div>
+    <div class="funnel-step"><div class="bar" style="background:#3b82f6;"></div><div class="step-label" data-en="Leads" data-ru="&#1051;&#1080;&#1076;&#1099;">Leads</div><div class="step-value">582</div></div>
+    <div class="funnel-arrow">&#8594;</div>
+    <div class="funnel-step"><div class="bar" style="background:#8b5cf6;"></div><div class="step-label" data-en="Deals" data-ru="&#1057;&#1076;&#1077;&#1083;&#1082;&#1080;">Deals</div><div class="step-value">144</div></div>
+    <div class="funnel-arrow">&#8594;</div>
+    <div class="funnel-step"><div class="bar" style="background:#22c55e;"></div><div class="step-label" data-en="Closed Won" data-ru="&#1042;&#1099;&#1080;&#1075;&#1088;&#1072;&#1085;&#1086;">Closed Won</div><div class="step-value">13</div></div>
+  </div>
+
+<!-- SECTION:SOURCES START -->
+  <h2 class="section-title" data-en="Traffic Sources Analysis" data-ru="&#1040;&#1085;&#1072;&#1083;&#1080;&#1079; &#1080;&#1089;&#1090;&#1086;&#1095;&#1085;&#1080;&#1082;&#1086;&#1074; &#1090;&#1088;&#1072;&#1092;&#1080;&#1082;&#1072;">Traffic Sources Analysis</h2>
+
+  <div class="source-section" id="src-seo">
+    <div class="source-header" style="background: linear-gradient(135deg, #166534, #22c55e);">
+      <div class="source-color" style="background: rgba(255,255,255,0.4);"></div>
+      <h2 data-en="SEO (Organic Search)" data-ru="SEO (&#1054;&#1088;&#1075;&#1072;&#1085;&#1080;&#1095;&#1077;&#1089;&#1082;&#1080;&#1081; &#1087;&#1086;&#1080;&#1089;&#1082;)">SEO (Organic Search)</h2>
+    </div>
+    <div class="source-metrics" style="background: #f0fdf4;">
+      <div class="sm"><span class="sm-val">18,603</span><span class="sm-label" data-en="Visits" data-ru="&#1042;&#1080;&#1079;&#1080;&#1090;&#1099;">Visits</span></div>
+      <div class="sm"><span class="sm-val">145</span><span class="sm-label" data-en="Leads" data-ru="&#1051;&#1080;&#1076;&#1099;">Leads</span></div>
+      <div class="sm"><span class="sm-val">0.8%</span><span class="sm-label" data-en="CR Visit&#8594;Lead" data-ru="CR &#1042;&#1080;&#1079;&#1080;&#1090;&#8594;&#1051;&#1080;&#1076;">CR Visit&#8594;Lead</span></div>
+      <div class="sm"><span class="sm-val">15%</span><span class="sm-label" data-en="Qualified" data-ru="&#1050;&#1074;&#1072;&#1083;&#1080;&#1092;&#1080;&#1094;.">Qualified</span></div>
+      <div class="sm"><span class="sm-val">10%</span><span class="sm-label" data-en="Lost/Disqualified" data-ru="&#1055;&#1086;&#1090;&#1077;&#1088;&#1103;&#1085;&#1086;">Lost/Disqualified</span></div>
+    </div>
+    <div class="source-body">
+      <div class="source-col">
+        <h3 data-en="Insights" data-ru="&#1048;&#1085;&#1089;&#1072;&#1081;&#1090;&#1099;">Insights</h3>
+        <ul class="insight-list">          <li data-en="SEO drives 36% of marketing-sourced leads (145 of 405) with 0.8% visit-to-lead conversion" data-ru="SEO &#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1091;&#1077;&#1090; 36% &#1084;&#1072;&#1088;&#1082;&#1077;&#1090;&#1080;&#1085;&#1075;&#1086;&#1074;&#1099;&#1093; &#1083;&#1080;&#1076;&#1086;&#1074; (145 &#1080;&#1079; 405) &#1089; CR 0.8%"></li>
+          <li data-en="71% of SEO leads (103) are in early stages (New + Outreach) &#8212; need faster sales engagement" data-ru="71% SEO-&#1083;&#1080;&#1076;&#1086;&#1074; (103) &#1074; &#1088;&#1072;&#1085;&#1085;&#1080;&#1093; &#1089;&#1090;&#1072;&#1076;&#1080;&#1103;&#1093; (New + Outreach) &#8212; &#1085;&#1091;&#1078;&#1085;&#1072; &#1073;&#1086;&#1083;&#1077;&#1077; &#1073;&#1099;&#1089;&#1090;&#1088;&#1072;&#1103; &#1086;&#1073;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072;"></li>
+          <li data-en="22 leads in qualification stages (Conversation/Nurturing) &#8212; active pipeline from organic" data-ru="22 &#1083;&#1080;&#1076;&#1086;&#1074; &#1074; &#1089;&#1090;&#1072;&#1076;&#1080;&#1080; &#1082;&#1074;&#1072;&#1083;&#1080;&#1092;&#1080;&#1082;&#1072;&#1094;&#1080;&#1080; (Conversation/Nurturing) &#8212; &#1072;&#1082;&#1090;&#1080;&#1074;&#1085;&#1099;&#1081; &#1087;&#1072;&#1081;&#1087;&#1083;&#1072;&#1081;&#1085; &#1080;&#1079; &#1086;&#1088;&#1075;&#1072;&#1085;&#1080;&#1082;&#1080;"></li>
+          <li data-en="15 leads lost/disqualified (10%) &#8212; acceptable for B2B organic" data-ru="15 &#1083;&#1080;&#1076;&#1086;&#1074; &#1087;&#1086;&#1090;&#1077;&#1088;&#1103;&#1085;&#1086;/&#1076;&#1080;&#1089;&#1082;&#1074;&#1072;&#1083;. (10%) &#8212; &#1087;&#1088;&#1080;&#1077;&#1084;&#1083;&#1077;&#1084;&#1086; &#1076;&#1083;&#1103; B2B &#1086;&#1088;&#1075;&#1072;&#1085;&#1080;&#1082;&#1080;"></li></ul>
+        <div class="insight-list" style="display:none;"></div>
+      </div>
+      <div class="source-col">
+        <h3 data-en="Action Plan" data-ru="&#1055;&#1083;&#1072;&#1085; &#1076;&#1077;&#1081;&#1089;&#1090;&#1074;&#1080;&#1081;">Action Plan</h3>
+        <ol class="action-list">          <li data-en="Analyze top-converting landing pages and scale content around those topics" data-ru="&#1055;&#1088;&#1086;&#1072;&#1085;&#1072;&#1083;&#1080;&#1079;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100; &#1083;&#1091;&#1095;&#1096;&#1080;&#1077; &#1083;&#1077;&#1085;&#1076;&#1080;&#1085;&#1075;&#1080; &#1080; &#1084;&#1072;&#1089;&#1096;&#1090;&#1072;&#1073;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100; &#1082;&#1086;&#1085;&#1090;&#1077;&#1085;&#1090;"></li>
+          <li data-en="Ensure sales team engages Outreach-stage leads within 24 hours of form submission" data-ru="&#1054;&#1073;&#1077;&#1089;&#1087;&#1077;&#1095;&#1080;&#1090;&#1100; &#1082;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090; &#1089; &#1083;&#1080;&#1076;&#1072;&#1084;&#1080; &#1074; Outreach &#1074; &#1090;&#1077;&#1095;&#1077;&#1085;&#1080;&#1077; 24&#1095; &#1087;&#1086;&#1089;&#1083;&#1077; &#1079;&#1072;&#1103;&#1074;&#1082;&#1080;"></li>
+          <li data-en="Create targeted content for B2B keywords: white-label, liquidity provider, forex technology" data-ru="&#1057;&#1086;&#1079;&#1076;&#1072;&#1090;&#1100; &#1094;&#1077;&#1083;&#1077;&#1074;&#1086;&#1081; &#1082;&#1086;&#1085;&#1090;&#1077;&#1085;&#1090; &#1087;&#1086; B2B-&#1082;&#1083;&#1102;&#1095;&#1077;&#1074;&#1080;&#1082;&#1072;&#1084;: white-label, liquidity provider, forex technology"></li></ol>
+        <div class="action-list" style="display:none;"></div>
+        <div class="result-box">
+          <strong data-en="Expected Result" data-ru="&#1054;&#1078;&#1080;&#1076;&#1072;&#1077;&#1084;&#1099;&#1081; &#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;">Expected Result</strong>
+          <ul>            <li data-en="Improving CR from 0.8% to 1% = +56 leads/month" data-ru="&#1059;&#1074;&#1077;&#1083;&#1080;&#1095;&#1077;&#1085;&#1080;&#1077; CR &#1089; 0.8% &#1076;&#1086; 1% = +56 &#1083;&#1080;&#1076;&#1086;&#1074;/&#1084;&#1077;&#1089;"></li>
+            <li data-en="Faster lead engagement should move 15-20% more leads from Outreach to Conversation" data-ru="&#1041;&#1099;&#1089;&#1090;&#1088;&#1072;&#1103; &#1086;&#1073;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1087;&#1077;&#1088;&#1077;&#1074;&#1077;&#1076;&#1105;&#1090; 15-20% &#1083;&#1080;&#1076;&#1086;&#1074; &#1080;&#1079; Outreach &#1074; Conversation"></li></ul>
+          <div style="display:none;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="source-section" id="src-google-ads">
+    <div class="source-header" style="background: linear-gradient(135deg, #b91c1c, #ef4444);">
+      <div class="source-color" style="background: rgba(255,255,255,0.4);"></div>
+      <h2 data-en="Google Ads (All Campaigns)" data-ru="Google Ads (&#1042;&#1089;&#1077; &#1082;&#1072;&#1084;&#1087;&#1072;&#1085;&#1080;&#1080;)">Google Ads (All Campaigns)</h2>
+    </div>
+    <div class="source-metrics" style="background: #fef2f2;">
+      <div class="sm"><span class="sm-val">29,409</span><span class="sm-label" data-en="Visits" data-ru="&#1042;&#1080;&#1079;&#1080;&#1090;&#1099;">Visits</span></div>
+      <div class="sm"><span class="sm-val">94</span><span class="sm-label" data-en="Leads" data-ru="&#1051;&#1080;&#1076;&#1099;">Leads</span></div>
+      <div class="sm"><span class="sm-val">0.3%</span><span class="sm-label" data-en="CR Visit&#8594;Lead" data-ru="CR &#1042;&#1080;&#1079;&#1080;&#1090;&#8594;&#1051;&#1080;&#1076;">CR Visit&#8594;Lead</span></div>
+      <div class="sm"><span class="sm-val">19%</span><span class="sm-label" data-en="Qualified" data-ru="&#1050;&#1074;&#1072;&#1083;&#1080;&#1092;&#1080;&#1094;.">Qualified</span></div>
+      <div class="sm"><span class="sm-val">11%</span><span class="sm-label" data-en="Lost/Disqualified" data-ru="&#1055;&#1086;&#1090;&#1077;&#1088;&#1103;&#1085;&#1086;">Lost/Disqualified</span></div>
+    </div>
+    <div class="source-body">
+      <div class="source-col">
+        <h3 data-en="Insights" data-ru="&#1048;&#1085;&#1089;&#1072;&#1081;&#1090;&#1099;">Insights</h3>
+        <ul class="insight-list">          <li data-en="Google Ads drives 29,409 visits (49% of total traffic) but only 94 leads (0.3% CR)" data-ru="Google Ads &#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1091;&#1077;&#1090; 29,409 &#1074;&#1080;&#1079;&#1080;&#1090;&#1086;&#1074; (49% &#1090;&#1088;&#1072;&#1092;&#1080;&#1082;&#1072;), &#1085;&#1086; &#1090;&#1086;&#1083;&#1100;&#1082;&#1086; 94 &#1083;&#1080;&#1076;&#1086;&#1074; (0.3% CR)"></li>
+          <li data-en="0.3% conversion rate is below SEO (0.8%) and Direct (1.1%) &#8212; ad targeting or landing pages need optimization" data-ru="CR 0.3% &#1085;&#1080;&#1078;&#1077; SEO (0.8%) &#1080; Direct (1.1%) &#8212; &#1090;&#1072;&#1088;&#1075;&#1077;&#1090;&#1080;&#1085;&#1075; &#1080;&#1083;&#1080; &#1083;&#1077;&#1085;&#1076;&#1080;&#1085;&#1075;&#1080; &#1090;&#1088;&#1077;&#1073;&#1091;&#1102;&#1090; &#1086;&#1087;&#1090;&#1080;&#1084;&#1080;&#1079;&#1072;&#1094;&#1080;&#1080;"></li>
+          <li data-en="11% disqualification rate &#8212; review audience targeting to reduce unqualified clicks" data-ru="11% &#1076;&#1080;&#1089;&#1082;&#1074;&#1072;&#1083;&#1080;&#1092;&#1080;&#1082;&#1072;&#1094;&#1080;&#1103; &#8212; &#1087;&#1088;&#1086;&#1074;&#1077;&#1088;&#1080;&#1090;&#1100; &#1090;&#1072;&#1088;&#1075;&#1077;&#1090;&#1080;&#1085;&#1075; &#1076;&#1083;&#1103; &#1089;&#1085;&#1080;&#1078;&#1077;&#1085;&#1080;&#1103; &#1085;&#1077;&#1094;&#1077;&#1083;&#1077;&#1074;&#1099;&#1093; &#1082;&#1083;&#1080;&#1082;&#1086;&#1074;"></li>
+          <li data-en="Multiple campaigns (Google Ads 1: 75 leads, Ads 2: 15 leads) &#8212; consolidate or pause underperformers" data-ru="&#1053;&#1077;&#1089;&#1082;&#1086;&#1083;&#1100;&#1082;&#1086; &#1082;&#1072;&#1084;&#1087;&#1072;&#1085;&#1080;&#1081; (Ads 1: 75 &#1083;&#1080;&#1076;&#1086;&#1074;, Ads 2: 15) &#8212; &#1082;&#1086;&#1085;&#1089;&#1086;&#1083;&#1080;&#1076;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100; &#1080;&#1083;&#1080; &#1086;&#1089;&#1090;&#1072;&#1085;&#1086;&#1074;&#1080;&#1090;&#1100; &#1089;&#1083;&#1072;&#1073;&#1099;&#1077;"></li></ul>
+        <div class="insight-list" style="display:none;"></div>
+      </div>
+      <div class="source-col">
+        <h3 data-en="Action Plan" data-ru="&#1055;&#1083;&#1072;&#1085; &#1076;&#1077;&#1081;&#1089;&#1090;&#1074;&#1080;&#1081;">Action Plan</h3>
+        <ol class="action-list">          <li data-en="Audit keyword targeting: exclude irrelevant B2C/retail terms, focus on B2B intent (white-label, institutional, broker solutions)" data-ru="&#1040;&#1091;&#1076;&#1080;&#1090; &#1082;&#1083;&#1102;&#1095;&#1077;&#1074;&#1080;&#1082;&#1086;&#1074;: &#1080;&#1089;&#1082;&#1083;&#1102;&#1095;&#1080;&#1090;&#1100; B2C-&#1079;&#1072;&#1087;&#1088;&#1086;&#1089;&#1099;, &#1092;&#1086;&#1082;&#1091;&#1089; &#1085;&#1072; B2B (white-label, institutional, broker solutions)"></li>
+          <li data-en="A/B test landing pages with industry-specific value propositions" data-ru="A/B &#1090;&#1077;&#1089;&#1090; &#1083;&#1077;&#1085;&#1076;&#1080;&#1085;&#1075;&#1086;&#1074; &#1089; &#1086;&#1090;&#1088;&#1072;&#1089;&#1083;&#1077;&#1074;&#1099;&#1084;&#1080; &#1087;&#1088;&#1077;&#1076;&#1083;&#1086;&#1078;&#1077;&#1085;&#1080;&#1103;&#1084;&#1080;"></li>
+          <li data-en="Consolidate campaigns: pause low-CR campaigns and reallocate budget to top performers" data-ru="&#1050;&#1086;&#1085;&#1089;&#1086;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1103; &#1082;&#1072;&#1084;&#1087;&#1072;&#1085;&#1080;&#1081;: &#1086;&#1089;&#1090;&#1072;&#1085;&#1086;&#1074;&#1080;&#1090;&#1100; &#1089;&#1083;&#1072;&#1073;&#1099;&#1077;, &#1087;&#1077;&#1088;&#1077;&#1088;&#1072;&#1089;&#1087;&#1088;&#1077;&#1076;&#1077;&#1083;&#1080;&#1090;&#1100; &#1073;&#1102;&#1076;&#1078;&#1077;&#1090;"></li></ol>
+        <div class="action-list" style="display:none;"></div>
+        <div class="result-box">
+          <strong data-en="Expected Result" data-ru="&#1054;&#1078;&#1080;&#1076;&#1072;&#1077;&#1084;&#1099;&#1081; &#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;">Expected Result</strong>
+          <ul>            <li data-en="Optimizing targeting could double CR from 0.3% to 0.6% = +94 leads/month at same spend" data-ru="&#1054;&#1087;&#1090;&#1080;&#1084;&#1080;&#1079;&#1072;&#1094;&#1080;&#1103; &#1090;&#1072;&#1088;&#1075;&#1077;&#1090;&#1080;&#1085;&#1075;&#1072; &#1084;&#1086;&#1078;&#1077;&#1090; &#1091;&#1076;&#1074;&#1086;&#1080;&#1090;&#1100; CR &#1089; 0.3% &#1076;&#1086; 0.6% = +94 &#1083;&#1080;&#1076;&#1086;&#1074;/&#1084;&#1077;&#1089;"></li>
+            <li data-en="Campaign consolidation will reduce wasted ad spend and improve ROAS" data-ru="&#1050;&#1086;&#1085;&#1089;&#1086;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1103; &#1089;&#1085;&#1080;&#1079;&#1080;&#1090; &#1087;&#1086;&#1090;&#1077;&#1088;&#1080; &#1073;&#1102;&#1076;&#1078;&#1077;&#1090;&#1072; &#1080; &#1091;&#1083;&#1091;&#1095;&#1096;&#1080;&#1090; ROAS"></li></ul>
+          <div style="display:none;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="source-section" id="src-direct">
+    <div class="source-header" style="background: linear-gradient(135deg, #1e40af, #3b82f6);">
+      <div class="source-color" style="background: rgba(255,255,255,0.4);"></div>
+      <h2 data-en="Direct Traffic" data-ru="&#1055;&#1088;&#1103;&#1084;&#1086;&#1081; &#1090;&#1088;&#1072;&#1092;&#1080;&#1082;">Direct Traffic</h2>
+    </div>
+    <div class="source-metrics" style="background: #eff6ff;">
+      <div class="sm"><span class="sm-val">8,040</span><span class="sm-label" data-en="Visits" data-ru="&#1042;&#1080;&#1079;&#1080;&#1090;&#1099;">Visits</span></div>
+      <div class="sm"><span class="sm-val">90</span><span class="sm-label" data-en="Leads" data-ru="&#1051;&#1080;&#1076;&#1099;">Leads</span></div>
+      <div class="sm"><span class="sm-val">1.1%</span><span class="sm-label" data-en="CR Visit&#8594;Lead" data-ru="CR &#1042;&#1080;&#1079;&#1080;&#1090;&#8594;&#1051;&#1080;&#1076;">CR Visit&#8594;Lead</span></div>
+      <div class="sm"><span class="sm-val">9%</span><span class="sm-label" data-en="Qualified" data-ru="&#1050;&#1074;&#1072;&#1083;&#1080;&#1092;&#1080;&#1094;.">Qualified</span></div>
+      <div class="sm"><span class="sm-val">10%</span><span class="sm-label" data-en="Lost/Disqualified" data-ru="&#1055;&#1086;&#1090;&#1077;&#1088;&#1103;&#1085;&#1086;">Lost/Disqualified</span></div>
+    </div>
+    <div class="source-body">
+      <div class="source-col">
+        <h3 data-en="Insights" data-ru="&#1048;&#1085;&#1089;&#1072;&#1081;&#1090;&#1099;">Insights</h3>
+        <ul class="insight-list">          <li data-en="Direct traffic generates 90 leads with 1.1% CR &#8212; indicates strong brand awareness" data-ru="&#1055;&#1088;&#1103;&#1084;&#1086;&#1081; &#1090;&#1088;&#1072;&#1092;&#1080;&#1082; &#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1091;&#1077;&#1090; 90 &#1083;&#1080;&#1076;&#1086;&#1074; &#1089; CR 1.1% &#8212; &#1089;&#1080;&#1083;&#1100;&#1085;&#1072;&#1103; &#1091;&#1079;&#1085;&#1072;&#1074;&#1072;&#1077;&#1084;&#1086;&#1089;&#1090;&#1100; &#1073;&#1088;&#1077;&#1085;&#1076;&#1072;"></li>
+          <li data-en="1.1% CR is higher than Google Ads (0.3%) and SEO (0.8%) &#8212; brand-aware visitors convert better" data-ru="CR 1.1% &#1074;&#1099;&#1096;&#1077; Google Ads (0.3%) &#1080; SEO (0.8%) &#8212; &#1083;&#1080;&#1076;&#1099; &#1089; &#1079;&#1085;&#1072;&#1085;&#1080;&#1077;&#1084; &#1073;&#1088;&#1077;&#1085;&#1076;&#1072; &#1082;&#1086;&#1085;&#1074;&#1077;&#1088;&#1090;&#1080;&#1088;&#1091;&#1102;&#1090;&#1089;&#1103; &#1083;&#1091;&#1095;&#1096;&#1077;"></li>
+          <li data-en="Most leads in early stages (New/Outreach): 71 &#8212; these are warm prospects needing timely follow-up" data-ru="&#1041;&#1086;&#1083;&#1100;&#1096;&#1080;&#1085;&#1089;&#1090;&#1074;&#1086; &#1083;&#1080;&#1076;&#1086;&#1074; &#1074; &#1088;&#1072;&#1085;&#1085;&#1080;&#1093; &#1089;&#1090;&#1072;&#1076;&#1080;&#1103;&#1093; (New/Outreach): 71 &#8212; &#1090;&#1088;&#1077;&#1073;&#1091;&#1102;&#1090; &#1073;&#1099;&#1089;&#1090;&#1088;&#1086;&#1075;&#1086; &#1092;&#1086;&#1083;&#1083;&#1086;&#1091;-&#1072;&#1087;&#1072;"></li></ul>
+        <div class="insight-list" style="display:none;"></div>
+      </div>
+      <div class="source-col">
+        <h3 data-en="Action Plan" data-ru="&#1055;&#1083;&#1072;&#1085; &#1076;&#1077;&#1081;&#1089;&#1090;&#1074;&#1080;&#1081;">Action Plan</h3>
+        <ol class="action-list">          <li data-en="Invest in brand awareness: industry events, PR, partnerships to grow direct traffic" data-ru="&#1048;&#1085;&#1074;&#1077;&#1089;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100; &#1074; &#1091;&#1079;&#1085;&#1072;&#1074;&#1072;&#1077;&#1084;&#1086;&#1089;&#1090;&#1100;: &#1086;&#1090;&#1088;&#1072;&#1089;&#1083;&#1077;&#1074;&#1099;&#1077; &#1084;&#1077;&#1088;&#1086;&#1087;&#1088;&#1080;&#1103;&#1090;&#1080;&#1103;, PR, &#1087;&#1072;&#1088;&#1090;&#1085;&#1105;&#1088;&#1089;&#1090;&#1074;&#1072;"></li>
+          <li data-en="Prioritize direct-traffic leads in sales queue &#8212; they already know the brand" data-ru="&#1055;&#1088;&#1080;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090; &#1074; &#1086;&#1095;&#1077;&#1088;&#1077;&#1076;&#1080; &#1087;&#1088;&#1086;&#1076;&#1072;&#1078; &#1076;&#1083;&#1103; &#1087;&#1088;&#1103;&#1084;&#1086;&#1075;&#1086; &#1090;&#1088;&#1072;&#1092;&#1080;&#1082;&#1072; &#8212; &#1086;&#1085;&#1080; &#1091;&#1078;&#1077; &#1079;&#1085;&#1072;&#1102;&#1090; &#1073;&#1088;&#1077;&#1085;&#1076;"></li>
+          <li data-en="Track brand search volume trends to measure awareness growth" data-ru="&#1054;&#1090;&#1089;&#1083;&#1077;&#1078;&#1080;&#1074;&#1072;&#1090;&#1100; &#1073;&#1088;&#1077;&#1085;&#1076;&#1086;&#1074;&#1099;&#1081; &#1087;&#1086;&#1080;&#1089;&#1082;&#1086;&#1074;&#1099;&#1081; &#1090;&#1088;&#1072;&#1092;&#1080;&#1082; &#1076;&#1083;&#1103; &#1086;&#1094;&#1077;&#1085;&#1082;&#1080; &#1088;&#1086;&#1089;&#1090;&#1072; &#1091;&#1079;&#1085;&#1072;&#1074;&#1072;&#1077;&#1084;&#1086;&#1089;&#1090;&#1080;"></li></ol>
+        <div class="action-list" style="display:none;"></div>
+        <div class="result-box">
+          <strong data-en="Expected Result" data-ru="&#1054;&#1078;&#1080;&#1076;&#1072;&#1077;&#1084;&#1099;&#1081; &#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;">Expected Result</strong>
+          <ul>            <li data-en="Brand initiatives can grow direct traffic 20-30%, adding 22+ leads/month" data-ru="&#1041;&#1088;&#1077;&#1085;&#1076;-&#1080;&#1085;&#1080;&#1094;&#1080;&#1072;&#1090;&#1080;&#1074;&#1099; &#1084;&#1086;&#1075;&#1091;&#1090; &#1076;&#1072;&#1090;&#1100; +20-30% &#1087;&#1088;&#1103;&#1084;&#1086;&#1075;&#1086; &#1090;&#1088;&#1072;&#1092;&#1080;&#1082;&#1072; = +22 &#1083;&#1080;&#1076;&#1086;&#1074;/&#1084;&#1077;&#1089;"></li></ul>
+          <div style="display:none;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="source-section" id="src-email">
+    <div class="source-header" style="background: linear-gradient(135deg, #92400e, #f59e0b);">
+      <div class="source-color" style="background: rgba(255,255,255,0.4);"></div>
+      <h2 data-en="Email Marketing" data-ru="Email &#1084;&#1072;&#1088;&#1082;&#1077;&#1090;&#1080;&#1085;&#1075;">Email Marketing</h2>
+    </div>
+    <div class="source-metrics" style="background: #fffbeb;">
+      <div class="sm"><span class="sm-val">662</span><span class="sm-label" data-en="Visits" data-ru="&#1042;&#1080;&#1079;&#1080;&#1090;&#1099;">Visits</span></div>
+      <div class="sm"><span class="sm-val">46</span><span class="sm-label" data-en="Leads" data-ru="&#1051;&#1080;&#1076;&#1099;">Leads</span></div>
+      <div class="sm"><span class="sm-val">6.9%</span><span class="sm-label" data-en="CR Visit&#8594;Lead" data-ru="CR &#1042;&#1080;&#1079;&#1080;&#1090;&#8594;&#1051;&#1080;&#1076;">CR Visit&#8594;Lead</span></div>
+      <div class="sm"><span class="sm-val">13%</span><span class="sm-label" data-en="Qualified" data-ru="&#1050;&#1074;&#1072;&#1083;&#1080;&#1092;&#1080;&#1094;.">Qualified</span></div>
+      <div class="sm"><span class="sm-val">7%</span><span class="sm-label" data-en="Lost/Disqualified" data-ru="&#1055;&#1086;&#1090;&#1077;&#1088;&#1103;&#1085;&#1086;">Lost/Disqualified</span></div>
+    </div>
+    <div class="source-body">
+      <div class="source-col">
+        <h3 data-en="Insights" data-ru="&#1048;&#1085;&#1089;&#1072;&#1081;&#1090;&#1099;">Insights</h3>
+        <ul class="insight-list">          <li data-en="Email has the highest CR at 6.9% &#8212; highly targeted, warm audience responds well" data-ru="Email &#1080;&#1084;&#1077;&#1077;&#1090; &#1089;&#1072;&#1084;&#1099;&#1081; &#1074;&#1099;&#1089;&#1086;&#1082;&#1080;&#1081; CR 6.9% &#8212; &#1094;&#1077;&#1083;&#1077;&#1074;&#1072;&#1103; &#1090;&#1105;&#1087;&#1083;&#1072;&#1103; &#1072;&#1091;&#1076;&#1080;&#1090;&#1086;&#1088;&#1080;&#1103;"></li>
+          <li data-en="46 leads from 662 visits &#8212; limited scale but high quality" data-ru="46 &#1083;&#1080;&#1076;&#1086;&#1074; &#1080;&#1079; 662 &#1074;&#1080;&#1079;&#1080;&#1090;&#1086;&#1074; &#8212; &#1086;&#1075;&#1088;&#1072;&#1085;&#1080;&#1095;&#1077;&#1085;&#1085;&#1099;&#1081; &#1084;&#1072;&#1089;&#1096;&#1090;&#1072;&#1073;, &#1085;&#1086; &#1074;&#1099;&#1089;&#1086;&#1082;&#1086;&#1077; &#1082;&#1072;&#1095;&#1077;&#1089;&#1090;&#1074;&#1086;"></li>
+          <li data-en="Email leads show strong qualification potential &#8212; 6 in Conversation/Nurturing stages" data-ru="Email-&#1083;&#1080;&#1076;&#1099; &#1089; &#1093;&#1086;&#1088;&#1086;&#1096;&#1080;&#1084; &#1087;&#1086;&#1090;&#1077;&#1085;&#1094;&#1080;&#1072;&#1083;&#1086;&#1084; &#8212; 6 &#1074; Conversation/Nurturing"></li></ul>
+        <div class="insight-list" style="display:none;"></div>
+      </div>
+      <div class="source-col">
+        <h3 data-en="Action Plan" data-ru="&#1055;&#1083;&#1072;&#1085; &#1076;&#1077;&#1081;&#1089;&#1090;&#1074;&#1080;&#1081;">Action Plan</h3>
+        <ol class="action-list">          <li data-en="Expand email database: add lead magnets (whitepapers, webinar replays, case studies)" data-ru="&#1056;&#1072;&#1089;&#1096;&#1080;&#1088;&#1080;&#1090;&#1100; &#1073;&#1072;&#1079;&#1091;: &#1076;&#1086;&#1073;&#1072;&#1074;&#1080;&#1090;&#1100; &#1083;&#1080;&#1076;-&#1084;&#1072;&#1075;&#1085;&#1080;&#1090;&#1099; (whitepapers, &#1074;&#1077;&#1073;&#1080;&#1085;&#1072;&#1088;&#1099;, &#1082;&#1077;&#1081;&#1089;&#1099;)"></li>
+          <li data-en="Segment email campaigns by industry vertical and buyer stage" data-ru="&#1057;&#1077;&#1075;&#1084;&#1077;&#1085;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100; &#1088;&#1072;&#1089;&#1089;&#1099;&#1083;&#1082;&#1080; &#1087;&#1086; &#1086;&#1090;&#1088;&#1072;&#1089;&#1083;&#1103;&#1084; &#1080; &#1089;&#1090;&#1072;&#1076;&#1080;&#1103;&#1084;"></li>
+          <li data-en="Implement nurture sequences for leads not yet in Conversation stage" data-ru="&#1042;&#1085;&#1077;&#1076;&#1088;&#1080;&#1090;&#1100; &#1085;&#1072;&#1088;&#1090;&#1091;&#1088;-&#1094;&#1077;&#1087;&#1086;&#1095;&#1082;&#1080; &#1076;&#1083;&#1103; &#1083;&#1080;&#1076;&#1086;&#1074; &#1085;&#1077; &#1074; Conversation"></li></ol>
+        <div class="action-list" style="display:none;"></div>
+        <div class="result-box">
+          <strong data-en="Expected Result" data-ru="&#1054;&#1078;&#1080;&#1076;&#1072;&#1077;&#1084;&#1099;&#1081; &#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;">Expected Result</strong>
+          <ul>            <li data-en="Growing email list 2x could yield 92+ leads/month with same high CR" data-ru="&#1059;&#1074;&#1077;&#1083;&#1080;&#1095;&#1077;&#1085;&#1080;&#1077; &#1073;&#1072;&#1079;&#1099; 2x &#1084;&#1086;&#1078;&#1077;&#1090; &#1076;&#1072;&#1090;&#1100; 92+ &#1083;&#1080;&#1076;&#1086;&#1074;/&#1084;&#1077;&#1089;"></li>
+            <li data-en="Email remains the most cost-effective B2B channel &#8212; scale aggressively" data-ru="Email &#1086;&#1089;&#1090;&#1072;&#1105;&#1090;&#1089;&#1103; &#1089;&#1072;&#1084;&#1099;&#1084; &#1101;&#1092;&#1092;&#1077;&#1082;&#1090;&#1080;&#1074;&#1085;&#1099;&#1084; B2B-&#1082;&#1072;&#1085;&#1072;&#1083;&#1086;&#1084; &#8212; &#1084;&#1072;&#1089;&#1096;&#1090;&#1072;&#1073;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100;"></li></ul>
+          <div style="display:none;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="source-section" id="src-ai-search">
+    <div class="source-header" style="background: linear-gradient(135deg, #5b21b6, #8b5cf6);">
+      <div class="source-color" style="background: rgba(255,255,255,0.4);"></div>
+      <h2 data-en="AI Search (ChatGPT, Perplexity)" data-ru="AI-&#1087;&#1086;&#1080;&#1089;&#1082; (ChatGPT, Perplexity)">AI Search (ChatGPT, Perplexity)</h2>
+    </div>
+    <div class="source-metrics" style="background: #f5f3ff;">
+      <div class="sm"><span class="sm-val">271</span><span class="sm-label" data-en="Visits" data-ru="&#1042;&#1080;&#1079;&#1080;&#1090;&#1099;">Visits</span></div>
+      <div class="sm"><span class="sm-val">12</span><span class="sm-label" data-en="Leads" data-ru="&#1051;&#1080;&#1076;&#1099;">Leads</span></div>
+      <div class="sm"><span class="sm-val">4.4%</span><span class="sm-label" data-en="CR Visit&#8594;Lead" data-ru="CR &#1042;&#1080;&#1079;&#1080;&#1090;&#8594;&#1051;&#1080;&#1076;">CR Visit&#8594;Lead</span></div>
+      <div class="sm"><span class="sm-val">8%</span><span class="sm-label" data-en="Qualified" data-ru="&#1050;&#1074;&#1072;&#1083;&#1080;&#1092;&#1080;&#1094;.">Qualified</span></div>
+      <div class="sm"><span class="sm-val">17%</span><span class="sm-label" data-en="Lost/Disqualified" data-ru="&#1055;&#1086;&#1090;&#1077;&#1088;&#1103;&#1085;&#1086;">Lost/Disqualified</span></div>
+    </div>
+    <div class="source-body">
+      <div class="source-col">
+        <h3 data-en="Insights" data-ru="&#1048;&#1085;&#1089;&#1072;&#1081;&#1090;&#1099;">Insights</h3>
+        <ul class="insight-list">          <li data-en="AI search is an emerging B2B channel: 12 leads from 271 visits (4.4% CR)" data-ru="AI-&#1087;&#1086;&#1080;&#1089;&#1082; &#8212; &#1088;&#1072;&#1089;&#1090;&#1091;&#1097;&#1080;&#1081; B2B-&#1082;&#1072;&#1085;&#1072;&#1083;: 12 &#1083;&#1080;&#1076;&#1086;&#1074; &#1080;&#1079; 271 &#1074;&#1080;&#1079;&#1080;&#1090;&#1086;&#1074; (4.4% CR)"></li>
+          <li data-en="ChatGPT and Perplexity users are researching solutions &#8212; high-intent visitors" data-ru="&#1055;&#1086;&#1083;&#1100;&#1079;&#1086;&#1074;&#1072;&#1090;&#1077;&#1083;&#1080; ChatGPT &#1080; Perplexity &#1080;&#1089;&#1089;&#1083;&#1077;&#1076;&#1091;&#1102;&#1090; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1103; &#8212; &#1074;&#1099;&#1089;&#1086;&#1082;&#1080;&#1081; &#1080;&#1085;&#1090;&#1077;&#1085;&#1090;"></li>
+          <li data-en="4.4% CR is above Google Ads (0.3%) and SEO (0.8%) &#8212; AI users convert well" data-ru="CR 4.4% &#1074;&#1099;&#1096;&#1077; Google Ads (0.3%) &#1080; SEO (0.8%) &#8212; AI-&#1087;&#1086;&#1083;&#1100;&#1079;&#1086;&#1074;&#1072;&#1090;&#1077;&#1083;&#1080; &#1082;&#1086;&#1085;&#1074;&#1077;&#1088;&#1090;&#1080;&#1088;&#1091;&#1102;&#1090;&#1089;&#1103; &#1083;&#1091;&#1095;&#1096;&#1077;"></li></ul>
+        <div class="insight-list" style="display:none;"></div>
+      </div>
+      <div class="source-col">
+        <h3 data-en="Action Plan" data-ru="&#1055;&#1083;&#1072;&#1085; &#1076;&#1077;&#1081;&#1089;&#1090;&#1074;&#1080;&#1081;">Action Plan</h3>
+        <ol class="action-list">          <li data-en="Ensure B2Broker is well-represented in AI training data: maintain updated, structured content on site" data-ru="&#1054;&#1073;&#1077;&#1089;&#1087;&#1077;&#1095;&#1080;&#1090;&#1100; &#1087;&#1088;&#1077;&#1076;&#1089;&#1090;&#1072;&#1074;&#1083;&#1077;&#1085;&#1085;&#1086;&#1089;&#1090;&#1100; B2Broker &#1074; AI: &#1072;&#1082;&#1090;&#1091;&#1072;&#1083;&#1100;&#1085;&#1099;&#1081; &#1089;&#1090;&#1088;&#1091;&#1082;&#1090;&#1091;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1085;&#1099;&#1081; &#1082;&#1086;&#1085;&#1090;&#1077;&#1085;&#1090;"></li>
+          <li data-en="Create comparison pages and FAQ content that AI models can reference" data-ru="&#1057;&#1086;&#1079;&#1076;&#1072;&#1090;&#1100; &#1089;&#1090;&#1088;&#1072;&#1085;&#1080;&#1094;&#1099; &#1089;&#1088;&#1072;&#1074;&#1085;&#1077;&#1085;&#1080;&#1103; &#1080; FAQ &#1076;&#1083;&#1103; AI-&#1084;&#1086;&#1076;&#1077;&#1083;&#1077;&#1081;"></li>
+          <li data-en="Monitor AI referral traffic trends monthly &#8212; this channel is growing rapidly" data-ru="&#1054;&#1090;&#1089;&#1083;&#1077;&#1078;&#1080;&#1074;&#1072;&#1090;&#1100; AI-&#1088;&#1077;&#1092;&#1077;&#1088;&#1072;&#1083;&#1100;&#1085;&#1099;&#1081; &#1090;&#1088;&#1072;&#1092;&#1080;&#1082; &#1077;&#1078;&#1077;&#1084;&#1077;&#1089;&#1103;&#1095;&#1085;&#1086; &#8212; &#1082;&#1072;&#1085;&#1072;&#1083; &#1073;&#1099;&#1089;&#1090;&#1088;&#1086; &#1088;&#1072;&#1089;&#1090;&#1105;&#1090;"></li></ol>
+        <div class="action-list" style="display:none;"></div>
+        <div class="result-box">
+          <strong data-en="Expected Result" data-ru="&#1054;&#1078;&#1080;&#1076;&#1072;&#1077;&#1084;&#1099;&#1081; &#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;">Expected Result</strong>
+          <ul>            <li data-en="AI search traffic is projected to grow 3-5x in 2026 &#8212; early optimization creates lasting advantage" data-ru="AI-&#1090;&#1088;&#1072;&#1092;&#1080;&#1082; &#1087;&#1088;&#1086;&#1075;&#1085;&#1086;&#1079;&#1080;&#1088;&#1091;&#1077;&#1090;&#1089;&#1103; &#1088;&#1072;&#1089;&#1090;&#1080; 3-5x &#1074; 2026 &#8212; &#1088;&#1072;&#1085;&#1085;&#1103;&#1103; &#1086;&#1087;&#1090;&#1080;&#1084;&#1080;&#1079;&#1072;&#1094;&#1080;&#1103; &#1076;&#1072;&#1105;&#1090; &#1087;&#1088;&#1077;&#1080;&#1084;&#1091;&#1097;&#1077;&#1089;&#1090;&#1074;&#1086;"></li></ul>
+          <div style="display:none;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- SECTION:SOURCES END -->
+
+  <div class="report-footer">
+    <p>B2Broker Marketing Analytics &middot; Powered by Roistat &middot; Generated 2026-04-08 17:38</p>
+  </div>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('[data-en]').forEach(function(el) {
+    el.innerHTML = el.getAttribute('data-' + lang);
+  });
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+  });
+  localStorage.setItem('b2broker_lang', lang);
+}
+(function() {
+  var saved = localStorage.getItem('b2broker_lang') || 'en';
+  setLang(saved);
+})();
+</script>
+</body>
+</html>

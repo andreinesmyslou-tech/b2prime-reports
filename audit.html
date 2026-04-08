@@ -89,6 +89,13 @@
   .result-box li { font-size: 14px; line-height: 1.6; color: #1e40af; margin-bottom: 4px; }
 
   /* Language toggle */
+  /* Site Switcher */
+  .site-switcher { display: flex; justify-content: center; margin-bottom: 16px; }
+  .site-switcher-inner { display: flex; background: #1e293b; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+  .site-btn { padding: 10px 24px; font-size: 13px; font-weight: 700; color: #94a3b8; background: transparent; border: none; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
+  .site-btn:hover { color: #e2e8f0; }
+  .site-btn.active { background: #3b82f6; color: #fff; }
+
   .lang-toggle { display: flex; justify-content: center; margin-bottom: 24px; }
   .lang-toggle-inner { display: flex; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
   .lang-btn { padding: 8px 18px; font-size: 13px; font-weight: 600; color: #94a3b8; background: transparent; border: none; cursor: pointer; transition: all 0.2s; }
@@ -169,6 +176,12 @@
 </head>
 <body>
 <div class="container">
+  <div class="site-switcher">
+    <div class="site-switcher-inner">
+      <a href="index.html" class="site-btn active" data-en="B2Prime" data-ru="B2Prime">B2Prime</a>
+      <a href="b2broker.html" class="site-btn" data-en="B2Broker" data-ru="B2Broker">B2Broker</a>
+    </div>
+  </div>
   <div class="lang-toggle">
     <div class="lang-toggle-inner">
       <button class="lang-btn active" onclick="setLang('en')">EN</button>
@@ -338,7 +351,7 @@
   <!-- SECTION:AUDIT END -->
 
   <div class="report-footer">
-    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-08 15:55 &middot; Roistat API &middot; Project 295989
+    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-08 16:24 &middot; Roistat API &middot; Project 295989
   </div>
 </div>
 

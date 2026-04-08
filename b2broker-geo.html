@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2Broker Marketing Report</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* Site Switcher */
+  .site-switcher { display: flex; justify-content: center; margin-bottom: 16px; }
+  .site-switcher-inner { display: flex; background: #1e293b; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+  .site-btn { padding: 10px 24px; font-size: 13px; font-weight: 700; color: #94a3b8; background: transparent; border: none; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
+  .site-btn:hover { color: #e2e8f0; }
+  .site-btn.active { background: #f97316; color: #fff; }
+
+  .report-header { text-align: center; margin-bottom: 48px; }
+  .report-header h1 { font-size: 28px; font-weight: 700; color: #111827; margin-bottom: 8px; }
+  .report-header .period { font-size: 15px; color: #6b7280; }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 48px; }
+  @media (max-width: 900px) { .kpi-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 560px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+  .kpi-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px 20px; text-align: center; border-top: 3px solid #f97316; }
+  .kpi-card:nth-child(1) { border-top-color: #f97316; }
+  .kpi-card:nth-child(2) { border-top-color: #3b82f6; }
+  .kpi-card:nth-child(3) { border-top-color: #8b5cf6; }
+  .kpi-card:nth-child(4) { border-top-color: #06b6d4; }
+  .kpi-card:nth-child(5) { border-top-color: #22c55e; }
+  .kpi-card .label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; margin-bottom: 12px; }
+  .kpi-card .value { font-size: 32px; font-weight: 700; color: #0f172a; line-height: 1; margin-bottom: 8px; }
+  .kpi-card .cr { font-size: 13px; color: #94a3b8; }
+  .kpi-card .cr span { color: #16a34a; font-weight: 600; }
+
+  .funnel-bar { display: flex; align-items: center; justify-content: center; margin-bottom: 56px; background: #f8fafc; border-radius: 12px; padding: 20px 16px; border: 1px solid #e2e8f0; }
+  .funnel-step { text-align: center; flex: 1; }
+  .funnel-step .bar { height: 8px; border-radius: 4px; margin: 0 2px; }
+  .funnel-arrow { color: #cbd5e1; font-size: 20px; margin: 0 4px; flex-shrink: 0; }
+  .funnel-step .step-label { font-size: 11px; color: #64748b; margin-top: 8px; }
+  .funnel-step .step-value { font-size: 15px; font-weight: 700; color: #0f172a; margin-top: 2px; }
+
+  .source-section { margin-bottom: 32px; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; }
+  .source-header { display: flex; align-items: center; gap: 14px; padding: 20px 24px; border-bottom: 1px solid #e2e8f0; }
+  .source-color { width: 5px; height: 32px; border-radius: 3px; flex-shrink: 0; }
+  .source-header h2 { font-size: 18px; font-weight: 700; color: #fff; }
+
+  .source-metrics { display: flex; flex-wrap: wrap; gap: 0; padding: 0; border-bottom: 1px solid #e2e8f0; }
+  .sm { flex: 1; min-width: 100px; padding: 16px 12px; text-align: center; border-right: 1px solid rgba(0,0,0,0.05); }
+  .sm:last-child { border-right: none; }
+  .sm-val { display: block; font-size: 20px; font-weight: 700; color: #0f172a; }
+  .sm-label { display: block; font-size: 11px; color: #64748b; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
+
+  .source-body { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: #fff; }
+  @media (max-width: 700px) { .source-body { grid-template-columns: 1fr; } }
+  .source-col { padding: 24px; }
+  .source-col:first-child { border-right: 1px solid #f1f5f9; }
+  .source-col h3 { font-size: 13px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
+
+  .insight-list, .action-list { padding-left: 20px; margin-bottom: 20px; }
+  .insight-list li, .action-list li { font-size: 14px; line-height: 1.6; color: #475569; margin-bottom: 10px; }
+  .result-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 16px 18px; border-radius: 0 10px 10px 0; margin-top: 8px; }
+  .result-box strong { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #1d4ed8; display: block; margin-bottom: 6px; }
+  .result-box ul { padding-left: 18px; }
+  .result-box li { font-size: 14px; line-height: 1.6; color: #1e40af; margin-bottom: 4px; }
+
+  .section-title { font-size: 22px; font-weight: 700; color: #0f172a; margin-bottom: 28px; padding-bottom: 12px; border-bottom: 3px solid #f97316; display: inline-block; }
+
+  .lang-toggle { display: flex; justify-content: center; margin-bottom: 24px; }
+  .lang-toggle-inner { display: flex; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .lang-btn { padding: 8px 18px; font-size: 13px; font-weight: 600; color: #94a3b8; background: transparent; border: none; cursor: pointer; transition: all 0.2s; }
+  .lang-btn.active { background: #f97316; color: #fff; }
+  .lang-btn:hover:not(.active) { color: #334155; }
+
+  .report-nav { display: flex; justify-content: center; gap: 4px; margin-bottom: 32px; background: #fff; border-radius: 12px; padding: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); max-width: 520px; margin-left: auto; margin-right: auto; }
+  .nav-link { flex: 1; text-align: center; padding: 10px 16px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 600; color: #64748b; transition: all 0.2s; white-space: nowrap; }
+  .nav-link:hover { color: #1e293b; background: #f1f5f9; }
+  .nav-link.active { color: #fff; background: #f97316; box-shadow: 0 2px 4px rgba(249,115,22,0.3); }
+
+  .report-footer { text-align: center; padding-top: 32px; border-top: 1px solid #e2e8f0; color: #94a3b8; font-size: 12px; }
+
+  /* Pipeline tables */
+  .pipe-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; font-size: 13px; }
+  .pipe-table th { background: #1e293b; color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .pipe-table th:first-child { border-radius: 8px 0 0 0; }
+  .pipe-table th:last-child { border-radius: 0 8px 0 0; }
+  .pipe-table td { padding: 10px 12px; border-bottom: 1px solid #e2e8f0; }
+  .pipe-table tr:hover { background: #f1f5f9; }
+  .pipe-table td:nth-child(2), .pipe-table td:nth-child(3) { text-align: center; }
+
+  /* Geo table */
+  .geo-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; font-size: 13px; }
+  .geo-table th { background: #1e293b; color: #fff; padding: 10px 12px; text-align: center; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .geo-table th:first-child { text-align: center; width: 40px; border-radius: 8px 0 0 0; }
+  .geo-table th:nth-child(2) { text-align: left; }
+  .geo-table th:last-child { border-radius: 0 8px 0 0; }
+  .geo-table td { padding: 10px 12px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+  .geo-table td:nth-child(2) { text-align: left; font-weight: 600; }
+  .geo-table tr:hover { background: #f1f5f9; }
+
+  .insight-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; }
+  .insight-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
+  .insight-card ul { padding-left: 20px; margin: 0; }
+  .insight-card li { font-size: 13px; line-height: 1.7; color: #475569; margin-bottom: 6px; }
+
+  i { font-style: normal; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="site-switcher">
+    <div class="site-switcher-inner">
+      <a href="index.html" class="site-btn" data-en="B2Prime" data-ru="B2Prime">B2Prime</a>
+      <a href="b2broker.html" class="site-btn active" data-en="B2Broker" data-ru="B2Broker">B2Broker</a>
+    </div>
+  </div>
+  <div class="lang-toggle">
+    <div class="lang-toggle-inner">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ru')">RU</button>
+    </div>
+  </div>
+  <nav class="report-nav">
+    <a href="b2broker.html" class="nav-link " data-en="Sources" data-ru="&#1048;&#1089;&#1090;&#1086;&#1095;&#1085;&#1080;&#1082;&#1080;">Sources</a>
+    <a href="b2broker-pipeline.html" class="nav-link " data-en="Pipeline" data-ru="&#1055;&#1072;&#1081;&#1087;&#1083;&#1072;&#1081;&#1085;">Pipeline</a>
+    <a href="b2broker-geo.html" class="nav-link active" data-en="Geography" data-ru="&#1043;&#1077;&#1086;&#1075;&#1088;&#1072;&#1092;&#1080;&#1103;">Geography</a>
+  </nav>
+  <div class="report-header">
+    <h1 data-en="B2Broker Marketing Report" data-ru="B2Broker &#1052;&#1072;&#1088;&#1082;&#1077;&#1090;&#1080;&#1085;&#1075;&#1086;&#1074;&#1099;&#1081; &#1054;&#1090;&#1095;&#1105;&#1090;">B2Broker Marketing Report</h1>
+    <div class="period">2026-03-09 - 2026-04-08</div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="label" data-en="Visits" data-ru="&#1042;&#1080;&#1079;&#1080;&#1090;&#1099;">Visits</div>
+      <div class="value">59,970</div>
+      <div class="cr" data-en="site traffic" data-ru="&#1090;&#1088;&#1072;&#1092;&#1080;&#1082; &#1089;&#1072;&#1081;&#1090;&#1072;">site traffic</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label" data-en="Leads" data-ru="&#1051;&#1080;&#1076;&#1099;">Leads</div>
+      <div class="value">582</div>
+      <div class="cr"><span>1%</span> <i data-en="of visits" data-ru="&#1086;&#1090; &#1074;&#1080;&#1079;&#1080;&#1090;&#1086;&#1074;">of visits</i></div>
+    </div>
+    <div class="kpi-card">
+      <div class="label" data-en="Active Pipeline" data-ru="&#1040;&#1082;&#1090;&#1080;&#1074;&#1085;&#1099;&#1081; &#1087;&#1072;&#1081;&#1087;&#1083;&#1072;&#1081;&#1085;">Active Pipeline</div>
+      <div class="value">512</div>
+      <div class="cr"><span>88%</span> <i data-en="of leads" data-ru="&#1086;&#1090; &#1083;&#1080;&#1076;&#1086;&#1074;">of leads</i></div>
+    </div>
+    <div class="kpi-card">
+      <div class="label" data-en="Deals" data-ru="&#1057;&#1076;&#1077;&#1083;&#1082;&#1080;">Deals</div>
+      <div class="value">144</div>
+      <div class="cr"><span>24.7%</span> <i data-en="of leads" data-ru="&#1086;&#1090; &#1083;&#1080;&#1076;&#1086;&#1074;">of leads</i></div>
+    </div>
+    <div class="kpi-card">
+      <div class="label" data-en="Closed Won" data-ru="&#1047;&#1072;&#1082;&#1088;&#1099;&#1090;&#1086; (&#1074;&#1099;&#1080;&#1075;&#1088;.)">Closed Won</div>
+      <div class="value">13</div>
+      <div class="cr"><span>68.4%</span> <i data-en="win rate" data-ru="&#1074;&#1080;&#1085;-&#1088;&#1077;&#1081;&#1090;">win rate</i></div>
+    </div>
+  </div>
+
+  <div class="funnel-bar">
+    <div class="funnel-step"><div class="bar" style="background:#f97316;"></div><div class="step-label" data-en="Visits" data-ru="&#1042;&#1080;&#1079;&#1080;&#1090;&#1099;">Visits</div><div class="step-value">59,970</div></div>
+    <div class="funnel-arrow">&#8594;</div>
+    <div class="funnel-step"><div class="bar" style="background:#3b82f6;"></div><div class="step-label" data-en="Leads" data-ru="&#1051;&#1080;&#1076;&#1099;">Leads</div><div class="step-value">582</div></div>
+    <div class="funnel-arrow">&#8594;</div>
+    <div class="funnel-step"><div class="bar" style="background:#8b5cf6;"></div><div class="step-label" data-en="Deals" data-ru="&#1057;&#1076;&#1077;&#1083;&#1082;&#1080;">Deals</div><div class="step-value">144</div></div>
+    <div class="funnel-arrow">&#8594;</div>
+    <div class="funnel-step"><div class="bar" style="background:#22c55e;"></div><div class="step-label" data-en="Closed Won" data-ru="&#1042;&#1099;&#1080;&#1075;&#1088;&#1072;&#1085;&#1086;">Closed Won</div><div class="step-value">13</div></div>
+  </div>
+
+<!-- SECTION:GEO START -->
+  <h2 class="section-title" data-en="Geographic Analysis" data-ru="&#1043;&#1077;&#1086;&#1075;&#1088;&#1072;&#1092;&#1080;&#1095;&#1077;&#1089;&#1082;&#1080;&#1081; &#1072;&#1085;&#1072;&#1083;&#1080;&#1079;">Geographic Analysis</h2>
+
+  <div class="insight-card" style="margin-bottom:32px;">
+    <h4 data-en="Top Countries by Leads" data-ru="&#1058;&#1086;&#1087; &#1089;&#1090;&#1088;&#1072;&#1085; &#1087;&#1086; &#1083;&#1080;&#1076;&#1072;&#1084;">Top Countries by Leads</h4>
+    <table class="geo-table">
+      <tr>
+        <th>#</th>
+        <th data-en="Country" data-ru="&#1057;&#1090;&#1088;&#1072;&#1085;&#1072;">Country</th>
+        <th data-en="Visits" data-ru="&#1042;&#1080;&#1079;&#1080;&#1090;&#1099;">Visits</th>
+        <th data-en="Leads" data-ru="&#1051;&#1080;&#1076;&#1099;">Leads</th>
+        <th data-en="CR" data-ru="CR">CR</th>
+      </tr>
+        <tr><td>1</td><td>Индия</td><td>19,581</td><td>79</td><td>0.4%</td></tr>
+        <tr><td>2</td><td>ОАЭ</td><td>571</td><td>21</td><td>3.7%</td></tr>
+        <tr><td>3</td><td>США</td><td>3,545</td><td>18</td><td>0.5%</td></tr>
+        <tr><td>4</td><td>Турция</td><td>944</td><td>12</td><td>1.3%</td></tr>
+        <tr><td>5</td><td>Нигерия</td><td>285</td><td>11</td><td>3.9%</td></tr>
+        <tr><td>6</td><td>Германия</td><td>998</td><td>10</td><td>1%</td></tr>
+        <tr><td>7</td><td>Пакистан</td><td>366</td><td>8</td><td>2.2%</td></tr>
+        <tr><td>8</td><td>Саудовская Аравия</td><td>313</td><td>7</td><td>2.2%</td></tr>
+        <tr><td>9</td><td>Ирак</td><td>159</td><td>7</td><td>4.4%</td></tr>
+        <tr><td>10</td><td>Египет</td><td>313</td><td>7</td><td>2.2%</td></tr>
+        <tr><td>11</td><td>Великобритания</td><td>1,327</td><td>6</td><td>0.5%</td></tr>
+        <tr><td>12</td><td>Италия</td><td>850</td><td>5</td><td>0.6%</td></tr>
+        <tr><td>13</td><td>Китай</td><td>384</td><td>5</td><td>1.3%</td></tr>
+        <tr><td>14</td><td>Бангладеш</td><td>154</td><td>4</td><td>2.6%</td></tr>
+        <tr><td>15</td><td>Гонконг</td><td>490</td><td>4</td><td>0.8%</td></tr>
+        <tr><td>16</td><td>Россия</td><td>1,212</td><td>4</td><td>0.3%</td></tr>
+        <tr><td>17</td><td>Кения</td><td>147</td><td>4</td><td>2.7%</td></tr>
+        <tr><td>18</td><td>Мексика</td><td>240</td><td>4</td><td>1.7%</td></tr>
+        <tr><td>19</td><td>Испания</td><td>827</td><td>3</td><td>0.4%</td></tr>
+        <tr><td>20</td><td>Бразилия</td><td>693</td><td>3</td><td>0.4%</td></tr>
+        <tr><td>21</td><td>Польша</td><td>277</td><td>3</td><td>1.1%</td></tr>
+        <tr><td>22</td><td>Сингапур</td><td>439</td><td>3</td><td>0.7%</td></tr>
+        <tr><td>23</td><td>Индонезия</td><td>419</td><td>3</td><td>0.7%</td></tr>
+        <tr><td>24</td><td>Грузия</td><td>127</td><td>3</td><td>2.4%</td></tr>
+        <tr><td>25</td><td>Малайзия</td><td>875</td><td>3</td><td>0.3%</td></tr>
+
+    </table>
+  </div>
+
+  <div class="insight-card">
+    <h4 data-en="Geographic Insights" data-ru="&#1043;&#1077;&#1086;-&#1080;&#1085;&#1089;&#1072;&#1081;&#1090;&#1099;">Geographic Insights</h4>
+    <ul>
+      <li data-en="India drives the most traffic (19,581 visits) but has low CR (0.4%) &#8212; high awareness but low B2B intent from this market" data-ru="&#1048;&#1085;&#1076;&#1080;&#1103; &#1076;&#1072;&#1105;&#1090; &#1073;&#1086;&#1083;&#1100;&#1096;&#1077; &#1074;&#1089;&#1077;&#1075;&#1086; &#1090;&#1088;&#1072;&#1092;&#1080;&#1082;&#1072; (19,581 &#1074;&#1080;&#1079;.), &#1085;&#1086; &#1085;&#1080;&#1079;&#1082;&#1080;&#1081; CR (0.4%)"></li>
+      <li data-en="High-CR markets: UAE, Iraq, Nigeria, Bangladesh (3-5% CR) &#8212; these are strong B2B fintech markets" data-ru="&#1042;&#1099;&#1089;&#1086;&#1082;&#1080;&#1081; CR: &#1054;&#1040;&#1069;, &#1048;&#1088;&#1072;&#1082;, &#1053;&#1080;&#1075;&#1077;&#1088;&#1080;&#1103;, &#1041;&#1072;&#1085;&#1075;&#1083;&#1072;&#1076;&#1077;&#1096; (3-5% CR) &#8212; &#1089;&#1080;&#1083;&#1100;&#1085;&#1099;&#1077; B2B-&#1088;&#1099;&#1085;&#1082;&#1080;"></li>
+      <li data-en="USA ( leads) and Germany ( leads) &#8212; key Western markets with moderate CR" data-ru="&#1057;&#1064;&#1040; &#1080; &#1043;&#1077;&#1088;&#1084;&#1072;&#1085;&#1080;&#1103; &#8212; &#1082;&#1083;&#1102;&#1095;&#1077;&#1074;&#1099;&#1077; &#1079;&#1072;&#1087;&#1072;&#1076;&#1085;&#1099;&#1077; &#1088;&#1099;&#1085;&#1082;&#1080; &#1089; &#1091;&#1084;&#1077;&#1088;&#1077;&#1085;&#1085;&#1099;&#1084; CR"></li>
+      <li data-en="Consider geo-targeted Google Ads campaigns for high-CR regions (MENA, South Asia)" data-ru="&#1056;&#1072;&#1089;&#1089;&#1084;&#1086;&#1090;&#1088;&#1077;&#1090;&#1100; &#1075;&#1077;&#1086;-&#1090;&#1072;&#1088;&#1075;&#1077;&#1090;&#1080;&#1085;&#1075; Google Ads &#1085;&#1072; &#1088;&#1077;&#1075;&#1080;&#1086;&#1085;&#1099; &#1089; &#1074;&#1099;&#1089;&#1086;&#1082;&#1080;&#1084; CR (MENA, &#1070;&#1078;. &#1040;&#1079;&#1080;&#1103;)"></li>
+    </ul>
+  </div>
+<!-- SECTION:GEO END -->
+
+  <div class="report-footer">
+    <p>B2Broker Marketing Analytics &middot; Powered by Roistat &middot; Generated 2026-04-08 17:38</p>
+  </div>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('[data-en]').forEach(function(el) {
+    el.innerHTML = el.getAttribute('data-' + lang);
+  });
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+  });
+  localStorage.setItem('b2broker_lang', lang);
+}
+(function() {
+  var saved = localStorage.getItem('b2broker_lang') || 'en';
+  setLang(saved);
+})();
+</script>
+</body>
+</html>
