@@ -15,7 +15,6 @@
   }
   .container { max-width: 1100px; margin: 0 auto; }
 
-  /* Site Switcher */
   .site-switcher { display: flex; justify-content: center; margin-bottom: 16px; }
   .site-switcher-inner { display: flex; background: #1e293b; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
   .site-btn { padding: 10px 24px; font-size: 13px; font-weight: 700; color: #94a3b8; background: transparent; border: none; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
@@ -60,15 +59,13 @@
   #src-seo .source-header { background: linear-gradient(135deg, #166534, #22c55e); }
   #src-tradingview .source-header { background: linear-gradient(135deg, #991b1b, #ef4444); }
   #src-direct .source-header { background: linear-gradient(135deg, #1e40af, #3b82f6); }
-  #src-nocookie .source-header { background: linear-gradient(135deg, #92400e, #f59e0b); }
   #src-ib-partners .source-header { background: linear-gradient(135deg, #5b21b6, #8b5cf6); }
-  #src-seo .source-color, #src-tradingview .source-color, #src-direct .source-color, #src-nocookie .source-color, #src-ib-partners .source-color { background: rgba(255,255,255,0.4); }
+  #src-seo .source-color, #src-tradingview .source-color, #src-direct .source-color, #src-ib-partners .source-color { background: rgba(255,255,255,0.4); }
 
   .source-metrics { display: flex; flex-wrap: wrap; gap: 0; padding: 0; border-bottom: 1px solid #e2e8f0; }
   #src-seo .source-metrics { background: #f0fdf4; }
   #src-tradingview .source-metrics { background: #fef2f2; }
   #src-direct .source-metrics { background: #eff6ff; }
-  #src-nocookie .source-metrics { background: #fffbeb; }
   #src-ib-partners .source-metrics { background: #f5f3ff; }
   .sm { flex: 1; min-width: 100px; padding: 16px 12px; text-align: center; border-right: 1px solid rgba(0,0,0,0.05); }
   .sm:last-child { border-right: none; }
@@ -397,58 +394,6 @@
     </div>
   </div>
 
-  <!-- Source: nocookie -->
-  <div class="source-section" id="src-nocookie">
-    <div class="source-header">
-      <div class="source-color" style="background:#f59e0b"></div>
-      <h2 data-en="Nocookie (Unattributed Traffic)" data-ru="Nocookie (&#1053;&#1077;&#1072;&#1090;&#1088;&#1080;&#1073;&#1091;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1085;&#1099;&#1081; &#1090;&#1088;&#1072;&#1092;&#1080;&#1082;)"></h2>
-    </div>
-
-    <div class="source-metrics">
-      <div class="sm"><span class="sm-val">n/a</span><span class="sm-label" data-en="Visits" data-ru="&#1042;&#1080;&#1079;&#1080;&#1090;&#1099;"></span></div>
-      <div class="sm"><span class="sm-val">190</span><span class="sm-label" data-en="Leads" data-ru="&#1051;&#1080;&#1076;&#1099;"></span></div>
-      <div class="sm"><span class="sm-val">17</span><span class="sm-label">KYC</span></div>
-      <div class="sm"><span class="sm-val">5</span><span class="sm-label" data-en="Deposited" data-ru="&#1044;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;"></span></div>
-      <div class="sm"><span class="sm-val">5</span><span class="sm-label" data-en="Traders" data-ru="&#1058;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1099;"></span></div>
-      <div class="sm"><span class="sm-val">$10,103</span><span class="sm-label" data-en="Revenue" data-ru="&#1044;&#1086;&#1093;&#1086;&#1076;"></span></div>
-      <div class="sm"><span class="sm-val">8.9%</span><span class="sm-label" data-en="Reg&#8594;KYC" data-ru="Reg&#8594;KYC"></span></div>
-      <div class="sm"><span class="sm-val">29.4%</span><span class="sm-label" data-en="KYC&#8594;Dep" data-ru="KYC&#8594;Dep"></span></div>
-    </div>
-
-    <div class="source-body">
-      <div class="source-col">
-        <h3 data-en="Insights" data-ru="&#1048;&#1085;&#1089;&#1072;&#1081;&#1090;&#1099;"></h3>
-        <ul class="insight-list">
-        <li data-en="190 leads (26% of all registrations) have zero attribution -- major data gap" data-ru="190 &#1083;&#1080;&#1076;&#1086;&#1074; (26% &#1086;&#1090; &#1074;&#1089;&#1077;&#1093; &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1081;) &#1073;&#1077;&#1079; &#1072;&#1090;&#1088;&#1080;&#1073;&#1091;&#1094;&#1080;&#1080; -- &#1082;&#1088;&#1080;&#1090;&#1080;&#1095;&#1077;&#1089;&#1082;&#1080;&#1081; &#1087;&#1088;&#1086;&#1073;&#1077;&#1083; &#1074; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093;"></li>
-        <li data-en="Second highest revenue: $10,103 -- we cannot optimize what we cannot measure" data-ru="&#1042;&#1090;&#1086;&#1088;&#1086;&#1081; &#1087;&#1086; &#1076;&#1086;&#1093;&#1086;&#1076;&#1091;: $10,103 -- &#1085;&#1077;&#1083;&#1100;&#1079;&#1103; &#1086;&#1087;&#1090;&#1080;&#1084;&#1080;&#1079;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100; &#1090;&#1086;, &#1095;&#1090;&#1086; &#1085;&#1077; &#1080;&#1079;&#1084;&#1077;&#1088;&#1103;&#1077;&#1096;&#1100;"></li>
-        <li data-en="29.4% KYC&#8594;Dep conversion -- close to site average, quality is decent" data-ru="29.4% KYC&#8594;Dep -- &#1073;&#1083;&#1080;&#1079;&#1082;&#1086; &#1082; &#1089;&#1088;&#1077;&#1076;&#1085;&#1077;&#1084;&#1091; &#1087;&#1086; &#1089;&#1072;&#1081;&#1090;&#1091;, &#1082;&#1072;&#1095;&#1077;&#1089;&#1090;&#1074;&#1086; &#1076;&#1086;&#1089;&#1090;&#1086;&#1081;&#1085;&#1086;&#1077;"></li>
-        <li data-en="100% of depositors became traders (5/5) -- high quality when they convert" data-ru="100% &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;&#1086;&#1088;&#1086;&#1074; &#1089;&#1090;&#1072;&#1083;&#1080; &#1090;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1072;&#1084;&#1080; (5/5) -- &#1074;&#1099;&#1089;&#1086;&#1082;&#1086;&#1077; &#1082;&#1072;&#1095;&#1077;&#1089;&#1090;&#1074;&#1086;"></li>
-        <li data-en="Likely sources: cookie blockers, incognito mode, mobile app registrations bypassing Roistat" data-ru="&#1042;&#1077;&#1088;&#1086;&#1103;&#1090;&#1085;&#1099;&#1077; &#1080;&#1089;&#1090;&#1086;&#1095;&#1085;&#1080;&#1082;&#1080;: &#1073;&#1083;&#1086;&#1082;&#1080;&#1088;&#1086;&#1074;&#1082;&#1072; cookie, &#1080;&#1085;&#1082;&#1086;&#1075;&#1085;&#1080;&#1090;&#1086;, &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1103; &#1095;&#1077;&#1088;&#1077;&#1079; &#1084;&#1086;&#1073;. &#1087;&#1088;&#1080;&#1083;&#1086;&#1078;&#1077;&#1085;&#1080;&#1077;"></li>
-        </ul>
-        <div class="summary-box">
-          <strong data-en="Summary" data-ru="&#1056;&#1077;&#1079;&#1102;&#1084;&#1077;"></strong>
-          <p data-en="Nocookie is a data integrity problem, not a marketing channel. $10,103 in revenue from 190 completely untracked leads means budget decisions are made on incomplete data." data-ru="Nocookie -- &#1087;&#1088;&#1086;&#1073;&#1083;&#1077;&#1084;&#1072; &#1094;&#1077;&#1083;&#1086;&#1089;&#1090;&#1085;&#1086;&#1089;&#1090;&#1080; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093;, &#1072; &#1085;&#1077; &#1084;&#1072;&#1088;&#1082;&#1077;&#1090;&#1080;&#1085;&#1075;&#1086;&#1074;&#1099;&#1081; &#1082;&#1072;&#1085;&#1072;&#1083;. $10,103 &#1076;&#1086;&#1093;&#1086;&#1076;&#1072; &#1086;&#1090; 190 &#1085;&#1077;&#1086;&#1090;&#1089;&#1083;&#1077;&#1078;&#1080;&#1074;&#1072;&#1077;&#1084;&#1099;&#1093; &#1083;&#1080;&#1076;&#1086;&#1074; -- &#1073;&#1102;&#1076;&#1078;&#1077;&#1090;&#1085;&#1099;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1103; &#1087;&#1088;&#1080;&#1085;&#1080;&#1084;&#1072;&#1102;&#1090;&#1089;&#1103; &#1085;&#1072; &#1085;&#1077;&#1087;&#1086;&#1083;&#1085;&#1099;&#1093; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093;."></p>
-        </div>
-      </div>
-      <div class="source-col">
-        <h3 data-en="Actions" data-ru="&#1044;&#1077;&#1081;&#1089;&#1090;&#1074;&#1080;&#1103;"></h3>
-        <ol class="action-list">
-        <li data-en="Switch Roistat to first-party cookie mode: in Roistat admin > Settings > Tracking, enable 'First-party cookies' and add server-side tracking script to my.b2prime.com -- this captures visitors who block third-party cookies (Safari, Firefox, Brave default behavior)" data-ru="&#1055;&#1077;&#1088;&#1077;&#1082;&#1083;&#1102;&#1095;&#1080;&#1090;&#1100; Roistat &#1085;&#1072; first-party cookies: &#1074; Roistat > &#1053;&#1072;&#1089;&#1090;&#1088;&#1086;&#1081;&#1082;&#1080; > &#1058;&#1088;&#1077;&#1082;&#1080;&#1085;&#1075; &#1074;&#1082;&#1083;&#1102;&#1095;&#1080;&#1090;&#1100; 'First-party cookies' + &#1089;&#1077;&#1088;&#1074;&#1077;&#1088;&#1085;&#1099;&#1081; &#1089;&#1082;&#1088;&#1080;&#1087;&#1090; &#1085;&#1072; my.b2prime.com -- &#1101;&#1090;&#1086; &#1087;&#1086;&#1081;&#1084;&#1072;&#1077;&#1090; &#1087;&#1086;&#1083;&#1100;&#1079;&#1086;&#1074;&#1072;&#1090;&#1077;&#1083;&#1077;&#1081; Safari, Firefox, Brave"></li>
-        <li data-en="Check B2CORE CRM integration: open my.b2prime.com/en/auth/sign-up in browser DevTools, verify hidden field 'roistat_visit' exists in the form and is populated. If empty for some users, the JS snippet may load after form submission" data-ru="&#1055;&#1088;&#1086;&#1074;&#1077;&#1088;&#1080;&#1090;&#1100; &#1080;&#1085;&#1090;&#1077;&#1075;&#1088;&#1072;&#1094;&#1080;&#1102; B2CORE: &#1086;&#1090;&#1082;&#1088;&#1099;&#1090;&#1100; my.b2prime.com/en/auth/sign-up &#1074; DevTools, &#1091;&#1073;&#1077;&#1076;&#1080;&#1090;&#1100;&#1089;&#1103; &#1095;&#1090;&#1086; hidden-&#1087;&#1086;&#1083;&#1077; 'roistat_visit' &#1077;&#1089;&#1090;&#1100; &#1074; &#1092;&#1086;&#1088;&#1084;&#1077; &#1080; &#1079;&#1072;&#1087;&#1086;&#1083;&#1085;&#1103;&#1077;&#1090;&#1089;&#1103;. &#1045;&#1089;&#1083;&#1080; &#1087;&#1091;&#1089;&#1090;&#1086; -- JS &#1089;&#1085;&#1080;&#1087;&#1087;&#1077;&#1090; &#1084;&#1086;&#1078;&#1077;&#1090; &#1075;&#1088;&#1091;&#1079;&#1080;&#1090;&#1100;&#1089;&#1103; &#1087;&#1086;&#1089;&#1083;&#1077; &#1086;&#1090;&#1087;&#1088;&#1072;&#1074;&#1082;&#1080; &#1092;&#1086;&#1088;&#1084;&#1099;"></li>
-        <li data-en="Test mobile app flow: install B2CORE app (iOS/Android), go through registration, then check in Roistat if the lead has a visit ID. If roistat='nocookie', the app bypasses tracking -- need to pass UTM parameters from app store links to registration API" data-ru="&#1055;&#1088;&#1086;&#1090;&#1077;&#1089;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100; &#1084;&#1086;&#1073;. &#1087;&#1088;&#1080;&#1083;&#1086;&#1078;&#1077;&#1085;&#1080;&#1077;: &#1091;&#1089;&#1090;&#1072;&#1085;&#1086;&#1074;&#1080;&#1090;&#1100; B2CORE (iOS/Android), &#1079;&#1072;&#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100;&#1089;&#1103;, &#1087;&#1088;&#1086;&#1074;&#1077;&#1088;&#1080;&#1090;&#1100; &#1074; Roistat &#1077;&#1089;&#1090;&#1100; &#1083;&#1080; visit ID. &#1045;&#1089;&#1083;&#1080; roistat='nocookie' -- &#1085;&#1091;&#1078;&#1085;&#1086; &#1087;&#1077;&#1088;&#1077;&#1076;&#1072;&#1074;&#1072;&#1090;&#1100; UTM &#1080;&#1079; &#1089;&#1089;&#1099;&#1083;&#1086;&#1082; app store"></li>
-        <li data-en="Add dropdown 'How did you hear about us?' to my.b2prime.com/en/auth/sign-up with options: Google Search, TradingView, Social Media (Instagram/Facebook/Telegram), Friend/Partner referral, Advertisement, Other -- this is fallback attribution for all cookieless users" data-ru="&#1044;&#1086;&#1073;&#1072;&#1074;&#1080;&#1090;&#1100; &#1074;&#1099;&#1087;&#1072;&#1076;&#1072;&#1102;&#1097;&#1080;&#1081; &#1089;&#1087;&#1080;&#1089;&#1086;&#1082; '&#1050;&#1072;&#1082; &#1074;&#1099; &#1086; &#1085;&#1072;&#1089; &#1091;&#1079;&#1085;&#1072;&#1083;&#1080;?' &#1085;&#1072; my.b2prime.com/en/auth/sign-up: &#1055;&#1086;&#1080;&#1089;&#1082; Google, TradingView, &#1057;&#1086;&#1094;&#1089;&#1077;&#1090;&#1080; (Instagram/Facebook/Telegram), &#1055;&#1072;&#1088;&#1090;&#1085;&#1105;&#1088;/&#1076;&#1088;&#1091;&#1075;, &#1056;&#1077;&#1082;&#1083;&#1072;&#1084;&#1072;, &#1044;&#1088;&#1091;&#1075;&#1086;&#1077;"></li>
-        </ol>
-        <div class="result-box">
-          <strong data-en="Expected Results" data-ru="&#1054;&#1078;&#1080;&#1076;&#1072;&#1077;&#1084;&#1099;&#1081; &#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;"></strong>
-          <ul>
-        <li data-en="Reducing nocookie from 26% to under 10% reveals true channel performance" data-ru="&#1057;&#1085;&#1080;&#1078;&#1077;&#1085;&#1080;&#1077; nocookie &#1089; 26% &#1076;&#1086; &#1084;&#1077;&#1085;&#1077;&#1077; 10% &#1088;&#1072;&#1089;&#1082;&#1088;&#1086;&#1077;&#1090; &#1088;&#1077;&#1072;&#1083;&#1100;&#1085;&#1091;&#1102; &#1101;&#1092;&#1092;&#1077;&#1082;&#1090;&#1080;&#1074;&#1085;&#1086;&#1089;&#1090;&#1100; &#1082;&#1072;&#1085;&#1072;&#1083;&#1086;&#1074;"></li>
-        <li data-en="If half of nocookie leads belong to SEO/Direct -- it significantly changes investment priorities" data-ru="&#1045;&#1089;&#1083;&#1080; &#1087;&#1086;&#1083;&#1086;&#1074;&#1080;&#1085;&#1072; nocookie &#1087;&#1088;&#1080;&#1085;&#1072;&#1076;&#1083;&#1077;&#1078;&#1080;&#1090; SEO/Direct -- &#1101;&#1090;&#1086; &#1089;&#1091;&#1097;&#1077;&#1089;&#1090;&#1074;&#1077;&#1085;&#1085;&#1086; &#1084;&#1077;&#1085;&#1103;&#1077;&#1090; &#1080;&#1085;&#1074;&#1077;&#1089;&#1090;&#1080;&#1094;&#1080;&#1086;&#1085;&#1085;&#1099;&#1077; &#1087;&#1088;&#1080;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090;&#1099;"></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Source: ib-partners -->
   <div class="source-section" id="src-ib-partners">
     <div class="source-header">
@@ -503,7 +448,7 @@
 <!-- SECTION:SOURCES END -->
 
   <div class="report-footer">
-    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-08 18:11 &middot; Roistat API &middot; Project 295989
+    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-08 18:27 &middot; Roistat API &middot; Project 295989
   </div>
 </div>
 
