@@ -122,6 +122,36 @@
     flex-shrink: 0;
   }
 
+  /* Language toggle */
+  .lang-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    background: #1a1b23;
+    border: 1px solid #27272a;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 100;
+  }
+  .lang-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #71717a;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .lang-btn.active {
+    background: #3b82f6;
+    color: #fff;
+  }
+  .lang-btn:hover:not(.active) {
+    color: #e4e4e7;
+  }
+
   /* Footer */
   .report-footer {
     text-align: center;
@@ -133,40 +163,46 @@
 </style>
 </head>
 <body>
+<!-- Language toggle -->
+<div class="lang-toggle">
+  <button class="lang-btn active" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" onclick="setLang('ru')">RU</button>
+</div>
+
 <div class="container">
 
   <!-- Header -->
   <div class="report-header">
-    <h1>B2Prime Marketing Report</h1>
+    <h1 data-en="B2Prime Marketing Report" data-ru="B2Prime &#1052;&#1072;&#1088;&#1082;&#1077;&#1090;&#1080;&#1085;&#1075;&#1086;&#1074;&#1099;&#1081; &#1054;&#1090;&#1095;&#1105;&#1090;"></h1>
     <div class="period">2026-03-09 - 2026-04-08</div>
   </div>
 
   <!-- Block 1: KPI Cards -->
   <div class="kpi-grid">
     <div class="kpi-card">
-      <div class="label">Visits</div>
+      <div class="label" data-en="Visits" data-ru="&#1042;&#1080;&#1079;&#1080;&#1090;&#1099;"></div>
       <div class="value">4,284</div>
-      <div class="cr">site traffic</div>
+      <div class="cr" data-en="site traffic" data-ru="&#1090;&#1088;&#1072;&#1092;&#1080;&#1082; &#1089;&#1072;&#1081;&#1090;&#1072;"></div>
     </div>
     <div class="kpi-card">
-      <div class="label">Registrations</div>
+      <div class="label" data-en="Registrations" data-ru="&#1056;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1080;"></div>
       <div class="value">683</div>
-      <div class="cr"><span>15.9%</span> of visits</div>
+      <div class="cr"><span>15.9%</span> <i data-en="of visits" data-ru="&#1086;&#1090; &#1074;&#1080;&#1079;&#1080;&#1090;&#1086;&#1074;"></i></div>
     </div>
     <div class="kpi-card">
-      <div class="label">KYC Passed</div>
+      <div class="label" data-en="KYC Passed" data-ru="&#1055;&#1088;&#1086;&#1096;&#1083;&#1080; KYC"></div>
       <div class="value">72</div>
-      <div class="cr"><span>10.5%</span> of registrations</div>
+      <div class="cr"><span>10.5%</span> <i data-en="of registrations" data-ru="&#1086;&#1090; &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1081;"></i></div>
     </div>
     <div class="kpi-card">
-      <div class="label">Deposited</div>
+      <div class="label" data-en="Deposited" data-ru="&#1042;&#1085;&#1077;&#1089;&#1083;&#1080; &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;"></div>
       <div class="value">17</div>
-      <div class="cr"><span>23.6%</span> of KYC</div>
+      <div class="cr"><span>23.6%</span> <i data-en="of KYC" data-ru="&#1086;&#1090; KYC"></i></div>
     </div>
     <div class="kpi-card">
-      <div class="label">Active Traders</div>
+      <div class="label" data-en="Active Traders" data-ru="&#1040;&#1082;&#1090;&#1080;&#1074;&#1085;&#1099;&#1077; &#1090;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1099;"></div>
       <div class="value">15</div>
-      <div class="cr"><span>88.2%</span> of deposited</div>
+      <div class="cr"><span>88.2%</span> <i data-en="of deposited" data-ru="&#1086;&#1090; &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;&#1086;&#1074;"></i></div>
     </div>
   </div>
 
@@ -174,40 +210,56 @@
   <div class="funnel-bar">
     <div class="funnel-step">
       <div class="bar" style="width:100%"></div>
-      <div class="step-label">Visits</div>
+      <div class="step-label" data-en="Visits" data-ru="&#1042;&#1080;&#1079;&#1080;&#1090;&#1099;"></div>
       <div class="step-value">4,284</div>
     </div>
     <div class="funnel-arrow">&#8594;</div>
     <div class="funnel-step">
       <div class="bar" style="width:100%"></div>
-      <div class="step-label">Registrations</div>
+      <div class="step-label" data-en="Registrations" data-ru="&#1056;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1080;"></div>
       <div class="step-value">683</div>
     </div>
     <div class="funnel-arrow">&#8594;</div>
     <div class="funnel-step">
       <div class="bar" style="width:100%"></div>
-      <div class="step-label">KYC Passed</div>
+      <div class="step-label" data-en="KYC Passed" data-ru="KYC"></div>
       <div class="step-value">72</div>
     </div>
     <div class="funnel-arrow">&#8594;</div>
     <div class="funnel-step">
       <div class="bar" style="width:100%"></div>
-      <div class="step-label">Deposited</div>
+      <div class="step-label" data-en="Deposited" data-ru="&#1044;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;"></div>
       <div class="step-value">17</div>
     </div>
     <div class="funnel-arrow">&#8594;</div>
     <div class="funnel-step">
       <div class="bar" style="width:100%"></div>
-      <div class="step-label">Active Traders</div>
+      <div class="step-label" data-en="Active Traders" data-ru="&#1058;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1099;"></div>
       <div class="step-value">15</div>
     </div>
   </div>
 
   <!-- Footer -->
   <div class="report-footer">
-    Generated 2026-04-08 10:45 &middot; Source: Roistat API &middot; Project 295989
+    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-08 10:48 &middot; <span data-en="Source" data-ru="&#1048;&#1089;&#1090;&#1086;&#1095;&#1085;&#1080;&#1082;">Source</span>: Roistat API &middot; Project 295989
   </div>
 
 </div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('[data-en]').forEach(function(el) {
+    el.textContent = el.getAttribute('data-' + lang);
+  });
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+  });
+  localStorage.setItem('b2prime_lang', lang);
+}
+(function() {
+  var saved = localStorage.getItem('b2prime_lang') || 'en';
+  setLang(saved);
+})();
+</script>
 </body>
 </html>
