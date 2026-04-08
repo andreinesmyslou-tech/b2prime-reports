@@ -8,8 +8,8 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #ffffff;
-    color: #1f2937;
+    background: #f8fafc;
+    color: #1e293b;
     min-height: 100vh;
     padding: 40px 20px;
   }
@@ -22,63 +22,81 @@
   .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 48px; }
   @media (max-width: 900px) { .kpi-grid { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 560px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
-  .kpi-card { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px 20px; text-align: center; }
-  .kpi-card:hover { border-color: #d1d5db; }
-  .kpi-card .label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #6b7280; margin-bottom: 12px; }
-  .kpi-card .value { font-size: 32px; font-weight: 700; color: #111827; line-height: 1; margin-bottom: 8px; }
-  .kpi-card .cr { font-size: 13px; color: #9ca3af; }
+  .kpi-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px 20px; text-align: center; border-top: 3px solid #3b82f6; }
+  .kpi-card:nth-child(1) { border-top-color: #3b82f6; }
+  .kpi-card:nth-child(2) { border-top-color: #6366f1; }
+  .kpi-card:nth-child(3) { border-top-color: #8b5cf6; }
+  .kpi-card:nth-child(4) { border-top-color: #a855f7; }
+  .kpi-card:nth-child(5) { border-top-color: #22c55e; }
+  .kpi-card .label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; margin-bottom: 12px; }
+  .kpi-card .value { font-size: 32px; font-weight: 700; color: #0f172a; line-height: 1; margin-bottom: 8px; }
+  .kpi-card .cr { font-size: 13px; color: #94a3b8; }
   .kpi-card .cr span { color: #16a34a; font-weight: 600; }
 
-  .funnel-bar { display: flex; align-items: center; justify-content: center; margin-bottom: 56px; }
+  .funnel-bar { display: flex; align-items: center; justify-content: center; margin-bottom: 56px; background: #f8fafc; border-radius: 12px; padding: 20px 16px; border: 1px solid #e2e8f0; }
   .funnel-step { text-align: center; flex: 1; }
-  .funnel-step .bar { height: 6px; background: #3b82f6; border-radius: 3px; margin: 0 2px; }
+  .funnel-step .bar { height: 8px; background: #3b82f6; border-radius: 4px; margin: 0 2px; }
   .funnel-step:nth-child(2) .bar { background: #6366f1; }
   .funnel-step:nth-child(3) .bar { background: #8b5cf6; }
   .funnel-step:nth-child(4) .bar { background: #a855f7; }
   .funnel-step:nth-child(5) .bar { background: #22c55e; }
-  .funnel-step .step-label { font-size: 11px; color: #6b7280; margin-top: 8px; }
-  .funnel-step .step-value { font-size: 14px; font-weight: 600; color: #1f2937; margin-top: 2px; }
-  .funnel-arrow { color: #d1d5db; font-size: 18px; margin: 0 4px; flex-shrink: 0; }
+  .funnel-step .step-label { font-size: 11px; color: #64748b; margin-top: 8px; }
+  .funnel-step .step-value { font-size: 15px; font-weight: 700; color: #0f172a; margin-top: 2px; }
+  .funnel-arrow { color: #cbd5e1; font-size: 20px; margin: 0 4px; flex-shrink: 0; }
 
   /* Source sections */
-  .source-section { margin-bottom: 48px; border: 1px solid #e5e7eb; border-radius: 16px; overflow: hidden; }
-  .source-header { display: flex; align-items: center; gap: 12px; padding: 20px 24px; background: #f9fafb; border-bottom: 1px solid #e5e7eb; }
-  .source-color { width: 4px; height: 28px; border-radius: 2px; flex-shrink: 0; }
-  .source-header h2 { font-size: 18px; font-weight: 700; color: #111827; }
+  .source-section { margin-bottom: 32px; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; }
+  .source-header { display: flex; align-items: center; gap: 14px; padding: 20px 24px; border-bottom: 1px solid #e2e8f0; }
+  .source-color { width: 5px; height: 32px; border-radius: 3px; flex-shrink: 0; }
+  .source-header h2 { font-size: 18px; font-weight: 700; color: #fff; }
 
-  .source-metrics { display: flex; flex-wrap: wrap; gap: 0; padding: 0; border-bottom: 1px solid #e5e7eb; }
-  .sm { flex: 1; min-width: 100px; padding: 16px 12px; text-align: center; border-right: 1px solid #f3f4f6; }
+  #src-seo .source-header { background: linear-gradient(135deg, #166534, #22c55e); }
+  #src-tradingview .source-header { background: linear-gradient(135deg, #991b1b, #ef4444); }
+  #src-direct .source-header { background: linear-gradient(135deg, #1e40af, #3b82f6); }
+  #src-nocookie .source-header { background: linear-gradient(135deg, #92400e, #f59e0b); }
+  #src-ib-partners .source-header { background: linear-gradient(135deg, #5b21b6, #8b5cf6); }
+  #src-seo .source-color, #src-tradingview .source-color, #src-direct .source-color, #src-nocookie .source-color, #src-ib-partners .source-color { background: rgba(255,255,255,0.4); }
+
+  .source-metrics { display: flex; flex-wrap: wrap; gap: 0; padding: 0; border-bottom: 1px solid #e2e8f0; }
+  #src-seo .source-metrics { background: #f0fdf4; }
+  #src-tradingview .source-metrics { background: #fef2f2; }
+  #src-direct .source-metrics { background: #eff6ff; }
+  #src-nocookie .source-metrics { background: #fffbeb; }
+  #src-ib-partners .source-metrics { background: #f5f3ff; }
+  .sm { flex: 1; min-width: 100px; padding: 16px 12px; text-align: center; border-right: 1px solid rgba(0,0,0,0.05); }
   .sm:last-child { border-right: none; }
-  .sm-val { display: block; font-size: 20px; font-weight: 700; color: #111827; }
-  .sm-label { display: block; font-size: 11px; color: #6b7280; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .sm-val { display: block; font-size: 20px; font-weight: 700; color: #0f172a; }
+  .sm-label { display: block; font-size: 11px; color: #64748b; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
 
-  .source-body { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .source-body { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: #fff; }
   @media (max-width: 700px) { .source-body { grid-template-columns: 1fr; } }
   .source-col { padding: 24px; }
-  .source-col:first-child { border-right: 1px solid #f3f4f6; }
-  .source-col h3 { font-size: 14px; font-weight: 700; color: #374151; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; }
+  .source-col:first-child { border-right: 1px solid #f1f5f9; }
+  .source-col h3 { font-size: 13px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
 
   .insight-list, .action-list { padding-left: 20px; margin-bottom: 20px; }
-  .insight-list li, .action-list li { font-size: 14px; line-height: 1.6; color: #4b5563; margin-bottom: 8px; }
+  .insight-list li, .action-list li { font-size: 14px; line-height: 1.6; color: #475569; margin-bottom: 10px; }
+  .insight-list li::marker { color: #94a3b8; }
+  .action-list li::marker { color: #3b82f6; font-weight: 700; }
 
-  .summary-box { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 14px 16px; border-radius: 0 8px 8px 0; }
-  .summary-box strong { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: #15803d; display: block; margin-bottom: 6px; }
+  .summary-box { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 16px 18px; border-radius: 0 10px 10px 0; margin-top: 8px; }
+  .summary-box strong { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #15803d; display: block; margin-bottom: 6px; }
   .summary-box p { font-size: 14px; line-height: 1.6; color: #166534; }
 
-  .result-box { background: #eff6ff; border-left: 3px solid #3b82f6; padding: 14px 16px; border-radius: 0 8px 8px 0; }
-  .result-box strong { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: #1d4ed8; display: block; margin-bottom: 6px; }
+  .result-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 16px 18px; border-radius: 0 10px 10px 0; margin-top: 8px; }
+  .result-box strong { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #1d4ed8; display: block; margin-bottom: 6px; }
   .result-box ul { padding-left: 18px; }
   .result-box li { font-size: 14px; line-height: 1.6; color: #1e40af; margin-bottom: 4px; }
 
   /* Language toggle */
-  .lang-toggle { position: fixed; top: 20px; right: 20px; display: flex; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; z-index: 100; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-  .lang-btn { padding: 8px 14px; font-size: 13px; font-weight: 600; color: #9ca3af; background: transparent; border: none; cursor: pointer; transition: all 0.2s; }
+  .lang-toggle { position: fixed; top: 20px; right: 20px; display: flex; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .lang-btn { padding: 8px 14px; font-size: 13px; font-weight: 600; color: #94a3b8; background: transparent; border: none; cursor: pointer; transition: all 0.2s; }
   .lang-btn.active { background: #3b82f6; color: #fff; }
-  .lang-btn:hover:not(.active) { color: #374151; }
+  .lang-btn:hover:not(.active) { color: #334155; }
 
-  .report-footer { text-align: center; padding-top: 32px; border-top: 1px solid #e5e7eb; color: #9ca3af; font-size: 12px; }
+  .report-footer { text-align: center; padding-top: 32px; border-top: 1px solid #e2e8f0; color: #94a3b8; font-size: 12px; }
 
-  .section-title { font-size: 22px; font-weight: 700; color: #111827; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 2px solid #e5e7eb; }
+  .section-title { font-size: 22px; font-weight: 700; color: #0f172a; margin-bottom: 28px; padding-bottom: 12px; border-bottom: 3px solid #3b82f6; display: inline-block; }
 
   i { font-style: normal; }
 </style>
@@ -397,7 +415,7 @@
   </div>
 
   <div class="report-footer">
-    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-08 11:14 &middot; Roistat API &middot; Project 295989
+    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-08 11:20 &middot; Roistat API &middot; Project 295989
   </div>
 </div>
 
