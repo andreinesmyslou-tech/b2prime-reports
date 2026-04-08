@@ -1,0 +1,361 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2Prime Marketing Report</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .report-header { text-align: center; margin-bottom: 48px; }
+  .report-header h1 { font-size: 28px; font-weight: 700; color: #111827; margin-bottom: 8px; }
+  .report-header .period { font-size: 15px; color: #6b7280; }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 48px; }
+  @media (max-width: 900px) { .kpi-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 560px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+  .kpi-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px 20px; text-align: center; border-top: 3px solid #3b82f6; }
+  .kpi-card:nth-child(1) { border-top-color: #3b82f6; }
+  .kpi-card:nth-child(2) { border-top-color: #6366f1; }
+  .kpi-card:nth-child(3) { border-top-color: #8b5cf6; }
+  .kpi-card:nth-child(4) { border-top-color: #a855f7; }
+  .kpi-card:nth-child(5) { border-top-color: #22c55e; }
+  .kpi-card .label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; margin-bottom: 12px; }
+  .kpi-card .value { font-size: 32px; font-weight: 700; color: #0f172a; line-height: 1; margin-bottom: 8px; }
+  .kpi-card .cr { font-size: 13px; color: #94a3b8; }
+  .kpi-card .cr span { color: #16a34a; font-weight: 600; }
+
+  .funnel-bar { display: flex; align-items: center; justify-content: center; margin-bottom: 56px; background: #f8fafc; border-radius: 12px; padding: 20px 16px; border: 1px solid #e2e8f0; }
+  .funnel-step { text-align: center; flex: 1; }
+  .funnel-step .bar { height: 8px; background: #3b82f6; border-radius: 4px; margin: 0 2px; }
+  .funnel-step:nth-child(2) .bar { background: #6366f1; }
+  .funnel-step:nth-child(3) .bar { background: #8b5cf6; }
+  .funnel-step:nth-child(4) .bar { background: #a855f7; }
+  .funnel-step:nth-child(5) .bar { background: #22c55e; }
+  .funnel-step .step-label { font-size: 11px; color: #64748b; margin-top: 8px; }
+  .funnel-step .step-value { font-size: 15px; font-weight: 700; color: #0f172a; margin-top: 2px; }
+  .funnel-arrow { color: #cbd5e1; font-size: 20px; margin: 0 4px; flex-shrink: 0; }
+
+  /* Source sections */
+  .source-section { margin-bottom: 32px; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; }
+  .source-header { display: flex; align-items: center; gap: 14px; padding: 20px 24px; border-bottom: 1px solid #e2e8f0; }
+  .source-color { width: 5px; height: 32px; border-radius: 3px; flex-shrink: 0; }
+  .source-header h2 { font-size: 18px; font-weight: 700; color: #fff; }
+
+  #src-seo .source-header { background: linear-gradient(135deg, #166534, #22c55e); }
+  #src-tradingview .source-header { background: linear-gradient(135deg, #991b1b, #ef4444); }
+  #src-direct .source-header { background: linear-gradient(135deg, #1e40af, #3b82f6); }
+  #src-nocookie .source-header { background: linear-gradient(135deg, #92400e, #f59e0b); }
+  #src-ib-partners .source-header { background: linear-gradient(135deg, #5b21b6, #8b5cf6); }
+  #src-seo .source-color, #src-tradingview .source-color, #src-direct .source-color, #src-nocookie .source-color, #src-ib-partners .source-color { background: rgba(255,255,255,0.4); }
+
+  .source-metrics { display: flex; flex-wrap: wrap; gap: 0; padding: 0; border-bottom: 1px solid #e2e8f0; }
+  #src-seo .source-metrics { background: #f0fdf4; }
+  #src-tradingview .source-metrics { background: #fef2f2; }
+  #src-direct .source-metrics { background: #eff6ff; }
+  #src-nocookie .source-metrics { background: #fffbeb; }
+  #src-ib-partners .source-metrics { background: #f5f3ff; }
+  .sm { flex: 1; min-width: 100px; padding: 16px 12px; text-align: center; border-right: 1px solid rgba(0,0,0,0.05); }
+  .sm:last-child { border-right: none; }
+  .sm-val { display: block; font-size: 20px; font-weight: 700; color: #0f172a; }
+  .sm-label { display: block; font-size: 11px; color: #64748b; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
+
+  .source-body { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: #fff; }
+  @media (max-width: 700px) { .source-body { grid-template-columns: 1fr; } }
+  .source-col { padding: 24px; }
+  .source-col:first-child { border-right: 1px solid #f1f5f9; }
+  .source-col h3 { font-size: 13px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
+
+  .insight-list, .action-list { padding-left: 20px; margin-bottom: 20px; }
+  .insight-list li, .action-list li { font-size: 14px; line-height: 1.6; color: #475569; margin-bottom: 10px; }
+  .insight-list li::marker { color: #94a3b8; }
+  .action-list li::marker { color: #3b82f6; font-weight: 700; }
+
+  .summary-box { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 16px 18px; border-radius: 0 10px 10px 0; margin-top: 8px; }
+  .summary-box strong { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #15803d; display: block; margin-bottom: 6px; }
+  .summary-box p { font-size: 14px; line-height: 1.6; color: #166534; }
+
+  .result-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 16px 18px; border-radius: 0 10px 10px 0; margin-top: 8px; }
+  .result-box strong { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #1d4ed8; display: block; margin-bottom: 6px; }
+  .result-box ul { padding-left: 18px; }
+  .result-box li { font-size: 14px; line-height: 1.6; color: #1e40af; margin-bottom: 4px; }
+
+  /* Language toggle */
+  .lang-toggle { display: flex; justify-content: center; margin-bottom: 24px; }
+  .lang-toggle-inner { display: flex; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .lang-btn { padding: 8px 18px; font-size: 13px; font-weight: 600; color: #94a3b8; background: transparent; border: none; cursor: pointer; transition: all 0.2s; }
+  .lang-btn.active { background: #3b82f6; color: #fff; }
+  .lang-btn:hover:not(.active) { color: #334155; }
+
+  .report-footer { text-align: center; padding-top: 32px; border-top: 1px solid #e2e8f0; color: #94a3b8; font-size: 12px; }
+
+  /* Age group section */
+  .age-note { font-size: 13px; color: #64748b; margin-bottom: 20px; padding: 12px 16px; background: #f8fafc; border-left: 3px solid #94a3b8; border-radius: 0 8px 8px 0; }
+  .age-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 13px; }
+  .age-table th { background: #1e293b; color: #fff; padding: 10px 12px; text-align: center; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .age-table th:first-child { text-align: left; border-radius: 8px 0 0 0; }
+  .age-table th:last-child { border-radius: 0 8px 0 0; }
+  .age-table td { padding: 10px 12px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+  .age-table td:first-child { text-align: left; font-weight: 700; color: #1e293b; }
+  .age-table tr:hover { background: #f1f5f9; }
+  .age-table .highlight { background: #f0fdf4; }
+  .age-table .best { color: #16a34a; font-weight: 700; }
+  .age-table .worst { color: #dc2626; }
+  .age-insight-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; }
+  .age-insight-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
+  .age-insight-card .age-meta { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; font-size: 12px; color: #64748b; }
+  .age-insight-card .age-meta span { background: #f1f5f9; padding: 4px 10px; border-radius: 6px; }
+  .age-insight-card ul { padding-left: 20px; margin: 0; }
+  .age-insight-card li { font-size: 13px; line-height: 1.7; color: #475569; margin-bottom: 6px; }
+  .age-1824 h4 { color: #7c3aed; border-bottom-color: #7c3aed; }
+  .age-2534 h4 { color: #059669; border-bottom-color: #059669; }
+  .age-3544 h4 { color: #2563eb; border-bottom-color: #2563eb; }
+  .age-4554 h4 { color: #d97706; border-bottom-color: #d97706; }
+  .age-actions { margin-top: 16px; padding-top: 16px; border-top: 1px dashed #e2e8f0; }
+  .age-actions h5 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #1e293b; margin-bottom: 10px; }
+  .age-actions ol { padding-left: 20px; margin: 0 0 14px 0; }
+  .age-actions ol li { font-size: 13px; line-height: 1.7; color: #334155; margin-bottom: 8px; }
+  .age-channels { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0 16px 0; }
+  .age-ch { display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+  .age-ch.yes { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+  .age-ch.no { background: #fef2f2; color: #991b1b; border: 1px solid #fca5a5; text-decoration: line-through; opacity: 0.7; }
+  .age-sub { font-size: 12px; font-weight: 700; color: #475569; margin: 14px 0 6px 0; text-transform: uppercase; letter-spacing: 0.3px; }
+  .age-result { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px 16px; margin-top: 10px; }
+  .age-result strong { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: #166534; display: block; margin-bottom: 6px; }
+  .age-result ul { padding-left: 18px; margin: 0; }
+  .age-result li { font-size: 12px; line-height: 1.6; color: #166534; margin-bottom: 4px; }
+
+  /* External audit section */
+  .ext-intro { font-size: 14px; color: #475569; line-height: 1.7; margin-bottom: 24px; }
+  .ext-card { border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 16px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .ext-header { display: flex; align-items: center; gap: 12px; padding: 14px 20px; }
+  .ext-header a { font-size: 15px; font-weight: 700; color: #1e40af; text-decoration: underline; }
+  .ext-header a:hover { color: #3b82f6; }
+  .ext-severity { font-size: 10px; font-weight: 800; letter-spacing: 0.5px; padding: 3px 10px; border-radius: 4px; text-transform: uppercase; flex-shrink: 0; }
+  .ext-critical .ext-header { background: #fef2f2; border-bottom: 1px solid #fecaca; }
+  .ext-critical .ext-severity { background: #dc2626; color: #fff; }
+  .ext-warning .ext-header { background: #fffbeb; border-bottom: 1px solid #fde68a; }
+  .ext-warning .ext-severity { background: #d97706; color: #fff; }
+  .ext-info .ext-header { background: #eff6ff; border-bottom: 1px solid #bfdbfe; }
+  .ext-info .ext-severity { background: #2563eb; color: #fff; }
+  .ext-positive .ext-header { background: #f0fdf4; border-bottom: 1px solid #bbf7d0; }
+  .ext-positive .ext-severity { background: #16a34a; color: #fff; }
+  .ext-body { padding: 16px 20px; background: #fff; }
+  .ext-row { display: flex; gap: 8px; margin-bottom: 8px; font-size: 13px; line-height: 1.6; }
+  .ext-row:last-child { margin-bottom: 0; }
+  .ext-label { font-weight: 700; color: #64748b; min-width: 100px; flex-shrink: 0; }
+  .ext-val { color: #1e293b; }
+  .ext-val.wrong { color: #dc2626; text-decoration: line-through; }
+  .ext-val.correct { color: #16a34a; font-weight: 600; }
+  .ext-val.impact { color: #92400e; font-style: italic; }
+
+  .section-title { font-size: 22px; font-weight: 700; color: #0f172a; margin-bottom: 28px; padding-bottom: 12px; border-bottom: 3px solid #3b82f6; display: inline-block; }
+
+  .report-nav { display: flex; justify-content: center; gap: 4px; margin-bottom: 32px; background: #fff; border-radius: 12px; padding: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); max-width: 520px; margin-left: auto; margin-right: auto; }
+  .nav-link { flex: 1; text-align: center; padding: 10px 16px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 600; color: #64748b; transition: all 0.2s; white-space: nowrap; }
+  .nav-link:hover { color: #1e293b; background: #f1f5f9; }
+  .nav-link.active { color: #fff; background: #3b82f6; box-shadow: 0 2px 4px rgba(59,130,246,0.3); }
+
+  i { font-style: normal; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="lang-toggle">
+    <div class="lang-toggle-inner">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ru')">RU</button>
+    </div>
+  </div>
+  <nav class="report-nav">
+    <a href="index.html" class="nav-link " data-en="Sources" data-ru="&#1048;&#1089;&#1090;&#1086;&#1095;&#1085;&#1080;&#1082;&#1080;">Sources</a>
+    <a href="age.html" class="nav-link " data-en="Age Groups" data-ru="&#1042;&#1086;&#1079;&#1088;&#1072;&#1089;&#1090;">Age Groups</a>
+    <a href="audit.html" class="nav-link active" data-en="Reputation" data-ru="&#1056;&#1077;&#1087;&#1091;&#1090;&#1072;&#1094;&#1080;&#1103;">Reputation</a>
+  </nav>
+  <div class="report-header">
+    <h1 data-en="B2Prime Marketing Report" data-ru="B2Prime &#1052;&#1072;&#1088;&#1082;&#1077;&#1090;&#1080;&#1085;&#1075;&#1086;&#1074;&#1099;&#1081; &#1054;&#1090;&#1095;&#1105;&#1090;"></h1>
+    <div class="period">2026-03-09 - 2026-04-08</div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="label" data-en="Visits" data-ru="&#1042;&#1080;&#1079;&#1080;&#1090;&#1099;"></div>
+      <div class="value">4,284</div>
+      <div class="cr" data-en="site traffic" data-ru="&#1090;&#1088;&#1072;&#1092;&#1080;&#1082; &#1089;&#1072;&#1081;&#1090;&#1072;"></div>
+    </div>
+    <div class="kpi-card">
+      <div class="label" data-en="Registrations" data-ru="&#1056;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1080;"></div>
+      <div class="value">683</div>
+      <div class="cr"><span>15.9%</span> <i data-en="of visits" data-ru="&#1086;&#1090; &#1074;&#1080;&#1079;&#1080;&#1090;&#1086;&#1074;"></i></div>
+    </div>
+    <div class="kpi-card">
+      <div class="label" data-en="KYC Passed" data-ru="&#1055;&#1088;&#1086;&#1096;&#1083;&#1080; KYC"></div>
+      <div class="value">72</div>
+      <div class="cr"><span>10.5%</span> <i data-en="of registrations" data-ru="&#1086;&#1090; &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1081;"></i></div>
+    </div>
+    <div class="kpi-card">
+      <div class="label" data-en="Deposited" data-ru="&#1042;&#1085;&#1077;&#1089;&#1083;&#1080; &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;"></div>
+      <div class="value">17</div>
+      <div class="cr"><span>23.6%</span> <i data-en="of KYC" data-ru="&#1086;&#1090; KYC"></i></div>
+    </div>
+    <div class="kpi-card">
+      <div class="label" data-en="Active Traders" data-ru="&#1040;&#1082;&#1090;&#1080;&#1074;&#1085;&#1099;&#1077; &#1090;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1099;"></div>
+      <div class="value">15</div>
+      <div class="cr"><span>88.2%</span> <i data-en="of deposited" data-ru="&#1086;&#1090; &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;&#1086;&#1074;"></i></div>
+    </div>
+  </div>
+
+  <div class="funnel-bar">
+    <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="Visits" data-ru="&#1042;&#1080;&#1079;&#1080;&#1090;&#1099;"></div><div class="step-value">4,284</div></div>
+    <div class="funnel-arrow">&#8594;</div>
+    <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="Registrations" data-ru="&#1056;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1080;"></div><div class="step-value">683</div></div>
+    <div class="funnel-arrow">&#8594;</div>
+    <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="KYC Passed" data-ru="KYC"></div><div class="step-value">72</div></div>
+    <div class="funnel-arrow">&#8594;</div>
+    <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="Deposited" data-ru="&#1044;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;"></div><div class="step-value">17</div></div>
+    <div class="funnel-arrow">&#8594;</div>
+    <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="Active Traders" data-ru="&#1058;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1099;"></div><div class="step-value">15</div></div>
+  </div>
+
+<!-- SECTION:AUDIT START -->
+  <h2 class="section-title" data-en="External Reputation Audit" data-ru="&#1040;&#1091;&#1076;&#1080;&#1090; &#1074;&#1085;&#1077;&#1096;&#1085;&#1077;&#1081; &#1088;&#1077;&#1087;&#1091;&#1090;&#1072;&#1094;&#1080;&#1080;"></h2>
+
+  <p class="ext-intro" data-en="Third-party broker review sites often display outdated or incorrect information about B2Prime. Since traders research brokers before signing up, these errors can deter potential clients before they even visit b2prime.com. Below is an audit of major review platforms with specific issues found." data-ru="&#1057;&#1090;&#1086;&#1088;&#1086;&#1085;&#1085;&#1080;&#1077; &#1086;&#1073;&#1079;&#1086;&#1088;&#1085;&#1099;&#1077; &#1089;&#1072;&#1081;&#1090;&#1099; &#1095;&#1072;&#1089;&#1090;&#1086; &#1087;&#1086;&#1082;&#1072;&#1079;&#1099;&#1074;&#1072;&#1102;&#1090; &#1091;&#1089;&#1090;&#1072;&#1088;&#1077;&#1074;&#1096;&#1091;&#1102; &#1080;&#1083;&#1080; &#1085;&#1077;&#1074;&#1077;&#1088;&#1085;&#1091;&#1102; &#1080;&#1085;&#1092;&#1086;&#1088;&#1084;&#1072;&#1094;&#1080;&#1102; &#1086; B2Prime. &#1058;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1099; &#1080;&#1079;&#1091;&#1095;&#1072;&#1102;&#1090; &#1086;&#1090;&#1079;&#1099;&#1074;&#1099; &#1087;&#1077;&#1088;&#1077;&#1076; &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1077;&#1081;, &#1087;&#1086;&#1101;&#1090;&#1086;&#1084;&#1091; &#1086;&#1096;&#1080;&#1073;&#1082;&#1080; &#1084;&#1086;&#1075;&#1091;&#1090; &#1086;&#1090;&#1087;&#1091;&#1075;&#1080;&#1074;&#1072;&#1090;&#1100; &#1087;&#1086;&#1090;&#1077;&#1085;&#1094;&#1080;&#1072;&#1083;&#1100;&#1085;&#1099;&#1093; &#1082;&#1083;&#1080;&#1077;&#1085;&#1090;&#1086;&#1074; &#1077;&#1097;&#1105; &#1076;&#1086; &#1087;&#1086;&#1089;&#1077;&#1097;&#1077;&#1085;&#1080;&#1103; b2prime.com. &#1053;&#1080;&#1078;&#1077; -- &#1072;&#1091;&#1076;&#1080;&#1090; &#1082;&#1088;&#1091;&#1087;&#1085;&#1099;&#1093; &#1087;&#1083;&#1072;&#1090;&#1092;&#1086;&#1088;&#1084; &#1089; &#1085;&#1072;&#1081;&#1076;&#1077;&#1085;&#1085;&#1099;&#1084;&#1080; &#1087;&#1088;&#1086;&#1073;&#1083;&#1077;&#1084;&#1072;&#1084;&#1080;."></p>
+
+  <!-- WikiBit -->
+  <div class="ext-card ext-critical">
+    <div class="ext-header">
+      <span class="ext-severity" data-en="Critical" data-ru="&#1050;&#1088;&#1080;&#1090;&#1080;&#1095;&#1085;&#1086;"></span>
+      <a href="https://forex.wikibit.com/en/brokers/deposit/b2prime-8961920515.html" target="_blank">WikiBit -- forex.wikibit.com</a>
+    </div>
+    <div class="ext-body">
+      <div class="ext-row"><span class="ext-label" data-en="They claim:" data-ru="&#1055;&#1080;&#1096;&#1091;&#1090;:"></span><span class="ext-val wrong" data-en="Minimum deposit: ,000" data-ru="&#1052;&#1080;&#1085;. &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;: ,000"></span></div>
+      <div class="ext-row"><span class="ext-label" data-en="Reality:" data-ru="&#1053;&#1072; &#1089;&#1072;&#1084;&#1086;&#1084; &#1076;&#1077;&#1083;&#1077;:"></span><span class="ext-val correct" data-en=" (card),  (bank transfer) -- see b2prime.com/contract-specification" data-ru=" (&#1082;&#1072;&#1088;&#1090;&#1072;),  (&#1073;&#1072;&#1085;&#1082;) -- &#1089;&#1084;. b2prime.com/contract-specification"></span></div>
+      <div class="ext-row"><span class="ext-label" data-en="Impact:" data-ru="&#1042;&#1083;&#1080;&#1103;&#1085;&#1080;&#1077;:"></span><span class="ext-val impact" data-en="1000x error deters retail traders. Average retail trader starts with -500 and will skip B2Prime seeing  requirement." data-ru="&#1054;&#1096;&#1080;&#1073;&#1082;&#1072; &#1074; 1000&#1093; &#1086;&#1090;&#1087;&#1091;&#1075;&#1080;&#1074;&#1072;&#1077;&#1090; &#1088;&#1086;&#1079;&#1085;&#1080;&#1095;&#1085;&#1099;&#1093; &#1090;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1086;&#1074;. &#1057;&#1088;&#1077;&#1076;&#1085;&#1080;&#1081; &#1090;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088; &#1085;&#1072;&#1095;&#1080;&#1085;&#1072;&#1077;&#1090; &#1089; -500 &#1080; &#1087;&#1088;&#1086;&#1081;&#1076;&#1105;&#1090; &#1084;&#1080;&#1084;&#1086;, &#1091;&#1074;&#1080;&#1076;&#1077;&#1074; ."></span></div>
+    </div>
+  </div>
+
+  <!-- 99xi -->
+  <div class="ext-card ext-critical">
+    <div class="ext-header">
+      <span class="ext-severity" data-en="Critical" data-ru="&#1050;&#1088;&#1080;&#1090;&#1080;&#1095;&#1085;&#1086;"></span>
+      <a href="https://www.99xi.com/en/market/is-b2prime-the-right-broker-for-your-trading-needs.html" target="_blank">99xi.com</a>
+    </div>
+    <div class="ext-body">
+      <div class="ext-row"><span class="ext-label" data-en="They claim:" data-ru="&#1055;&#1080;&#1096;&#1091;&#1090;:"></span><span class="ext-val wrong" data-en="Standard , ECN , VIP ,000 accounts. Platforms: MT4, MT5" data-ru="&#1040;&#1082;&#1082;&#1072;&#1091;&#1085;&#1090;&#1099;: Standard , ECN , VIP ,000. &#1055;&#1083;&#1072;&#1090;&#1092;&#1086;&#1088;&#1084;&#1099;: MT4, MT5"></span></div>
+      <div class="ext-row"><span class="ext-label" data-en="Reality:" data-ru="&#1053;&#1072; &#1089;&#1072;&#1084;&#1086;&#1084; &#1076;&#1077;&#1083;&#1077;:"></span><span class="ext-val correct" data-en="Account types: Standard, RAW, Crypto SPOT, Perpetual Futures, UNIFIED. Platforms: B2TRADER, cTrader, TradingView. No MT4/MT5, no ECN/VIP." data-ru="&#1058;&#1080;&#1087;&#1099; &#1072;&#1082;&#1082;&#1072;&#1091;&#1085;&#1090;&#1086;&#1074;: Standard, RAW, Crypto SPOT, Perpetual Futures, UNIFIED. &#1055;&#1083;&#1072;&#1090;&#1092;&#1086;&#1088;&#1084;&#1099;: B2TRADER, cTrader, TradingView. &#1053;&#1077;&#1090; MT4/MT5, &#1085;&#1077;&#1090; ECN/VIP."></span></div>
+      <div class="ext-row"><span class="ext-label" data-en="Impact:" data-ru="&#1042;&#1083;&#1080;&#1103;&#1085;&#1080;&#1077;:"></span><span class="ext-val impact" data-en="Completely fabricated product info. Traders looking for MT4/MT5 will be confused when they don't find it. Wrong account types create false expectations." data-ru="&#1055;&#1086;&#1083;&#1085;&#1086;&#1089;&#1090;&#1100;&#1102; &#1074;&#1099;&#1076;&#1091;&#1084;&#1072;&#1085;&#1085;&#1072;&#1103; &#1087;&#1088;&#1086;&#1076;&#1091;&#1082;&#1090;&#1086;&#1074;&#1072;&#1103; &#1080;&#1085;&#1092;&#1086;. &#1058;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1099; &#1080;&#1097;&#1091;&#1097;&#1080;&#1077; MT4/MT5 &#1073;&#1091;&#1076;&#1091;&#1090; &#1074; &#1079;&#1072;&#1084;&#1077;&#1096;&#1072;&#1090;&#1077;&#1083;&#1100;&#1089;&#1090;&#1074;&#1077;. &#1053;&#1077;&#1074;&#1077;&#1088;&#1085;&#1099;&#1077; &#1090;&#1080;&#1087;&#1099; &#1072;&#1082;&#1082;&#1072;&#1091;&#1085;&#1090;&#1086;&#1074; &#1089;&#1086;&#1079;&#1076;&#1072;&#1102;&#1090; &#1083;&#1086;&#1078;&#1085;&#1099;&#1077; &#1086;&#1078;&#1080;&#1076;&#1072;&#1085;&#1080;&#1103;."></span></div>
+    </div>
+  </div>
+
+  <!-- 4ex.review -->
+  <div class="ext-card ext-critical">
+    <div class="ext-header">
+      <span class="ext-severity" data-en="Critical" data-ru="&#1050;&#1088;&#1080;&#1090;&#1080;&#1095;&#1085;&#1086;"></span>
+      <a href="https://4ex.review/en/broker/3256" target="_blank">4ex.review</a>
+    </div>
+    <div class="ext-body">
+      <div class="ext-row"><span class="ext-label" data-en="They claim:" data-ru="&#1055;&#1080;&#1096;&#1091;&#1090;:"></span><span class="ext-val wrong" data-en="Rating: 1 out of 5. Implies potential scam: 'Companies who are honest have rating above 3.8'" data-ru="&#1056;&#1077;&#1081;&#1090;&#1080;&#1085;&#1075;: 1 &#1080;&#1079; 5. &#1053;&#1072;&#1084;&#1077;&#1082;&#1072;&#1102;&#1090; &#1085;&#1072; scam: '&#1095;&#1077;&#1089;&#1090;&#1085;&#1099;&#1077; &#1082;&#1086;&#1084;&#1087;&#1072;&#1085;&#1080;&#1080; &#1080;&#1084;&#1077;&#1102;&#1090; &#1088;&#1077;&#1081;&#1090;&#1080;&#1085;&#1075; &#1074;&#1099;&#1096;&#1077; 3.8'"></span></div>
+      <div class="ext-row"><span class="ext-label" data-en="Reality:" data-ru="&#1053;&#1072; &#1089;&#1072;&#1084;&#1086;&#1084; &#1076;&#1077;&#1083;&#1077;:"></span><span class="ext-val correct" data-en="B2Prime: 6 licenses (CySEC, FSCA, FSC, FSA, SCB, DFSA), TradingView Platinum partner (4.2/5, 34 verified reviews)" data-ru="B2Prime: 6 &#1083;&#1080;&#1094;&#1077;&#1085;&#1079;&#1080;&#1081; (CySEC, FSCA, FSC, FSA, SCB, DFSA), TradingView Platinum partner (4.2/5, 34 &#1086;&#1090;&#1079;&#1099;&#1074;&#1072;)"></span></div>
+      <div class="ext-row"><span class="ext-label" data-en="Impact:" data-ru="&#1042;&#1083;&#1080;&#1103;&#1085;&#1080;&#1077;:"></span><span class="ext-val impact" data-en="Highly damaging. A '1/5 potential scam' label on a top Google result can kill trust instantly. CySEC-regulated EU broker &#8800; scam." data-ru="&#1050;&#1088;&#1072;&#1081;&#1085;&#1077; &#1088;&#1072;&#1079;&#1088;&#1091;&#1096;&#1080;&#1090;&#1077;&#1083;&#1100;&#1085;&#1086;. &#1052;&#1077;&#1090;&#1082;&#1072; '1/5, &#1074;&#1086;&#1079;&#1084;&#1086;&#1078;&#1085;&#1086; scam' &#1074; &#1090;&#1086;&#1087;&#1077; Google &#1091;&#1073;&#1080;&#1074;&#1072;&#1077;&#1090; &#1076;&#1086;&#1074;&#1077;&#1088;&#1080;&#1077;. CySEC-&#1088;&#1077;&#1075;&#1091;&#1083;&#1080;&#1088;&#1091;&#1077;&#1084;&#1099;&#1081; EU-&#1073;&#1088;&#1086;&#1082;&#1077;&#1088; &#8800; scam."></span></div>
+    </div>
+  </div>
+
+  <!-- WikiFX -->
+  <div class="ext-card ext-warning">
+    <div class="ext-header">
+      <span class="ext-severity" data-en="Warning" data-ru="&#1042;&#1085;&#1080;&#1084;&#1072;&#1085;&#1080;&#1077;"></span>
+      <a href="https://www.wikifx.com/en/dealer/8961920515.html" target="_blank">WikiFX -- wikifx.com</a>
+    </div>
+    <div class="ext-body">
+      <div class="ext-row"><span class="ext-label" data-en="They claim:" data-ru="&#1055;&#1080;&#1096;&#1091;&#1090;:"></span><span class="ext-val wrong" data-en="'High potential risk', 'Offshore Regulated'. Rating: 6.74/10" data-ru="'&#1042;&#1099;&#1089;&#1086;&#1082;&#1080;&#1081; &#1088;&#1080;&#1089;&#1082;', '&#1054;&#1092;&#1096;&#1086;&#1088;&#1085;&#1072;&#1103; &#1088;&#1077;&#1075;&#1091;&#1083;&#1103;&#1094;&#1080;&#1103;'. &#1056;&#1077;&#1081;&#1090;&#1080;&#1085;&#1075;: 6.74/10"></span></div>
+      <div class="ext-row"><span class="ext-label" data-en="Reality:" data-ru="&#1053;&#1072; &#1089;&#1072;&#1084;&#1086;&#1084; &#1076;&#1077;&#1083;&#1077;:"></span><span class="ext-val correct" data-en="CySEC (Cyprus/EU) is a Tier-1 regulator, not offshore. 6 active licenses across EU, Africa, Asia, Middle East." data-ru="CySEC (&#1050;&#1080;&#1087;&#1088;/EU) -- &#1088;&#1077;&#1075;&#1091;&#1083;&#1103;&#1090;&#1086;&#1088; Tier-1, &#1085;&#1077; &#1086;&#1092;&#1096;&#1086;&#1088;. 6 &#1083;&#1080;&#1094;&#1077;&#1085;&#1079;&#1080;&#1081;: EU, &#1040;&#1092;&#1088;&#1080;&#1082;&#1072;, &#1040;&#1079;&#1080;&#1103;, &#1041;&#1083;. &#1042;&#1086;&#1089;&#1090;&#1086;&#1082;."></span></div>
+      <div class="ext-row"><span class="ext-label" data-en="Impact:" data-ru="&#1042;&#1083;&#1080;&#1103;&#1085;&#1080;&#1077;:"></span><span class="ext-val impact" data-en="'Offshore' and 'high risk' labels mislead traders into thinking B2Prime lacks proper regulation." data-ru="&#1052;&#1077;&#1090;&#1082;&#1080; '&#1086;&#1092;&#1096;&#1086;&#1088;' &#1080; '&#1074;&#1099;&#1089;&#1086;&#1082;&#1080;&#1081; &#1088;&#1080;&#1089;&#1082;' &#1074;&#1074;&#1086;&#1076;&#1103;&#1090; &#1074; &#1079;&#1072;&#1073;&#1083;&#1091;&#1078;&#1076;&#1077;&#1085;&#1080;&#1077; &#1086; &#1085;&#1077;&#1076;&#1086;&#1089;&#1090;&#1072;&#1090;&#1086;&#1095;&#1085;&#1086;&#1081; &#1088;&#1077;&#1075;&#1091;&#1083;&#1103;&#1094;&#1080;&#1080;."></span></div>
+    </div>
+  </div>
+
+  <!-- GlobeGain -->
+  <div class="ext-card ext-warning">
+    <div class="ext-header">
+      <span class="ext-severity" data-en="Warning" data-ru="&#1042;&#1085;&#1080;&#1084;&#1072;&#1085;&#1080;&#1077;"></span>
+      <a href="https://globegain.com/brokers/b2prime/" target="_blank">GlobeGain -- globegain.com</a>
+    </div>
+    <div class="ext-body">
+      <div class="ext-row"><span class="ext-label" data-en="They claim:" data-ru="&#1055;&#1080;&#1096;&#1091;&#1090;:"></span><span class="ext-val wrong" data-en="Only 3 regulators (CySEC, FSA, FSC). 'This broker has not been verified or tested'" data-ru="&#1058;&#1086;&#1083;&#1100;&#1082;&#1086; 3 &#1088;&#1077;&#1075;&#1091;&#1083;&#1103;&#1090;&#1086;&#1088;&#1072; (CySEC, FSA, FSC). '&#1041;&#1088;&#1086;&#1082;&#1077;&#1088; &#1085;&#1077; &#1087;&#1088;&#1086;&#1074;&#1077;&#1088;&#1077;&#1085; &#1080; &#1085;&#1077; &#1087;&#1088;&#1086;&#1090;&#1077;&#1089;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;'"></span></div>
+      <div class="ext-row"><span class="ext-label" data-en="Reality:" data-ru="&#1053;&#1072; &#1089;&#1072;&#1084;&#1086;&#1084; &#1076;&#1077;&#1083;&#1077;:"></span><span class="ext-val correct" data-en="6 regulators: CySEC, FSCA (South Africa), FSC, FSA, SCB (Bahamas), DFSA (Dubai). Missing 3 licenses." data-ru="6 &#1088;&#1077;&#1075;&#1091;&#1083;&#1103;&#1090;&#1086;&#1088;&#1086;&#1074;: CySEC, FSCA (&#1070;&#1040;&#1056;), FSC, FSA, SCB (&#1041;&#1072;&#1075;&#1072;&#1084;&#1099;), DFSA (&#1044;&#1091;&#1073;&#1072;&#1081;). &#1055;&#1088;&#1086;&#1087;&#1091;&#1097;&#1077;&#1085;&#1099; 3 &#1083;&#1080;&#1094;&#1077;&#1085;&#1079;&#1080;&#1080;."></span></div>
+      <div class="ext-row"><span class="ext-label" data-en="Impact:" data-ru="&#1042;&#1083;&#1080;&#1103;&#1085;&#1080;&#1077;:"></span><span class="ext-val impact" data-en="Incomplete regulation data and 'not verified' label undermines trust. No deposit or trading info provided." data-ru="&#1053;&#1077;&#1087;&#1086;&#1083;&#1085;&#1099;&#1077; &#1076;&#1072;&#1085;&#1085;&#1099;&#1077; &#1086; &#1088;&#1077;&#1075;&#1091;&#1083;&#1103;&#1094;&#1080;&#1080; &#1080; &#1084;&#1077;&#1090;&#1082;&#1072; '&#1085;&#1077; &#1087;&#1088;&#1086;&#1074;&#1077;&#1088;&#1077;&#1085;' &#1087;&#1086;&#1076;&#1088;&#1099;&#1074;&#1072;&#1102;&#1090; &#1076;&#1086;&#1074;&#1077;&#1088;&#1080;&#1077;."></span></div>
+    </div>
+  </div>
+
+  <!-- ForexPeaceArmy -->
+  <div class="ext-card ext-info">
+    <div class="ext-header">
+      <span class="ext-severity" data-en="Note" data-ru="&#1047;&#1072;&#1084;&#1077;&#1090;&#1082;&#1072;"></span>
+      <a href="https://www.forexpeacearmy.com/forex-reviews/18923/b2broker-forex-brokers" target="_blank">ForexPeaceArmy -- forexpeacearmy.com</a>
+    </div>
+    <div class="ext-body">
+      <div class="ext-row"><span class="ext-label" data-en="Issue:" data-ru="&#1055;&#1088;&#1086;&#1073;&#1083;&#1077;&#1084;&#1072;:"></span><span class="ext-val wrong" data-en="Listed as 'B2Broker' (liquidity provider), not 'B2Prime' (retail broker). Negative reviews about spreads/slippage." data-ru="&#1059;&#1082;&#1072;&#1079;&#1072;&#1085; &#1082;&#1072;&#1082; 'B2Broker' (&#1087;&#1086;&#1089;&#1090;&#1072;&#1074;&#1097;&#1080;&#1082; &#1083;&#1080;&#1082;&#1074;&#1080;&#1076;&#1085;&#1086;&#1089;&#1090;&#1080;), &#1072; &#1085;&#1077; 'B2Prime' (&#1088;&#1086;&#1079;&#1085;&#1080;&#1095;&#1085;&#1099;&#1081; &#1073;&#1088;&#1086;&#1082;&#1077;&#1088;). &#1053;&#1077;&#1075;&#1072;&#1090;&#1080;&#1074;&#1085;&#1099;&#1077; &#1086;&#1090;&#1079;&#1099;&#1074;&#1099; &#1086; &#1089;&#1087;&#1088;&#1077;&#1076;&#1072;&#1093;/&#1087;&#1088;&#1086;&#1089;&#1082;&#1072;&#1083;&#1100;&#1079;&#1099;&#1074;&#1072;&#1085;&#1080;&#1080;."></span></div>
+      <div class="ext-row"><span class="ext-label" data-en="Reality:" data-ru="&#1053;&#1072; &#1089;&#1072;&#1084;&#1086;&#1084; &#1076;&#1077;&#1083;&#1077;:"></span><span class="ext-val correct" data-en="B2Prime is a separate retail brand. Needs its own FPA profile to build independent reputation." data-ru="B2Prime -- &#1086;&#1090;&#1076;&#1077;&#1083;&#1100;&#1085;&#1099;&#1081; &#1088;&#1086;&#1079;&#1085;&#1080;&#1095;&#1085;&#1099;&#1081; &#1073;&#1088;&#1077;&#1085;&#1076;. &#1053;&#1091;&#1078;&#1077;&#1085; &#1089;&#1086;&#1073;&#1089;&#1090;&#1074;&#1077;&#1085;&#1085;&#1099;&#1081; &#1087;&#1088;&#1086;&#1092;&#1080;&#1083;&#1100; &#1085;&#1072; FPA &#1076;&#1083;&#1103; &#1085;&#1077;&#1079;&#1072;&#1074;&#1080;&#1089;&#1080;&#1084;&#1086;&#1081; &#1088;&#1077;&#1087;&#1091;&#1090;&#1072;&#1094;&#1080;&#1080;."></span></div>
+    </div>
+  </div>
+
+  <!-- TradingView - positive -->
+  <div class="ext-card ext-positive">
+    <div class="ext-header">
+      <span class="ext-severity" data-en="Positive" data-ru="&#1055;&#1086;&#1079;&#1080;&#1090;&#1080;&#1074;"></span>
+      <a href="https://www.tradingview.com/broker/B2PRIME/" target="_blank">TradingView -- tradingview.com</a>
+    </div>
+    <div class="ext-body">
+      <div class="ext-row"><span class="ext-label" data-en="Status:" data-ru="&#1057;&#1090;&#1072;&#1090;&#1091;&#1089;:"></span><span class="ext-val correct" data-en="Platinum Partner. Rating 4.2/5 (34 verified reviews, 75 traders, 357 followers). Information is accurate and up-to-date." data-ru="Platinum Partner. &#1056;&#1077;&#1081;&#1090;&#1080;&#1085;&#1075; 4.2/5 (34 &#1086;&#1090;&#1079;&#1099;&#1074;&#1072;, 75 &#1090;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1086;&#1074;, 357 &#1087;&#1086;&#1076;&#1087;&#1080;&#1089;&#1095;&#1080;&#1082;&#1086;&#1074;). &#1048;&#1085;&#1092;&#1086;&#1088;&#1084;&#1072;&#1094;&#1080;&#1103; &#1072;&#1082;&#1090;&#1091;&#1072;&#1083;&#1100;&#1085;&#1072; &#1080; &#1082;&#1086;&#1088;&#1088;&#1077;&#1082;&#1090;&#1085;&#1072;."></span></div>
+      <div class="ext-row"><span class="ext-label" data-en="Action:" data-ru="&#1044;&#1077;&#1081;&#1089;&#1090;&#1074;&#1080;&#1077;:"></span><span class="ext-val" data-en="Encourage satisfied clients to leave reviews here -- this is the most trusted and visible platform." data-ru="&#1055;&#1086;&#1086;&#1097;&#1088;&#1103;&#1090;&#1100; &#1076;&#1086;&#1074;&#1086;&#1083;&#1100;&#1085;&#1099;&#1093; &#1082;&#1083;&#1080;&#1077;&#1085;&#1090;&#1086;&#1074; &#1086;&#1089;&#1090;&#1072;&#1074;&#1083;&#1103;&#1090;&#1100; &#1086;&#1090;&#1079;&#1099;&#1074;&#1099; &#1079;&#1076;&#1077;&#1089;&#1100; -- &#1101;&#1090;&#1086; &#1089;&#1072;&#1084;&#1072;&#1103; &#1085;&#1072;&#1076;&#1105;&#1078;&#1085;&#1072;&#1103; &#1080; &#1074;&#1080;&#1076;&#1080;&#1084;&#1072;&#1103; &#1087;&#1083;&#1072;&#1090;&#1092;&#1086;&#1088;&#1084;&#1072;."></span></div>
+    </div>
+  </div>
+
+  <!-- Where to list B2Prime -->
+  <div class="ext-card ext-info" style="border: 2px solid #3b82f6;">
+    <div class="ext-header" style="background: #dbeafe; border-bottom: 1px solid #93c5fd;">
+      <span class="ext-severity" data-en="Action" data-ru="&#1044;&#1077;&#1081;&#1089;&#1090;&#1074;&#1080;&#1077;"></span>
+      <span style="font-size: 15px; font-weight: 700; color: #1e40af;" data-en="B2Prime is NOT listed on these major platforms -- create profiles:" data-ru="B2Prime &#1054;&#1058;&#1057;&#1059;&#1058;&#1057;&#1058;&#1042;&#1059;&#1045;&#1058; &#1085;&#1072; &#1101;&#1090;&#1080;&#1093; &#1082;&#1088;&#1091;&#1087;&#1085;&#1099;&#1093; &#1087;&#1083;&#1072;&#1090;&#1092;&#1086;&#1088;&#1084;&#1072;&#1093; -- &#1085;&#1091;&#1078;&#1085;&#1086; &#1089;&#1086;&#1079;&#1076;&#1072;&#1090;&#1100; &#1087;&#1088;&#1086;&#1092;&#1080;&#1083;&#1080;:"></span>
+    </div>
+    <div class="ext-body">
+      <div class="ext-row"><span class="ext-label" data-en="Priority 1:" data-ru="&#1055;&#1088;&#1080;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090; 1:"></span><span class="ext-val" data-en="<a href='https://www.trustpilot.com/evaluate/b2prime.com' target='_blank'>Trustpilot</a> -- #1 review platform worldwide, free to claim. B2Broker page exists with 0 reviews, B2Prime has NO page at all." data-ru="<a href='https://www.trustpilot.com/evaluate/b2prime.com' target='_blank'>Trustpilot</a> -- #1 &#1086;&#1090;&#1079;&#1086;&#1074;&#1080;&#1082; &#1074; &#1084;&#1080;&#1088;&#1077;, &#1073;&#1077;&#1089;&#1087;&#1083;&#1072;&#1090;&#1085;&#1086;. &#1057;&#1090;&#1088;&#1072;&#1085;&#1080;&#1094;&#1072; B2Broker &#1077;&#1089;&#1090;&#1100; (0 &#1086;&#1090;&#1079;&#1099;&#1074;&#1086;&#1074;), &#1091; B2Prime &#1089;&#1090;&#1088;&#1072;&#1085;&#1080;&#1094;&#1099; &#1053;&#1045;&#1058;."></span></div>
+      <div class="ext-row"><span class="ext-label" data-en="Priority 1:" data-ru="&#1055;&#1088;&#1080;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090; 1:"></span><span class="ext-val" data-en="<a href='https://www.myfxbook.com/forex-brokers' target='_blank'>Myfxbook</a> -- largest forex community with broker comparison tool. B2Prime has NO profile." data-ru="<a href='https://www.myfxbook.com/forex-brokers' target='_blank'>Myfxbook</a> -- &#1082;&#1088;&#1091;&#1087;&#1085;&#1077;&#1081;&#1096;&#1077;&#1077; forex-&#1089;&#1086;&#1086;&#1073;&#1097;&#1077;&#1089;&#1090;&#1074;&#1086; &#1089; &#1089;&#1088;&#1072;&#1074;&#1085;&#1077;&#1085;&#1080;&#1077;&#1084; &#1073;&#1088;&#1086;&#1082;&#1077;&#1088;&#1086;&#1074;. &#1059; B2Prime &#1053;&#1045;&#1058; &#1087;&#1088;&#1086;&#1092;&#1080;&#1083;&#1103;."></span></div>
+      <div class="ext-row"><span class="ext-label" data-en="Priority 2:" data-ru="&#1055;&#1088;&#1080;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090; 2:"></span><span class="ext-val" data-en="<a href='https://www.fxempire.com/brokers' target='_blank'>FXEmpire</a> -- top-3 forex review site (est. 2011). B2Prime has PR articles but NO broker review page." data-ru="<a href='https://www.fxempire.com/brokers' target='_blank'>FXEmpire</a> -- &#1090;&#1086;&#1087;-3 forex &#1086;&#1073;&#1079;&#1086;&#1088;&#1085;&#1099;&#1081; &#1089;&#1072;&#1081;&#1090; (&#1089; 2011). &#1045;&#1089;&#1090;&#1100; PR-&#1089;&#1090;&#1072;&#1090;&#1100;&#1080;, &#1085;&#1086; &#1053;&#1045;&#1058; &#1086;&#1073;&#1079;&#1086;&#1088;&#1072; &#1073;&#1088;&#1086;&#1082;&#1077;&#1088;&#1072;."></span></div>
+      <div class="ext-row"><span class="ext-label" data-en="Priority 2:" data-ru="&#1055;&#1088;&#1080;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090; 2:"></span><span class="ext-val" data-en="<a href='https://brokerchooser.com/broker-reviews' target='_blank'>BrokerChooser</a> -- tests brokers with real money, 100+ reviews. B2Prime NOT listed." data-ru="<a href='https://brokerchooser.com/broker-reviews' target='_blank'>BrokerChooser</a> -- &#1090;&#1077;&#1089;&#1090;&#1080;&#1088;&#1091;&#1102;&#1090; &#1073;&#1088;&#1086;&#1082;&#1077;&#1088;&#1086;&#1074; &#1088;&#1077;&#1072;&#1083;&#1100;&#1085;&#1099;&#1084;&#1080; &#1076;&#1077;&#1085;&#1100;&#1075;&#1072;&#1084;&#1080;, 100+ &#1086;&#1073;&#1079;&#1086;&#1088;&#1086;&#1074;. B2Prime &#1053;&#1045; &#1074; &#1089;&#1087;&#1080;&#1089;&#1082;&#1077;."></span></div>
+      <div class="ext-row"><span class="ext-label" data-en="Priority 2:" data-ru="&#1055;&#1088;&#1080;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090; 2:"></span><span class="ext-val" data-en="<a href='https://www.forexbrokers.com/reviews' target='_blank'>ForexBrokers.com</a> -- top-3 authority site (est. 2016). B2Prime NOT listed." data-ru="<a href='https://www.forexbrokers.com/reviews' target='_blank'>ForexBrokers.com</a> -- &#1090;&#1086;&#1087;-3 &#1087;&#1086; &#1072;&#1074;&#1090;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090;&#1091; (&#1089; 2016). B2Prime &#1053;&#1045; &#1074; &#1089;&#1087;&#1080;&#1089;&#1082;&#1077;."></span></div>
+      <div class="ext-row"><span class="ext-label" data-en="Priority 3:" data-ru="&#1055;&#1088;&#1080;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090; 3:"></span><span class="ext-val" data-en="<a href='https://tradersunion.com/ratings/forex/common/' target='_blank'>TradersUnion</a> (popular in CIS/Asia) and <a href='https://fxverify.com/' target='_blank'>FXVerify</a> (growing platform). B2Prime has only news, no review profiles." data-ru="<a href='https://tradersunion.com/ratings/forex/common/' target='_blank'>TradersUnion</a> (&#1087;&#1086;&#1087;&#1091;&#1083;&#1103;&#1088;&#1077;&#1085; &#1074; &#1057;&#1053;&#1043;/&#1040;&#1079;&#1080;&#1080;) &#1080; <a href='https://fxverify.com/' target='_blank'>FXVerify</a> (&#1088;&#1072;&#1089;&#1090;&#1091;&#1097;&#1072;&#1103; &#1087;&#1083;&#1072;&#1090;&#1092;&#1086;&#1088;&#1084;&#1072;). &#1058;&#1086;&#1083;&#1100;&#1082;&#1086; &#1085;&#1086;&#1074;&#1086;&#1089;&#1090;&#1080;, &#1085;&#1077;&#1090; &#1087;&#1088;&#1086;&#1092;&#1080;&#1083;&#1077;&#1081;."></span></div>
+    </div>
+  </div>
+
+  <!-- SECTION:AUDIT END -->
+
+  <div class="report-footer">
+    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-08 13:57 &middot; Roistat API &middot; Project 295989
+  </div>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('[data-en]').forEach(function(el) {
+    el.innerHTML = el.getAttribute('data-' + lang);
+  });
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+  });
+  localStorage.setItem('b2prime_lang', lang);
+}
+(function() {
+  var saved = localStorage.getItem('b2prime_lang') || 'en';
+  setLang(saved);
+})();
+</script>
+</body>
+</html>
