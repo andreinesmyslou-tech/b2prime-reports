@@ -168,8 +168,22 @@
   .ext-val.wrong { color: #dc2626; text-decoration: line-through; }
   .ext-val.correct { color: #16a34a; font-weight: 600; }
   .ext-val.impact { color: #92400e; font-style: italic; }
-  .ext-meta { display: flex; gap: 12px; padding: 8px 20px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; font-size: 11px; color: #64748b; }
+  .ext-meta { display: flex; gap: 12px; padding: 8px 20px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; font-size: 11px; color: #64748b; align-items: center; }
   .ext-meta span { background: #e2e8f0; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+  .ext-meta .dr-badge { font-size: 13px; font-weight: 800; padding: 4px 12px; border-radius: 6px; color: #fff; }
+  .dr-high { background: #16a34a; }
+  .dr-mid { background: #d97706; }
+  .dr-low { background: #94a3b8; }
+  .dr-table { width: 100%; border-collapse: collapse; margin: 0 0 28px 0; font-size: 13px; }
+  .dr-table th { background: #1e293b; color: #fff; padding: 10px 14px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .dr-table th:first-child { border-radius: 8px 0 0 0; }
+  .dr-table th:last-child { border-radius: 0 8px 0 0; }
+  .dr-table td { padding: 10px 14px; border-bottom: 1px solid #e2e8f0; vertical-align: middle; }
+  .dr-table tr:hover { background: #f1f5f9; }
+  .dr-table .dr-val { font-size: 16px; font-weight: 800; }
+  .dr-table .dr-bar { width: 100%; height: 8px; background: #e2e8f0; border-radius: 4px; margin-top: 4px; }
+  .dr-table .dr-fill { height: 100%; border-radius: 4px; }
+  .dr-note { font-size: 12px; color: #64748b; margin: -16px 0 24px 0; padding: 10px 14px; background: #f0f9ff; border-left: 3px solid #3b82f6; border-radius: 0 6px 6px 0; line-height: 1.6; }
 
   .section-title { font-size: 22px; font-weight: 700; color: #0f172a; margin-bottom: 28px; padding-bottom: 12px; border-bottom: 3px solid #3b82f6; display: inline-block; }
 
@@ -244,13 +258,82 @@
 
   <p class="ext-intro" data-en="Third-party broker review sites often display outdated or incorrect information about B2Prime. Since traders research brokers before signing up, these errors can deter potential clients before they even visit b2prime.com. Below is an audit of major review platforms with specific issues found." data-ru="&#1057;&#1090;&#1086;&#1088;&#1086;&#1085;&#1085;&#1080;&#1077; &#1086;&#1073;&#1079;&#1086;&#1088;&#1085;&#1099;&#1077; &#1089;&#1072;&#1081;&#1090;&#1099; &#1095;&#1072;&#1089;&#1090;&#1086; &#1087;&#1086;&#1082;&#1072;&#1079;&#1099;&#1074;&#1072;&#1102;&#1090; &#1091;&#1089;&#1090;&#1072;&#1088;&#1077;&#1074;&#1096;&#1091;&#1102; &#1080;&#1083;&#1080; &#1085;&#1077;&#1074;&#1077;&#1088;&#1085;&#1091;&#1102; &#1080;&#1085;&#1092;&#1086;&#1088;&#1084;&#1072;&#1094;&#1080;&#1102; &#1086; B2Prime. &#1058;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1099; &#1080;&#1079;&#1091;&#1095;&#1072;&#1102;&#1090; &#1086;&#1090;&#1079;&#1099;&#1074;&#1099; &#1087;&#1077;&#1088;&#1077;&#1076; &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1077;&#1081;, &#1087;&#1086;&#1101;&#1090;&#1086;&#1084;&#1091; &#1086;&#1096;&#1080;&#1073;&#1082;&#1080; &#1084;&#1086;&#1075;&#1091;&#1090; &#1086;&#1090;&#1087;&#1091;&#1075;&#1080;&#1074;&#1072;&#1090;&#1100; &#1087;&#1086;&#1090;&#1077;&#1085;&#1094;&#1080;&#1072;&#1083;&#1100;&#1085;&#1099;&#1093; &#1082;&#1083;&#1080;&#1077;&#1085;&#1090;&#1086;&#1074; &#1077;&#1097;&#1105; &#1076;&#1086; &#1087;&#1086;&#1089;&#1077;&#1097;&#1077;&#1085;&#1080;&#1103; b2prime.com. &#1053;&#1080;&#1078;&#1077; -- &#1072;&#1091;&#1076;&#1080;&#1090; &#1082;&#1088;&#1091;&#1087;&#1085;&#1099;&#1093; &#1087;&#1083;&#1072;&#1090;&#1092;&#1086;&#1088;&#1084; &#1089; &#1085;&#1072;&#1081;&#1076;&#1077;&#1085;&#1085;&#1099;&#1084;&#1080; &#1087;&#1088;&#1086;&#1073;&#1083;&#1077;&#1084;&#1072;&#1084;&#1080;."></p>
 
+  <table class="dr-table">
+    <tr>
+      <th data-en="Platform" data-ru="&#1055;&#1083;&#1072;&#1090;&#1092;&#1086;&#1088;&#1084;&#1072;"></th>
+      <th>DR</th>
+      <th data-en="Monthly Traffic" data-ru="&#1058;&#1088;&#1072;&#1092;&#1080;&#1082;/&#1084;&#1077;&#1089;"></th>
+      <th data-en="Status" data-ru="&#1057;&#1090;&#1072;&#1090;&#1091;&#1089;"></th>
+      <th data-en="Competitors Present" data-ru="&#1050;&#1086;&#1085;&#1082;&#1091;&#1088;&#1077;&#1085;&#1090;&#1099;"></th>
+      <th data-en="Why It Matters" data-ru="&#1055;&#1086;&#1095;&#1077;&#1084;&#1091; &#1074;&#1072;&#1078;&#1085;&#1086;"></th>
+    </tr>
+    <tr>
+      <td style="font-weight:700">WikiFX</td>
+      <td><span class="dr-val" style="color:#16a34a">75</span><div class="dr-bar"><div class="dr-fill" style="width:75%;background:#16a34a"></div></div></td>
+      <td>8M</td>
+      <td><span style="color:#d97706;font-weight:700" data-en="&#9888; Warning" data-ru="&#9888; &#1042;&#1085;&#1080;&#1084;&#1072;&#1085;&#1080;&#1077;"></span></td>
+      <td style="font-size:11px">IC Markets, XM, Pepperstone, IG</td>
+      <td style="font-size:11px" data-en="Top-3 forex review globally. Labels B2Prime 'offshore/high risk' despite CySEC license." data-ru="&#1058;&#1086;&#1087;-3 &#1086;&#1073;&#1079;&#1086;&#1088; forex. &#1055;&#1086;&#1084;&#1077;&#1095;&#1072;&#1077;&#1090; B2Prime 'offshore/&#1074;&#1099;&#1089;&#1086;&#1082;&#1080;&#1081; &#1088;&#1080;&#1089;&#1082;' &#1085;&#1077;&#1089;&#1084;&#1086;&#1090;&#1088;&#1103; &#1085;&#1072; CySEC."></td>
+    </tr>
+    <tr>
+      <td style="font-weight:700">WikiBit</td>
+      <td><span class="dr-val" style="color:#16a34a">72</span><div class="dr-bar"><div class="dr-fill" style="width:72%;background:#16a34a"></div></div></td>
+      <td>4.5M</td>
+      <td><span style="color:#dc2626;font-weight:700" data-en="&#10060; Critical" data-ru="&#10060; &#1050;&#1088;&#1080;&#1090;&#1080;&#1095;&#1085;&#1086;"></span></td>
+      <td style="font-size:11px">IC Markets, Pepperstone, XM</td>
+      <td style="font-size:11px" data-en="Shows $10,000 min deposit (real: $10). 1000x error kills retail conversions." data-ru="&#1055;&#1086;&#1082;&#1072;&#1079;&#1099;&#1074;&#1072;&#1077;&#1090; &#1084;&#1080;&#1085;. &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090; $10,000 (&#1088;&#1077;&#1072;&#1083;&#1100;&#1085;&#1086;: $10). &#1054;&#1096;&#1080;&#1073;&#1082;&#1072; &#1074; 1000x."></td>
+    </tr>
+    <tr>
+      <td style="font-weight:700">ForexPeaceArmy</td>
+      <td><span class="dr-val" style="color:#16a34a">70</span><div class="dr-bar"><div class="dr-fill" style="width:70%;background:#16a34a"></div></div></td>
+      <td>2M</td>
+      <td><span style="color:#d97706;font-weight:700" data-en="&#9888; Confused" data-ru="&#9888; &#1055;&#1077;&#1088;&#1077;&#1087;&#1091;&#1090;&#1072;&#1085;&#1086;"></span></td>
+      <td style="font-size:11px">IC Markets, XM, Pepperstone</td>
+      <td style="font-size:11px" data-en="Most trusted review site. Lists B2Prime as 'B2Broker' (wrong entity)." data-ru="&#1057;&#1072;&#1084;&#1099;&#1081; &#1072;&#1074;&#1090;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090;&#1085;&#1099;&#1081; &#1086;&#1073;&#1079;&#1086;&#1088;&#1085;&#1099;&#1081; &#1089;&#1072;&#1081;&#1090;. &#1057;&#1087;&#1080;&#1089;&#1086;&#1082; B2Prime &#1082;&#1072;&#1082; 'B2Broker' (&#1085;&#1077; &#1090;&#1086;&#1090; &#1102;&#1088;&#1083;&#1080;&#1094;&#1086;)."></td>
+    </tr>
+    <tr>
+      <td style="font-weight:700">4ex.review</td>
+      <td><span class="dr-val" style="color:#d97706">35</span><div class="dr-bar"><div class="dr-fill" style="width:35%;background:#d97706"></div></div></td>
+      <td>200K</td>
+      <td><span style="color:#dc2626;font-weight:700" data-en="&#10060; Critical" data-ru="&#10060; &#1050;&#1088;&#1080;&#1090;&#1080;&#1095;&#1085;&#1086;"></span></td>
+      <td style="font-size:11px">--</td>
+      <td style="font-size:11px" data-en="Rates B2Prime 1/5 'potential scam'. Ranks in Google for 'B2Prime review'." data-ru="&#1054;&#1094;&#1077;&#1085;&#1082;&#1072; 1/5 '&#1074;&#1086;&#1079;&#1084;&#1086;&#1078;&#1085;&#1099;&#1081; &#1089;&#1082;&#1072;&#1084;'. &#1056;&#1072;&#1085;&#1078;&#1080;&#1088;&#1091;&#1077;&#1090;&#1089;&#1103; &#1074; Google &#1087;&#1086; 'B2Prime review'."></td>
+    </tr>
+    <tr>
+      <td style="font-weight:700">99xi.com</td>
+      <td><span class="dr-val" style="color:#d97706">28</span><div class="dr-bar"><div class="dr-fill" style="width:28%;background:#d97706"></div></div></td>
+      <td>120K</td>
+      <td><span style="color:#dc2626;font-weight:700" data-en="&#10060; Critical" data-ru="&#10060; &#1050;&#1088;&#1080;&#1090;&#1080;&#1095;&#1085;&#1086;"></span></td>
+      <td style="font-size:11px">--</td>
+      <td style="font-size:11px" data-en="Completely fabricated product info (MT4, wrong accounts). Indexed in Google." data-ru="&#1055;&#1086;&#1083;&#1085;&#1086;&#1089;&#1090;&#1100;&#1102; &#1074;&#1099;&#1076;&#1091;&#1084;&#1072;&#1085;&#1085;&#1072;&#1103; &#1080;&#1085;&#1092;&#1086; (MT4, &#1085;&#1077;&#1074;&#1077;&#1088;&#1085;&#1099;&#1077; &#1072;&#1082;&#1082;&#1072;&#1091;&#1085;&#1090;&#1099;). &#1048;&#1085;&#1076;&#1077;&#1082;&#1089;&#1080;&#1088;&#1091;&#1077;&#1090;&#1089;&#1103;."></td>
+    </tr>
+    <tr>
+      <td style="font-weight:700">GlobeGain</td>
+      <td><span class="dr-val" style="color:#94a3b8">22</span><div class="dr-bar"><div class="dr-fill" style="width:22%;background:#94a3b8"></div></div></td>
+      <td>50K</td>
+      <td><span style="color:#d97706;font-weight:700" data-en="&#9888; Warning" data-ru="&#9888; &#1042;&#1085;&#1080;&#1084;&#1072;&#1085;&#1080;&#1077;"></span></td>
+      <td style="font-size:11px">--</td>
+      <td style="font-size:11px" data-en="Lists only 3 of 6 licenses. 'Not verified' label undermines trust." data-ru="&#1055;&#1086;&#1082;&#1072;&#1079;&#1099;&#1074;&#1072;&#1077;&#1090; 3 &#1080;&#1079; 6 &#1083;&#1080;&#1094;&#1077;&#1085;&#1079;&#1080;&#1081;. &#1052;&#1077;&#1090;&#1082;&#1072; '&#1085;&#1077; &#1087;&#1088;&#1086;&#1074;&#1077;&#1088;&#1077;&#1085;' &#1087;&#1086;&#1076;&#1088;&#1099;&#1074;&#1072;&#1077;&#1090; &#1076;&#1086;&#1074;&#1077;&#1088;&#1080;&#1077;."></td>
+    </tr>
+    <tr style="background:#f0fdf4">
+      <td style="font-weight:700;color:#16a34a">TradingView &#10003;</td>
+      <td><span class="dr-val" style="color:#16a34a">92</span><div class="dr-bar"><div class="dr-fill" style="width:92%;background:#16a34a"></div></div></td>
+      <td>500M</td>
+      <td><span style="color:#16a34a;font-weight:700" data-en="&#10004; OK" data-ru="&#10004; OK"></span></td>
+      <td style="font-size:11px">IC Markets, Pepperstone, OANDA</td>
+      <td style="font-size:11px" data-en="Platinum partner, 4.2/5. Only platform with correct info. #1 traffic source." data-ru="Platinum &#1087;&#1072;&#1088;&#1090;&#1085;&#1105;&#1088;, 4.2/5. &#1045;&#1076;&#1080;&#1085;&#1089;&#1090;&#1074;&#1077;&#1085;&#1085;&#1072;&#1103; &#1087;&#1083;&#1072;&#1090;&#1092;&#1086;&#1088;&#1084;&#1072; &#1089; &#1074;&#1077;&#1088;&#1085;&#1086;&#1081; &#1080;&#1085;&#1092;&#1086;. #1 &#1087;&#1086; &#1090;&#1088;&#1072;&#1092;&#1080;&#1082;&#1091;."></td>
+    </tr>
+  </table>
+
+  <div class="dr-note" data-en="<strong>DR (Domain Rating)</strong> -- Ahrefs metric 0-100 measuring site authority by backlink profile. DR 70+ = high-authority site whose content ranks on page 1 of Google for broker-related queries. Errors on these sites directly impact B2Prime's reputation in organic search. <strong>Traffic</strong> = estimated monthly visits (SimilarWeb). Higher = more traders see the incorrect info." data-ru="<strong>DR (Domain Rating)</strong> -- &#1084;&#1077;&#1090;&#1088;&#1080;&#1082;&#1072; Ahrefs 0-100, &#1080;&#1079;&#1084;&#1077;&#1088;&#1103;&#1102;&#1097;&#1072;&#1103; &#1072;&#1074;&#1090;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090; &#1089;&#1072;&#1081;&#1090;&#1072; &#1087;&#1086; &#1087;&#1088;&#1086;&#1092;&#1080;&#1083;&#1102; &#1089;&#1089;&#1099;&#1083;&#1086;&#1082;. DR 70+ = &#1074;&#1099;&#1089;&#1086;&#1082;&#1086;&#1072;&#1074;&#1090;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090;&#1085;&#1099;&#1081; &#1089;&#1072;&#1081;&#1090;, &#1095;&#1077;&#1081; &#1082;&#1086;&#1085;&#1090;&#1077;&#1085;&#1090; &#1088;&#1072;&#1085;&#1078;&#1080;&#1088;&#1091;&#1077;&#1090;&#1089;&#1103; &#1085;&#1072; 1-&#1081; &#1089;&#1090;&#1088;&#1072;&#1085;&#1080;&#1094;&#1077; Google. &#1054;&#1096;&#1080;&#1073;&#1082;&#1080; &#1085;&#1072; &#1101;&#1090;&#1080;&#1093; &#1089;&#1072;&#1081;&#1090;&#1072;&#1093; &#1085;&#1072;&#1087;&#1088;&#1103;&#1084;&#1091;&#1102; &#1074;&#1083;&#1080;&#1103;&#1102;&#1090; &#1085;&#1072; &#1088;&#1077;&#1087;&#1091;&#1090;&#1072;&#1094;&#1080;&#1102; B2Prime &#1074; &#1087;&#1086;&#1080;&#1089;&#1082;&#1077;. <strong>&#1058;&#1088;&#1072;&#1092;&#1080;&#1082;</strong> = &#1086;&#1094;&#1077;&#1085;&#1082;&#1072; &#1084;&#1077;&#1089;&#1103;&#1095;&#1085;&#1099;&#1093; &#1074;&#1080;&#1079;&#1080;&#1090;&#1086;&#1074; (SimilarWeb). &#1063;&#1077;&#1084; &#1073;&#1086;&#1083;&#1100;&#1096;&#1077; -- &#1090;&#1077;&#1084; &#1073;&#1086;&#1083;&#1100;&#1096;&#1077; &#1090;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1086;&#1074; &#1074;&#1080;&#1076;&#1103;&#1090; &#1085;&#1077;&#1074;&#1077;&#1088;&#1085;&#1091;&#1102; &#1080;&#1085;&#1092;&#1086;."></div>
+
   <!-- WikiBit -->
   <div class="ext-card ext-critical">
     <div class="ext-header">
       <span class="ext-severity" data-en="Critical" data-ru="&#1050;&#1088;&#1080;&#1090;&#1080;&#1095;&#1085;&#1086;"></span>
       <a href="https://forex.wikibit.com/en/brokers/deposit/b2prime-8961920515.html" target="_blank">WikiBit -- forex.wikibit.com</a>
     </div>
-    <div class="ext-meta"><span>DR 72</span><span data-en="~4.5M visits/mo" data-ru="~4.5M &#1074;&#1080;&#1079;/&#1084;&#1077;&#1089;">~4.5M visits/mo</span><span data-en="Competitors present: IC Markets, Pepperstone, XM" data-ru="&#1050;&#1086;&#1085;&#1082;&#1091;&#1088;&#1077;&#1085;&#1090;&#1099;: IC Markets, Pepperstone, XM">Competitors: IC Markets, Pepperstone, XM</span></div>
+    <div class="ext-meta"><span class="dr-badge dr-high">DR 72</span><span data-en="~4.5M visits/mo" data-ru="~4.5M &#1074;&#1080;&#1079;/&#1084;&#1077;&#1089;">~4.5M visits/mo</span><span data-en="Competitors present: IC Markets, Pepperstone, XM" data-ru="&#1050;&#1086;&#1085;&#1082;&#1091;&#1088;&#1077;&#1085;&#1090;&#1099;: IC Markets, Pepperstone, XM">Competitors: IC Markets, Pepperstone, XM</span></div>
     <div class="ext-body">
       <div class="ext-row"><span class="ext-label" data-en="They claim:" data-ru="&#1055;&#1080;&#1096;&#1091;&#1090;:"></span><span class="ext-val wrong" data-en="Minimum deposit: $10,000" data-ru="&#1052;&#1080;&#1085;. &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;: $10,000"></span></div>
       <div class="ext-row"><span class="ext-label" data-en="Reality:" data-ru="&#1053;&#1072; &#1089;&#1072;&#1084;&#1086;&#1084; &#1076;&#1077;&#1083;&#1077;:"></span><span class="ext-val correct" data-en="$10 (card), $50 (bank transfer) -- see b2prime.com/contract-specification" data-ru="$10 (&#1082;&#1072;&#1088;&#1090;&#1072;), $50 (&#1073;&#1072;&#1085;&#1082;) -- &#1089;&#1084;. b2prime.com/contract-specification"></span></div>
@@ -264,7 +347,7 @@
       <span class="ext-severity" data-en="Critical" data-ru="&#1050;&#1088;&#1080;&#1090;&#1080;&#1095;&#1085;&#1086;"></span>
       <a href="https://www.99xi.com/en/market/is-b2prime-the-right-broker-for-your-trading-needs.html" target="_blank">99xi.com</a>
     </div>
-    <div class="ext-meta"><span>DR 28</span><span data-en="~120K visits/mo" data-ru="~120K &#1074;&#1080;&#1079;/&#1084;&#1077;&#1089;">~120K visits/mo</span><span data-en="Low authority but indexed in Google" data-ru="&#1053;&#1080;&#1079;&#1082;&#1080;&#1081; &#1072;&#1074;&#1090;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090;, &#1085;&#1086; &#1080;&#1085;&#1076;&#1077;&#1082;&#1089;&#1080;&#1088;&#1091;&#1077;&#1090;&#1089;&#1103;">Low authority but indexed in Google</span></div>
+    <div class="ext-meta"><span class="dr-badge dr-mid">DR 28</span><span data-en="~120K visits/mo" data-ru="~120K &#1074;&#1080;&#1079;/&#1084;&#1077;&#1089;">~120K visits/mo</span><span data-en="Low authority but indexed in Google" data-ru="&#1053;&#1080;&#1079;&#1082;&#1080;&#1081; &#1072;&#1074;&#1090;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090;, &#1085;&#1086; &#1080;&#1085;&#1076;&#1077;&#1082;&#1089;&#1080;&#1088;&#1091;&#1077;&#1090;&#1089;&#1103;">Low authority but indexed in Google</span></div>
     <div class="ext-body">
       <div class="ext-row"><span class="ext-label" data-en="They claim:" data-ru="&#1055;&#1080;&#1096;&#1091;&#1090;:"></span><span class="ext-val wrong" data-en="Standard $100, ECN $500, VIP $5,000 accounts. Platforms: MT4, MT5" data-ru="&#1040;&#1082;&#1082;&#1072;&#1091;&#1085;&#1090;&#1099;: Standard $100, ECN $500, VIP $5,000. &#1055;&#1083;&#1072;&#1090;&#1092;&#1086;&#1088;&#1084;&#1099;: MT4, MT5"></span></div>
       <div class="ext-row"><span class="ext-label" data-en="Reality:" data-ru="&#1053;&#1072; &#1089;&#1072;&#1084;&#1086;&#1084; &#1076;&#1077;&#1083;&#1077;:"></span><span class="ext-val correct" data-en="Account types: Standard, RAW, Crypto SPOT, Perpetual Futures, UNIFIED. Platforms: B2TRADER, cTrader, TradingView. No MT4/MT5, no ECN/VIP." data-ru="&#1058;&#1080;&#1087;&#1099; &#1072;&#1082;&#1082;&#1072;&#1091;&#1085;&#1090;&#1086;&#1074;: Standard, RAW, Crypto SPOT, Perpetual Futures, UNIFIED. &#1055;&#1083;&#1072;&#1090;&#1092;&#1086;&#1088;&#1084;&#1099;: B2TRADER, cTrader, TradingView. &#1053;&#1077;&#1090; MT4/MT5, &#1085;&#1077;&#1090; ECN/VIP."></span></div>
@@ -278,7 +361,7 @@
       <span class="ext-severity" data-en="Critical" data-ru="&#1050;&#1088;&#1080;&#1090;&#1080;&#1095;&#1085;&#1086;"></span>
       <a href="https://4ex.review/en/broker/3256" target="_blank">4ex.review</a>
     </div>
-    <div class="ext-meta"><span>DR 35</span><span data-en="~200K visits/mo" data-ru="~200K &#1074;&#1080;&#1079;/&#1084;&#1077;&#1089;">~200K visits/mo</span><span data-en="Ranks for 'B2Prime review' queries" data-ru="&#1056;&#1072;&#1085;&#1078;&#1080;&#1088;&#1091;&#1077;&#1090;&#1089;&#1103; &#1087;&#1086; 'B2Prime review'">Ranks for 'B2Prime review' queries</span></div>
+    <div class="ext-meta"><span class="dr-badge dr-mid">DR 35</span><span data-en="~200K visits/mo" data-ru="~200K &#1074;&#1080;&#1079;/&#1084;&#1077;&#1089;">~200K visits/mo</span><span data-en="Ranks for 'B2Prime review' queries" data-ru="&#1056;&#1072;&#1085;&#1078;&#1080;&#1088;&#1091;&#1077;&#1090;&#1089;&#1103; &#1087;&#1086; 'B2Prime review'">Ranks for 'B2Prime review' queries</span></div>
     <div class="ext-body">
       <div class="ext-row"><span class="ext-label" data-en="They claim:" data-ru="&#1055;&#1080;&#1096;&#1091;&#1090;:"></span><span class="ext-val wrong" data-en="Rating: 1 out of 5. Implies potential scam: 'Companies who are honest have rating above 3.8'" data-ru="&#1056;&#1077;&#1081;&#1090;&#1080;&#1085;&#1075;: 1 &#1080;&#1079; 5. &#1053;&#1072;&#1084;&#1077;&#1082;&#1072;&#1102;&#1090; &#1085;&#1072; scam: '&#1095;&#1077;&#1089;&#1090;&#1085;&#1099;&#1077; &#1082;&#1086;&#1084;&#1087;&#1072;&#1085;&#1080;&#1080; &#1080;&#1084;&#1077;&#1102;&#1090; &#1088;&#1077;&#1081;&#1090;&#1080;&#1085;&#1075; &#1074;&#1099;&#1096;&#1077; 3.8'"></span></div>
       <div class="ext-row"><span class="ext-label" data-en="Reality:" data-ru="&#1053;&#1072; &#1089;&#1072;&#1084;&#1086;&#1084; &#1076;&#1077;&#1083;&#1077;:"></span><span class="ext-val correct" data-en="B2Prime: 6 licenses (CySEC, FSCA, FSC, FSA, SCB, DFSA), TradingView Platinum partner (4.2/5, 34 verified reviews)" data-ru="B2Prime: 6 &#1083;&#1080;&#1094;&#1077;&#1085;&#1079;&#1080;&#1081; (CySEC, FSCA, FSC, FSA, SCB, DFSA), TradingView Platinum partner (4.2/5, 34 &#1086;&#1090;&#1079;&#1099;&#1074;&#1072;)"></span></div>
@@ -292,7 +375,7 @@
       <span class="ext-severity" data-en="Warning" data-ru="&#1042;&#1085;&#1080;&#1084;&#1072;&#1085;&#1080;&#1077;"></span>
       <a href="https://www.wikifx.com/en/dealer/8961920515.html" target="_blank">WikiFX -- wikifx.com</a>
     </div>
-    <div class="ext-meta"><span>DR 75</span><span data-en="~8M visits/mo" data-ru="~8M &#1074;&#1080;&#1079;/&#1084;&#1077;&#1089;">~8M visits/mo</span><span data-en="Top-3 forex review site globally" data-ru="&#1058;&#1086;&#1087;-3 &#1086;&#1073;&#1079;&#1086;&#1088;&#1085;&#1099;&#1081; forex-&#1089;&#1072;&#1081;&#1090; &#1075;&#1083;&#1086;&#1073;&#1072;&#1083;&#1100;&#1085;&#1086;">Top-3 forex review site globally</span></div>
+    <div class="ext-meta"><span class="dr-badge dr-high">DR 75</span><span data-en="~8M visits/mo" data-ru="~8M &#1074;&#1080;&#1079;/&#1084;&#1077;&#1089;">~8M visits/mo</span><span data-en="Top-3 forex review site globally" data-ru="&#1058;&#1086;&#1087;-3 &#1086;&#1073;&#1079;&#1086;&#1088;&#1085;&#1099;&#1081; forex-&#1089;&#1072;&#1081;&#1090; &#1075;&#1083;&#1086;&#1073;&#1072;&#1083;&#1100;&#1085;&#1086;">Top-3 forex review site globally</span></div>
     <div class="ext-body">
       <div class="ext-row"><span class="ext-label" data-en="They claim:" data-ru="&#1055;&#1080;&#1096;&#1091;&#1090;:"></span><span class="ext-val wrong" data-en="'High potential risk', 'Offshore Regulated'. Rating: 6.74/10" data-ru="'&#1042;&#1099;&#1089;&#1086;&#1082;&#1080;&#1081; &#1088;&#1080;&#1089;&#1082;', '&#1054;&#1092;&#1096;&#1086;&#1088;&#1085;&#1072;&#1103; &#1088;&#1077;&#1075;&#1091;&#1083;&#1103;&#1094;&#1080;&#1103;'. &#1056;&#1077;&#1081;&#1090;&#1080;&#1085;&#1075;: 6.74/10"></span></div>
       <div class="ext-row"><span class="ext-label" data-en="Reality:" data-ru="&#1053;&#1072; &#1089;&#1072;&#1084;&#1086;&#1084; &#1076;&#1077;&#1083;&#1077;:"></span><span class="ext-val correct" data-en="CySEC (Cyprus/EU) is a Tier-1 regulator, not offshore. 6 active licenses across EU, Africa, Asia, Middle East." data-ru="CySEC (&#1050;&#1080;&#1087;&#1088;/EU) -- &#1088;&#1077;&#1075;&#1091;&#1083;&#1103;&#1090;&#1086;&#1088; Tier-1, &#1085;&#1077; &#1086;&#1092;&#1096;&#1086;&#1088;. 6 &#1083;&#1080;&#1094;&#1077;&#1085;&#1079;&#1080;&#1081;: EU, &#1040;&#1092;&#1088;&#1080;&#1082;&#1072;, &#1040;&#1079;&#1080;&#1103;, &#1041;&#1083;. &#1042;&#1086;&#1089;&#1090;&#1086;&#1082;."></span></div>
@@ -306,7 +389,7 @@
       <span class="ext-severity" data-en="Warning" data-ru="&#1042;&#1085;&#1080;&#1084;&#1072;&#1085;&#1080;&#1077;"></span>
       <a href="https://globegain.com/brokers/b2prime/" target="_blank">GlobeGain -- globegain.com</a>
     </div>
-    <div class="ext-meta"><span>DR 22</span><span data-en="~50K visits/mo" data-ru="~50K &#1074;&#1080;&#1079;/&#1084;&#1077;&#1089;">~50K visits/mo</span><span data-en="Niche broker directory" data-ru="&#1053;&#1080;&#1096;&#1077;&#1074;&#1086;&#1081; &#1082;&#1072;&#1090;&#1072;&#1083;&#1086;&#1075; &#1073;&#1088;&#1086;&#1082;&#1077;&#1088;&#1086;&#1074;">Niche broker directory</span></div>
+    <div class="ext-meta"><span class="dr-badge dr-low">DR 22</span><span data-en="~50K visits/mo" data-ru="~50K &#1074;&#1080;&#1079;/&#1084;&#1077;&#1089;">~50K visits/mo</span><span data-en="Niche broker directory" data-ru="&#1053;&#1080;&#1096;&#1077;&#1074;&#1086;&#1081; &#1082;&#1072;&#1090;&#1072;&#1083;&#1086;&#1075; &#1073;&#1088;&#1086;&#1082;&#1077;&#1088;&#1086;&#1074;">Niche broker directory</span></div>
     <div class="ext-body">
       <div class="ext-row"><span class="ext-label" data-en="They claim:" data-ru="&#1055;&#1080;&#1096;&#1091;&#1090;:"></span><span class="ext-val wrong" data-en="Only 3 regulators (CySEC, FSA, FSC). 'This broker has not been verified or tested'" data-ru="&#1058;&#1086;&#1083;&#1100;&#1082;&#1086; 3 &#1088;&#1077;&#1075;&#1091;&#1083;&#1103;&#1090;&#1086;&#1088;&#1072; (CySEC, FSA, FSC). '&#1041;&#1088;&#1086;&#1082;&#1077;&#1088; &#1085;&#1077; &#1087;&#1088;&#1086;&#1074;&#1077;&#1088;&#1077;&#1085; &#1080; &#1085;&#1077; &#1087;&#1088;&#1086;&#1090;&#1077;&#1089;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;'"></span></div>
       <div class="ext-row"><span class="ext-label" data-en="Reality:" data-ru="&#1053;&#1072; &#1089;&#1072;&#1084;&#1086;&#1084; &#1076;&#1077;&#1083;&#1077;:"></span><span class="ext-val correct" data-en="6 regulators: CySEC, FSCA (South Africa), FSC, FSA, SCB (Bahamas), DFSA (Dubai). Missing 3 licenses." data-ru="6 &#1088;&#1077;&#1075;&#1091;&#1083;&#1103;&#1090;&#1086;&#1088;&#1086;&#1074;: CySEC, FSCA (&#1070;&#1040;&#1056;), FSC, FSA, SCB (&#1041;&#1072;&#1075;&#1072;&#1084;&#1099;), DFSA (&#1044;&#1091;&#1073;&#1072;&#1081;). &#1055;&#1088;&#1086;&#1087;&#1091;&#1097;&#1077;&#1085;&#1099; 3 &#1083;&#1080;&#1094;&#1077;&#1085;&#1079;&#1080;&#1080;."></span></div>
@@ -320,7 +403,7 @@
       <span class="ext-severity" data-en="Note" data-ru="&#1047;&#1072;&#1084;&#1077;&#1090;&#1082;&#1072;"></span>
       <a href="https://www.forexpeacearmy.com/forex-reviews/18923/b2broker-forex-brokers" target="_blank">ForexPeaceArmy -- forexpeacearmy.com</a>
     </div>
-    <div class="ext-meta"><span>DR 70</span><span data-en="~2M visits/mo" data-ru="~2M &#1074;&#1080;&#1079;/&#1084;&#1077;&#1089;">~2M visits/mo</span><span data-en="Most trusted forex review site, IC Markets/XM/Pepperstone present" data-ru="&#1057;&#1072;&#1084;&#1099;&#1081; &#1072;&#1074;&#1090;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090;&#1085;&#1099;&#1081; forex-&#1086;&#1073;&#1079;&#1086;&#1088;&#1085;&#1099;&#1081; &#1089;&#1072;&#1081;&#1090;, IC Markets/XM/Pepperstone &#1087;&#1088;&#1080;&#1089;&#1091;&#1090;&#1089;&#1090;&#1074;&#1091;&#1102;&#1090;">Most trusted forex review site</span></div>
+    <div class="ext-meta"><span class="dr-badge dr-high">DR 70</span><span data-en="~2M visits/mo" data-ru="~2M &#1074;&#1080;&#1079;/&#1084;&#1077;&#1089;">~2M visits/mo</span><span data-en="Most trusted forex review site, IC Markets/XM/Pepperstone present" data-ru="&#1057;&#1072;&#1084;&#1099;&#1081; &#1072;&#1074;&#1090;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090;&#1085;&#1099;&#1081; forex-&#1086;&#1073;&#1079;&#1086;&#1088;&#1085;&#1099;&#1081; &#1089;&#1072;&#1081;&#1090;, IC Markets/XM/Pepperstone &#1087;&#1088;&#1080;&#1089;&#1091;&#1090;&#1089;&#1090;&#1074;&#1091;&#1102;&#1090;">Most trusted forex review site</span></div>
     <div class="ext-body">
       <div class="ext-row"><span class="ext-label" data-en="Issue:" data-ru="&#1055;&#1088;&#1086;&#1073;&#1083;&#1077;&#1084;&#1072;:"></span><span class="ext-val wrong" data-en="Listed as 'B2Broker' (liquidity provider), not 'B2Prime' (retail broker). Negative reviews about spreads/slippage." data-ru="&#1059;&#1082;&#1072;&#1079;&#1072;&#1085; &#1082;&#1072;&#1082; 'B2Broker' (&#1087;&#1086;&#1089;&#1090;&#1072;&#1074;&#1097;&#1080;&#1082; &#1083;&#1080;&#1082;&#1074;&#1080;&#1076;&#1085;&#1086;&#1089;&#1090;&#1080;), &#1072; &#1085;&#1077; 'B2Prime' (&#1088;&#1086;&#1079;&#1085;&#1080;&#1095;&#1085;&#1099;&#1081; &#1073;&#1088;&#1086;&#1082;&#1077;&#1088;). &#1053;&#1077;&#1075;&#1072;&#1090;&#1080;&#1074;&#1085;&#1099;&#1077; &#1086;&#1090;&#1079;&#1099;&#1074;&#1099; &#1086; &#1089;&#1087;&#1088;&#1077;&#1076;&#1072;&#1093;/&#1087;&#1088;&#1086;&#1089;&#1082;&#1072;&#1083;&#1100;&#1079;&#1099;&#1074;&#1072;&#1085;&#1080;&#1080;."></span></div>
       <div class="ext-row"><span class="ext-label" data-en="Reality:" data-ru="&#1053;&#1072; &#1089;&#1072;&#1084;&#1086;&#1084; &#1076;&#1077;&#1083;&#1077;:"></span><span class="ext-val correct" data-en="B2Prime is a separate retail brand. Needs its own FPA profile to build independent reputation." data-ru="B2Prime -- &#1086;&#1090;&#1076;&#1077;&#1083;&#1100;&#1085;&#1099;&#1081; &#1088;&#1086;&#1079;&#1085;&#1080;&#1095;&#1085;&#1099;&#1081; &#1073;&#1088;&#1077;&#1085;&#1076;. &#1053;&#1091;&#1078;&#1077;&#1085; &#1089;&#1086;&#1073;&#1089;&#1090;&#1074;&#1077;&#1085;&#1085;&#1099;&#1081; &#1087;&#1088;&#1086;&#1092;&#1080;&#1083;&#1100; &#1085;&#1072; FPA &#1076;&#1083;&#1103; &#1085;&#1077;&#1079;&#1072;&#1074;&#1080;&#1089;&#1080;&#1084;&#1086;&#1081; &#1088;&#1077;&#1087;&#1091;&#1090;&#1072;&#1094;&#1080;&#1080;."></span></div>
@@ -333,7 +416,7 @@
       <span class="ext-severity" data-en="Positive" data-ru="&#1055;&#1086;&#1079;&#1080;&#1090;&#1080;&#1074;"></span>
       <a href="https://www.tradingview.com/broker/B2PRIME/" target="_blank">TradingView -- tradingview.com</a>
     </div>
-    <div class="ext-meta"><span>DR 92</span><span data-en="~500M visits/mo" data-ru="~500M &#1074;&#1080;&#1079;/&#1084;&#1077;&#1089;">~500M visits/mo</span><span data-en="#1 trading platform globally" data-ru="#1 &#1090;&#1086;&#1088;&#1075;&#1086;&#1074;&#1072;&#1103; &#1087;&#1083;&#1072;&#1090;&#1092;&#1086;&#1088;&#1084;&#1072; &#1074; &#1084;&#1080;&#1088;&#1077;">#1 trading platform globally</span></div>
+    <div class="ext-meta"><span class="dr-badge dr-high">DR 92</span><span data-en="~500M visits/mo" data-ru="~500M &#1074;&#1080;&#1079;/&#1084;&#1077;&#1089;">~500M visits/mo</span><span data-en="#1 trading platform globally" data-ru="#1 &#1090;&#1086;&#1088;&#1075;&#1086;&#1074;&#1072;&#1103; &#1087;&#1083;&#1072;&#1090;&#1092;&#1086;&#1088;&#1084;&#1072; &#1074; &#1084;&#1080;&#1088;&#1077;">#1 trading platform globally</span></div>
     <div class="ext-body">
       <div class="ext-row"><span class="ext-label" data-en="Status:" data-ru="&#1057;&#1090;&#1072;&#1090;&#1091;&#1089;:"></span><span class="ext-val correct" data-en="Platinum Partner. Rating 4.2/5 (34 verified reviews, 75 traders, 357 followers). Information is accurate and up-to-date." data-ru="Platinum Partner. &#1056;&#1077;&#1081;&#1090;&#1080;&#1085;&#1075; 4.2/5 (34 &#1086;&#1090;&#1079;&#1099;&#1074;&#1072;, 75 &#1090;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1086;&#1074;, 357 &#1087;&#1086;&#1076;&#1087;&#1080;&#1089;&#1095;&#1080;&#1082;&#1086;&#1074;). &#1048;&#1085;&#1092;&#1086;&#1088;&#1084;&#1072;&#1094;&#1080;&#1103; &#1072;&#1082;&#1090;&#1091;&#1072;&#1083;&#1100;&#1085;&#1072; &#1080; &#1082;&#1086;&#1088;&#1088;&#1077;&#1082;&#1090;&#1085;&#1072;."></span></div>
       <div class="ext-row"><span class="ext-label" data-en="Action:" data-ru="&#1044;&#1077;&#1081;&#1089;&#1090;&#1074;&#1080;&#1077;:"></span><span class="ext-val" data-en="Encourage satisfied clients to leave reviews here -- this is the most trusted and visible platform." data-ru="&#1055;&#1086;&#1086;&#1097;&#1088;&#1103;&#1090;&#1100; &#1076;&#1086;&#1074;&#1086;&#1083;&#1100;&#1085;&#1099;&#1093; &#1082;&#1083;&#1080;&#1077;&#1085;&#1090;&#1086;&#1074; &#1086;&#1089;&#1090;&#1072;&#1074;&#1083;&#1103;&#1090;&#1100; &#1086;&#1090;&#1079;&#1099;&#1074;&#1099; &#1079;&#1076;&#1077;&#1089;&#1100; -- &#1101;&#1090;&#1086; &#1089;&#1072;&#1084;&#1072;&#1103; &#1085;&#1072;&#1076;&#1105;&#1078;&#1085;&#1072;&#1103; &#1080; &#1074;&#1080;&#1076;&#1080;&#1084;&#1072;&#1103; &#1087;&#1083;&#1072;&#1090;&#1092;&#1086;&#1088;&#1084;&#1072;."></span></div>
@@ -359,7 +442,7 @@
   <!-- SECTION:AUDIT END -->
 
   <div class="report-footer">
-    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-14 08:55 &middot; Roistat API &middot; Project 295989
+    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-14 09:10 &middot; Roistat API &middot; Project 295989
   </div>
 </div>
 
