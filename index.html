@@ -185,6 +185,22 @@
   .dr-table .dr-fill { height: 100%; border-radius: 4px; }
   .dr-note { font-size: 12px; color: #64748b; margin: -16px 0 24px 0; padding: 10px 14px; background: #f0f9ff; border-left: 3px solid #3b82f6; border-radius: 0 6px 6px 0; line-height: 1.6; }
 
+  .rec-track { margin: 40px 0 0 0; }
+  .rec-track h2 { font-size: 20px; font-weight: 700; color: #0f172a; margin-bottom: 6px; }
+  .rec-track .rec-sub { font-size: 13px; color: #64748b; margin-bottom: 18px; }
+  .rec-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .rec-table th { background: #1e293b; color: #fff; padding: 9px 12px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .rec-table th:first-child { border-radius: 8px 0 0 0; }
+  .rec-table th:last-child { border-radius: 0 8px 0 0; }
+  .rec-table td { padding: 9px 12px; border-bottom: 1px solid #e2e8f0; vertical-align: top; line-height: 1.5; }
+  .rec-table tr:hover { background: #f8fafc; }
+  .rec-table .rec-src { font-weight: 700; white-space: nowrap; }
+  .rec-st { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 10px; }
+  .rec-st.new { background: #dbeafe; color: #1d4ed8; }
+  .rec-st.progress { background: #fef3c7; color: #92400e; }
+  .rec-st.done { background: #d1fae5; color: #065f46; }
+  .rec-st.blocked { background: #fee2e2; color: #991b1b; }
+
   .section-title { font-size: 22px; font-weight: 700; color: #0f172a; margin-bottom: 28px; padding-bottom: 12px; border-bottom: 3px solid #3b82f6; display: inline-block; }
 
   .report-nav { display: flex; justify-content: center; gap: 4px; margin-bottom: 32px; background: #fff; border-radius: 12px; padding: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); max-width: 520px; margin-left: auto; margin-right: auto; }
@@ -434,11 +450,10 @@
       <div class="source-col">
         <h3 data-en="Insights" data-ru="&#1048;&#1085;&#1089;&#1072;&#1081;&#1090;&#1099;"></h3>
         <ul class="insight-list">
-        <li data-en="3 active influencers (utm_medium=influencer) generating leads via Telegram, Facebook, Instagram" data-ru="3 &#1072;&#1082;&#1090;&#1080;&#1074;&#1085;&#1099;&#1093; &#1080;&#1085;&#1092;&#1083;&#1102;&#1077;&#1085;&#1089;&#1077;&#1088;&#1072; (utm_medium=influencer) &#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1091;&#1102;&#1090; &#1083;&#1080;&#1076;&#1099; &#1095;&#1077;&#1088;&#1077;&#1079; Telegram, Facebook, Instagram"></li>
-        <li data-en="tabraiz_shams (Telegram) is most active: 54 visits, 7 registrations, 1 KYC Passed" data-ru="tabraiz_shams (Telegram) &#1089;&#1072;&#1084;&#1099;&#1081; &#1072;&#1082;&#1090;&#1080;&#1074;&#1085;&#1099;&#1081;: 54 &#1074;&#1080;&#1079;&#1080;&#1090;&#1072;, 7 &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1081;, 1 KYC"></li>
-        <li data-en="danjo_capital (Facebook): 5 visits, 2 registrations | adrian_golub (Instagram): 5 visits, 1 registration" data-ru="danjo_capital (Facebook): 5 &#1074;&#1080;&#1079;&#1080;&#1090;&#1086;&#1074;, 2 &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1080; | adrian_golub (Instagram): 5 &#1074;&#1080;&#1079;&#1080;&#1090;&#1086;&#1074;, 1 &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1103;"></li>
-        <li data-en="Only 10% reach KYC -- low intent traffic, even below TradingView's 4.8%" data-ru="&#1058;&#1086;&#1083;&#1100;&#1082;&#1086; 10% &#1076;&#1086;&#1093;&#1086;&#1076;&#1103;&#1090; &#1076;&#1086; KYC -- &#1085;&#1080;&#1079;&#1082;&#1080;&#1081; &#1080;&#1085;&#1090;&#1077;&#1085;&#1090;, &#1076;&#1072;&#1078;&#1077; &#1085;&#1080;&#1078;&#1077; TradingView (4.8%)"></li>
-        <li data-en="Influencer spend not connected to Roistat -- ROI cannot be calculated, need to integrate cost tracking" data-ru="&#1056;&#1072;&#1089;&#1093;&#1086;&#1076;&#1099; &#1085;&#1072; &#1080;&#1085;&#1092;&#1083;&#1102;&#1077;&#1085;&#1089;&#1077;&#1088;&#1086;&#1074; &#1085;&#1077; &#1087;&#1086;&#1076;&#1082;&#1083;&#1102;&#1095;&#1077;&#1085;&#1099; &#1074; Roistat -- ROI &#1085;&#1077;&#1074;&#1086;&#1079;&#1084;&#1086;&#1078;&#1085;&#1086; &#1088;&#1072;&#1089;&#1089;&#1095;&#1080;&#1090;&#1072;&#1090;&#1100;, &#1085;&#1091;&#1078;&#1085;&#1072; &#1080;&#1085;&#1090;&#1077;&#1075;&#1088;&#1072;&#1094;&#1080;&#1103; &#1079;&#1072;&#1090;&#1088;&#1072;&#1090;"></li>
+        <li data-en="&#9888; NOT IB partners. These are content creators tagged with utm_medium=influencer. They promote B2Prime via their own channels (Telegram, Facebook, Instagram) for a fee. The IB program is a separate referral system -- these users are not registered as IBs." data-ru="&#9888; &#1069;&#1090;&#1086; &#1053;&#1045; IB-&#1087;&#1072;&#1088;&#1090;&#1085;&#1105;&#1088;&#1099;. &#1069;&#1090;&#1086; &#1082;&#1086;&#1085;&#1090;&#1077;&#1085;&#1090;-&#1082;&#1088;&#1077;&#1072;&#1090;&#1086;&#1088;&#1099; &#1089; utm_medium=influencer. &#1054;&#1085;&#1080; &#1087;&#1088;&#1086;&#1076;&#1074;&#1080;&#1075;&#1072;&#1102;&#1090; B2Prime &#1095;&#1077;&#1088;&#1077;&#1079; &#1089;&#1074;&#1086;&#1080; &#1082;&#1072;&#1085;&#1072;&#1083;&#1099; (Telegram, Facebook, Instagram) &#1079;&#1072; &#1086;&#1087;&#1083;&#1072;&#1090;&#1091;. IB-&#1087;&#1088;&#1086;&#1075;&#1088;&#1072;&#1084;&#1084;&#1072; -- &#1086;&#1090;&#1076;&#1077;&#1083;&#1100;&#1085;&#1072;&#1103; &#1088;&#1077;&#1092;&#1077;&#1088;&#1072;&#1083;&#1100;&#1085;&#1072;&#1103; &#1089;&#1080;&#1089;&#1090;&#1077;&#1084;&#1072;, &#1101;&#1090;&#1080; &#1087;&#1086;&#1083;&#1100;&#1079;&#1086;&#1074;&#1072;&#1090;&#1077;&#1083;&#1080; &#1074; &#1085;&#1077;&#1081; &#1085;&#1077; &#1079;&#1072;&#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1099;."></li>
+        <li data-en="3 active influencers generating leads: tabraiz_shams (Telegram, 54 visits, 7 reg, 1 KYC), danjo_capital (Facebook, 5 visits, 2 reg), adrian_golub (Instagram, 5 visits, 1 reg)" data-ru="3 &#1072;&#1082;&#1090;&#1080;&#1074;&#1085;&#1099;&#1093; &#1080;&#1085;&#1092;&#1083;&#1102;&#1077;&#1085;&#1089;&#1077;&#1088;&#1072;: tabraiz_shams (Telegram, 54 &#1074;&#1080;&#1079;., 7 &#1088;&#1077;&#1075;., 1 KYC), danjo_capital (Facebook, 5 &#1074;&#1080;&#1079;., 2 &#1088;&#1077;&#1075;.), adrian_golub (Instagram, 5 &#1074;&#1080;&#1079;., 1 &#1088;&#1077;&#1075;.)"></li>
+        <li data-en="Only 10% reach KYC -- low intent traffic, even below TradingView's 4.8%. Influencer audiences come for content, not to trade -- need stronger onboarding push after registration" data-ru="&#1058;&#1086;&#1083;&#1100;&#1082;&#1086; 10% &#1076;&#1086;&#1093;&#1086;&#1076;&#1103;&#1090; &#1076;&#1086; KYC -- &#1085;&#1080;&#1079;&#1082;&#1080;&#1081; &#1080;&#1085;&#1090;&#1077;&#1085;&#1090;, &#1085;&#1080;&#1078;&#1077; TradingView (4.8%). &#1040;&#1091;&#1076;&#1080;&#1090;&#1086;&#1088;&#1080;&#1103; &#1080;&#1085;&#1092;&#1083;&#1102;&#1077;&#1085;&#1089;&#1077;&#1088;&#1086;&#1074; &#1087;&#1088;&#1080;&#1093;&#1086;&#1076;&#1080;&#1090; &#1079;&#1072; &#1082;&#1086;&#1085;&#1090;&#1077;&#1085;&#1090;&#1086;&#1084;, &#1085;&#1077; &#1090;&#1086;&#1088;&#1075;&#1086;&#1074;&#1072;&#1090;&#1100; -- &#1085;&#1091;&#1078;&#1077;&#1085; &#1073;&#1086;&#1083;&#1077;&#1077; &#1072;&#1075;&#1088;&#1077;&#1089;&#1089;&#1080;&#1074;&#1085;&#1099;&#1081; &#1086;&#1085;&#1073;&#1086;&#1088;&#1076;&#1080;&#1085;&#1075; &#1087;&#1086;&#1089;&#1083;&#1077; &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1080;"></li>
+        <li data-en="Zero revenue: 1 KYC Passed but no deposits yet. Channel is too early to judge ROI, but cost tracking must be connected to Roistat for future analysis" data-ru="&#1053;&#1086;&#1083;&#1100; &#1076;&#1086;&#1093;&#1086;&#1076;&#1072;: 1 KYC, &#1085;&#1086; &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;&#1086;&#1074; &#1085;&#1077;&#1090;. &#1050;&#1072;&#1085;&#1072;&#1083; &#1089;&#1083;&#1080;&#1096;&#1082;&#1086;&#1084; &#1088;&#1072;&#1085; &#1076;&#1083;&#1103; &#1086;&#1094;&#1077;&#1085;&#1082;&#1080; ROI, &#1085;&#1086; &#1091;&#1095;&#1105;&#1090; &#1079;&#1072;&#1090;&#1088;&#1072;&#1090; &#1085;&#1091;&#1078;&#1085;&#1086; &#1087;&#1086;&#1076;&#1082;&#1083;&#1102;&#1095;&#1080;&#1090;&#1100; &#1074; Roistat &#1091;&#1078;&#1077; &#1089;&#1077;&#1081;&#1095;&#1072;&#1089;"></li>
         </ul>
         <div class="summary-box">
           <strong data-en="Summary" data-ru="&#1056;&#1077;&#1079;&#1102;&#1084;&#1077;"></strong>
@@ -463,10 +478,95 @@
       </div>
     </div>
   </div>
+
+  <div class="rec-track">
+    <h2 data-en="&#128203; Recommendation Status Tracking" data-ru="&#128203; &#1057;&#1090;&#1072;&#1090;&#1091;&#1089; &#1088;&#1077;&#1082;&#1086;&#1084;&#1077;&#1085;&#1076;&#1072;&#1094;&#1080;&#1081;"></h2>
+    <div class="rec-sub" data-en="Key actions from this report period. Update status monthly to track implementation progress." data-ru="&#1050;&#1083;&#1102;&#1095;&#1077;&#1074;&#1099;&#1077; &#1076;&#1077;&#1081;&#1089;&#1090;&#1074;&#1080;&#1103; &#1080;&#1079; &#1086;&#1090;&#1095;&#1105;&#1090;&#1085;&#1086;&#1075;&#1086; &#1087;&#1077;&#1088;&#1080;&#1086;&#1076;&#1072;. &#1054;&#1073;&#1085;&#1086;&#1074;&#1083;&#1103;&#1081;&#1090;&#1077; &#1089;&#1090;&#1072;&#1090;&#1091;&#1089; &#1077;&#1078;&#1077;&#1084;&#1077;&#1089;&#1103;&#1095;&#1085;&#1086;."></div>
+    <table class="rec-table">
+      <tr>
+        <th data-en="Source" data-ru="&#1048;&#1089;&#1090;&#1086;&#1095;&#1085;&#1080;&#1082;"></th>
+        <th data-en="Recommendation" data-ru="&#1056;&#1077;&#1082;&#1086;&#1084;&#1077;&#1085;&#1076;&#1072;&#1094;&#1080;&#1103;"></th>
+        <th data-en="Priority" data-ru="&#1055;&#1088;&#1080;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090;"></th>
+        <th data-en="Status" data-ru="&#1057;&#1090;&#1072;&#1090;&#1091;&#1089;"></th>
+      </tr>
+      <tr>
+        <td class="rec-src" style="color:#22c55e">SEO</td>
+        <td data-en="Publish 3-5 comparison articles (B2Prime vs competitors)" data-ru="&#1054;&#1087;&#1091;&#1073;&#1083;&#1080;&#1082;&#1086;&#1074;&#1072;&#1090;&#1100; 3-5 &#1089;&#1088;&#1072;&#1074;&#1085;&#1080;&#1090;&#1077;&#1083;&#1100;&#1085;&#1099;&#1093; &#1089;&#1090;&#1072;&#1090;&#1077;&#1081; (B2Prime vs &#1082;&#1086;&#1085;&#1082;&#1091;&#1088;&#1077;&#1085;&#1090;&#1099;)"></td>
+        <td>&#128308;</td>
+        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+      </tr>
+      <tr>
+        <td class="rec-src" style="color:#22c55e">SEO</td>
+        <td data-en="Add Portuguese /pt version (Brazil = #2 revenue country)" data-ru="&#1044;&#1086;&#1073;&#1072;&#1074;&#1080;&#1090;&#1100; &#1087;&#1086;&#1088;&#1090;&#1091;&#1075;&#1072;&#1083;&#1100;&#1089;&#1082;&#1091;&#1102; &#1074;&#1077;&#1088;&#1089;&#1080;&#1102; /pt (&#1041;&#1088;&#1072;&#1079;&#1080;&#1083;&#1080;&#1103; = #2 &#1087;&#1086; &#1076;&#1086;&#1093;&#1086;&#1076;&#1091;)"></td>
+        <td>&#128308;</td>
+        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+      </tr>
+      <tr>
+        <td class="rec-src" style="color:#22c55e">SEO</td>
+        <td data-en="Optimize H1/meta on /forex, /crypto-cfd, /precious-metals" data-ru="&#1054;&#1087;&#1090;&#1080;&#1084;&#1080;&#1079;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100; H1/meta &#1085;&#1072; /forex, /crypto-cfd, /precious-metals"></td>
+        <td>&#128992;</td>
+        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+      </tr>
+      <tr>
+        <td class="rec-src" style="color:#22c55e">SEO</td>
+        <td data-en="Grow presence on broker directories (TradingView reviews, Myfxbook, FXEmpire)" data-ru="&#1056;&#1072;&#1079;&#1074;&#1080;&#1074;&#1072;&#1090;&#1100; &#1082;&#1072;&#1090;&#1072;&#1083;&#1086;&#1075;&#1080; (&#1086;&#1090;&#1079;&#1099;&#1074;&#1099; TradingView, Myfxbook, FXEmpire)"></td>
+        <td>&#128992;</td>
+        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+      </tr>
+      <tr>
+        <td class="rec-src" style="color:#ef4444">TradingView</td>
+        <td data-en="Set up 3-email automated KYC sequence for TV sign-ups" data-ru="&#1053;&#1072;&#1089;&#1090;&#1088;&#1086;&#1080;&#1090;&#1100; &#1094;&#1077;&#1087;&#1086;&#1095;&#1082;&#1091; &#1080;&#1079; 3 email &#1076;&#1083;&#1103; KYC TV-&#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1081;"></td>
+        <td>&#128308;</td>
+        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+      </tr>
+      <tr>
+        <td class="rec-src" style="color:#ef4444">TradingView</td>
+        <td data-en="Send activation email to KYC-passed users with $0 deposit" data-ru="&#1054;&#1090;&#1087;&#1088;&#1072;&#1074;&#1080;&#1090;&#1100; &#1072;&#1082;&#1090;&#1080;&#1074;&#1072;&#1094;&#1080;&#1086;&#1085;&#1085;&#1086;&#1077; &#1087;&#1080;&#1089;&#1100;&#1084;&#1086; KYC-&#1074;&#1077;&#1088;&#1080;&#1092;&#1080;&#1094;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1085;&#1099;&#1084; &#1073;&#1077;&#1079; &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;&#1072;"></td>
+        <td>&#128308;</td>
+        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+      </tr>
+      <tr>
+        <td class="rec-src" style="color:#ef4444">TradingView</td>
+        <td data-en="Update /platforms/tradingview page with KYC benefits section" data-ru="&#1054;&#1073;&#1085;&#1086;&#1074;&#1080;&#1090;&#1100; /platforms/tradingview &#1089; &#1073;&#1083;&#1086;&#1082;&#1086;&#1084; &#1087;&#1088;&#1077;&#1080;&#1084;&#1091;&#1097;&#1077;&#1089;&#1090;&#1074; KYC"></td>
+        <td>&#128992;</td>
+        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+      </tr>
+      <tr>
+        <td class="rec-src" style="color:#3b82f6">Direct</td>
+        <td data-en="Activate 13 KYC-passed users without deposit (priority campaign)" data-ru="&#1040;&#1082;&#1090;&#1080;&#1074;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100; 13 KYC-&#1087;&#1086;&#1083;&#1100;&#1079;&#1086;&#1074;&#1072;&#1090;&#1077;&#1083;&#1077;&#1081; &#1073;&#1077;&#1079; &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;&#1072; (&#1087;&#1088;&#1080;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090;&#1085;&#1072;&#1103; &#1082;&#1072;&#1084;&#1087;&#1072;&#1085;&#1080;&#1103;)"></td>
+        <td>&#128308;</td>
+        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+      </tr>
+      <tr>
+        <td class="rec-src" style="color:#3b82f6">Direct</td>
+        <td data-en="Implement GA4 unwanted referrals to fix attribution" data-ru="&#1053;&#1072;&#1089;&#1090;&#1088;&#1086;&#1080;&#1090;&#1100; GA4 unwanted referrals &#1076;&#1083;&#1103; &#1092;&#1080;&#1082;&#1089;&#1072; &#1072;&#1090;&#1088;&#1080;&#1073;&#1091;&#1094;&#1080;&#1080;"></td>
+        <td>&#128992;</td>
+        <td><span class="rec-st done" data-en="Done" data-ru="&#1043;&#1086;&#1090;&#1086;&#1074;&#1086;">Done</span></td>
+      </tr>
+      <tr>
+        <td class="rec-src" style="color:#8b5cf6">Influencers</td>
+        <td data-en="Connect influencer costs to Roistat for ROI calculation" data-ru="&#1055;&#1086;&#1076;&#1082;&#1083;&#1102;&#1095;&#1080;&#1090;&#1100; &#1088;&#1072;&#1089;&#1093;&#1086;&#1076;&#1099; &#1085;&#1072; &#1080;&#1085;&#1092;&#1083;&#1102;&#1077;&#1085;&#1089;&#1077;&#1088;&#1086;&#1074; &#1074; Roistat &#1076;&#1083;&#1103; ROI"></td>
+        <td>&#128308;</td>
+        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+      </tr>
+      <tr>
+        <td class="rec-src" style="color:#8b5cf6">Influencers</td>
+        <td data-en="Create influencer content kit (banners, posts, PDF with conditions)" data-ru="&#1057;&#1086;&#1079;&#1076;&#1072;&#1090;&#1100; &#1082;&#1080;&#1090; &#1076;&#1083;&#1103; &#1080;&#1085;&#1092;&#1083;&#1102;&#1077;&#1085;&#1089;&#1077;&#1088;&#1086;&#1074; (&#1073;&#1072;&#1085;&#1085;&#1077;&#1088;&#1099;, &#1087;&#1086;&#1089;&#1090;&#1099;, PDF)"></td>
+        <td>&#128992;</td>
+        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+      </tr>
+      <tr>
+        <td class="rec-src" style="color:#8b5cf6">Influencers</td>
+        <td data-en="Recruit influencers in SA, Brazil, Nigeria (YouTube, TikTok, Telegram)" data-ru="&#1056;&#1077;&#1082;&#1088;&#1091;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100; &#1080;&#1085;&#1092;&#1083;&#1102;&#1077;&#1085;&#1089;&#1077;&#1088;&#1086;&#1074; &#1074; &#1070;&#1040;&#1056;, &#1041;&#1088;&#1072;&#1079;&#1080;&#1083;&#1080;&#1080;, &#1053;&#1080;&#1075;&#1077;&#1088;&#1080;&#1080;"></td>
+        <td>&#128992;</td>
+        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+      </tr>
+    </table>
+  </div>
 <!-- SECTION:SOURCES END -->
 
   <div class="report-footer">
-    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-14 09:10 &middot; Roistat API &middot; Project 295989
+    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-14 09:42 &middot; Roistat API &middot; Project 295989
   </div>
 </div>
 
