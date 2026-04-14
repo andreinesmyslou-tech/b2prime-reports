@@ -195,11 +195,23 @@
   .rec-table td { padding: 9px 12px; border-bottom: 1px solid #e2e8f0; vertical-align: top; line-height: 1.5; }
   .rec-table tr:hover { background: #f8fafc; }
   .rec-table .rec-src { font-weight: 700; white-space: nowrap; }
-  .rec-st { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 10px; }
+  .rec-st { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 10px; cursor: pointer; user-select: none; transition: all 0.15s; }
+  .rec-st:hover { filter: brightness(0.92); transform: scale(1.04); }
   .rec-st.new { background: #dbeafe; color: #1d4ed8; }
   .rec-st.progress { background: #fef3c7; color: #92400e; }
   .rec-st.done { background: #d1fae5; color: #065f46; }
+  .rec-table tr.rec-done td:nth-child(2) { text-decoration: line-through; color: #94a3b8; }
   .rec-st.blocked { background: #fee2e2; color: #991b1b; }
+  .rec-check { width: 14px; height: 14px; border: 2px solid currentColor; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .rec-st.done .rec-check { background: currentColor; }
+  .rec-st.done .rec-check::after { content: '\\2713'; color: #fff; font-size: 10px; }
+  .rec-export { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 8px; border: 1px solid #cbd5e1; background: #fff; color: #334155; cursor: pointer; transition: all 0.15s; }
+  .rec-export:hover { background: #f1f5f9; border-color: #94a3b8; }
+  .rec-export svg { width: 14px; height: 14px; }
+  .rec-progress-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .rec-prog-track { flex: 1; height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; }
+  .rec-prog-fill { height: 100%; background: linear-gradient(90deg, #22c55e, #16a34a); border-radius: 4px; transition: width 0.3s; }
+  .rec-prog-text { font-size: 13px; font-weight: 700; color: #334155; white-space: nowrap; }
 
   .section-title { font-size: 22px; font-weight: 700; color: #0f172a; margin-bottom: 28px; padding-bottom: 12px; border-bottom: 3px solid #3b82f6; display: inline-block; }
 
@@ -481,92 +493,102 @@
 
   <div class="rec-track">
     <h2 data-en="&#128203; Recommendation Status Tracking" data-ru="&#128203; &#1057;&#1090;&#1072;&#1090;&#1091;&#1089; &#1088;&#1077;&#1082;&#1086;&#1084;&#1077;&#1085;&#1076;&#1072;&#1094;&#1080;&#1081;"></h2>
-    <div class="rec-sub" data-en="Key actions from this report period. Update status monthly to track implementation progress." data-ru="&#1050;&#1083;&#1102;&#1095;&#1077;&#1074;&#1099;&#1077; &#1076;&#1077;&#1081;&#1089;&#1090;&#1074;&#1080;&#1103; &#1080;&#1079; &#1086;&#1090;&#1095;&#1105;&#1090;&#1085;&#1086;&#1075;&#1086; &#1087;&#1077;&#1088;&#1080;&#1086;&#1076;&#1072;. &#1054;&#1073;&#1085;&#1086;&#1074;&#1083;&#1103;&#1081;&#1090;&#1077; &#1089;&#1090;&#1072;&#1090;&#1091;&#1089; &#1077;&#1078;&#1077;&#1084;&#1077;&#1089;&#1103;&#1095;&#1085;&#1086;."></div>
-    <table class="rec-table">
+    <div class="rec-sub" data-en="Click status to toggle: New &#8594; In Progress &#8594; Done. Changes are saved in your browser." data-ru="&#1050;&#1083;&#1080;&#1082;&#1085;&#1080;&#1090;&#1077; &#1087;&#1086; &#1089;&#1090;&#1072;&#1090;&#1091;&#1089;&#1091; &#1076;&#1083;&#1103; &#1087;&#1077;&#1088;&#1077;&#1082;&#1083;&#1102;&#1095;&#1077;&#1085;&#1080;&#1103;: &#1053;&#1086;&#1074;&#1072;&#1103; &#8594; &#1042; &#1088;&#1072;&#1073;&#1086;&#1090;&#1077; &#8594; &#1043;&#1086;&#1090;&#1086;&#1074;&#1086;. &#1048;&#1079;&#1084;&#1077;&#1085;&#1077;&#1085;&#1080;&#1103; &#1089;&#1086;&#1093;&#1088;&#1072;&#1085;&#1103;&#1102;&#1090;&#1089;&#1103; &#1074; &#1073;&#1088;&#1072;&#1091;&#1079;&#1077;&#1088;&#1077;."></div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+      <div class="rec-progress-bar" style="flex:1;margin-bottom:0;">
+        <div class="rec-prog-track"><div class="rec-prog-fill" id="recProgFill" style="width:0%"></div></div>
+        <div class="rec-prog-text" id="recProgText">0 / 12</div>
+      </div>
+      <button class="rec-export" onclick="exportRecStatus()" title="Save status to file for next report generation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span data-en="Save Status" data-ru="&#1057;&#1086;&#1093;&#1088;&#1072;&#1085;&#1080;&#1090;&#1100;">Save Status</span>
+      </button>
+    </div>
+    <table class="rec-table" id="recTable">
       <tr>
         <th data-en="Source" data-ru="&#1048;&#1089;&#1090;&#1086;&#1095;&#1085;&#1080;&#1082;"></th>
         <th data-en="Recommendation" data-ru="&#1056;&#1077;&#1082;&#1086;&#1084;&#1077;&#1085;&#1076;&#1072;&#1094;&#1080;&#1103;"></th>
         <th data-en="Priority" data-ru="&#1055;&#1088;&#1080;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090;"></th>
         <th data-en="Status" data-ru="&#1057;&#1090;&#1072;&#1090;&#1091;&#1089;"></th>
       </tr>
-      <tr>
+      <tr data-rec-id="0">
         <td class="rec-src" style="color:#22c55e">SEO</td>
         <td data-en="Publish 3-5 comparison articles (B2Prime vs competitors)" data-ru="&#1054;&#1087;&#1091;&#1073;&#1083;&#1080;&#1082;&#1086;&#1074;&#1072;&#1090;&#1100; 3-5 &#1089;&#1088;&#1072;&#1074;&#1085;&#1080;&#1090;&#1077;&#1083;&#1100;&#1085;&#1099;&#1093; &#1089;&#1090;&#1072;&#1090;&#1077;&#1081; (B2Prime vs &#1082;&#1086;&#1085;&#1082;&#1091;&#1088;&#1077;&#1085;&#1090;&#1099;)"></td>
         <td>&#128308;</td>
-        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+        <td><span class="rec-st new" data-default="new" onclick="toggleRec(this)"><span class="rec-check"></span><span class="rec-lbl" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;"></span></span></td>
       </tr>
-      <tr>
+      <tr data-rec-id="1">
         <td class="rec-src" style="color:#22c55e">SEO</td>
         <td data-en="Add Portuguese /pt version (Brazil = #2 revenue country)" data-ru="&#1044;&#1086;&#1073;&#1072;&#1074;&#1080;&#1090;&#1100; &#1087;&#1086;&#1088;&#1090;&#1091;&#1075;&#1072;&#1083;&#1100;&#1089;&#1082;&#1091;&#1102; &#1074;&#1077;&#1088;&#1089;&#1080;&#1102; /pt (&#1041;&#1088;&#1072;&#1079;&#1080;&#1083;&#1080;&#1103; = #2 &#1087;&#1086; &#1076;&#1086;&#1093;&#1086;&#1076;&#1091;)"></td>
         <td>&#128308;</td>
-        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+        <td><span class="rec-st new" data-default="new" onclick="toggleRec(this)"><span class="rec-check"></span><span class="rec-lbl" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;"></span></span></td>
       </tr>
-      <tr>
+      <tr data-rec-id="2">
         <td class="rec-src" style="color:#22c55e">SEO</td>
         <td data-en="Optimize H1/meta on /forex, /crypto-cfd, /precious-metals" data-ru="&#1054;&#1087;&#1090;&#1080;&#1084;&#1080;&#1079;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100; H1/meta &#1085;&#1072; /forex, /crypto-cfd, /precious-metals"></td>
         <td>&#128992;</td>
-        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+        <td><span class="rec-st new" data-default="new" onclick="toggleRec(this)"><span class="rec-check"></span><span class="rec-lbl" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;"></span></span></td>
       </tr>
-      <tr>
+      <tr data-rec-id="3">
         <td class="rec-src" style="color:#22c55e">SEO</td>
         <td data-en="Grow presence on broker directories (TradingView reviews, Myfxbook, FXEmpire)" data-ru="&#1056;&#1072;&#1079;&#1074;&#1080;&#1074;&#1072;&#1090;&#1100; &#1082;&#1072;&#1090;&#1072;&#1083;&#1086;&#1075;&#1080; (&#1086;&#1090;&#1079;&#1099;&#1074;&#1099; TradingView, Myfxbook, FXEmpire)"></td>
         <td>&#128992;</td>
-        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+        <td><span class="rec-st new" data-default="new" onclick="toggleRec(this)"><span class="rec-check"></span><span class="rec-lbl" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;"></span></span></td>
       </tr>
-      <tr>
+      <tr data-rec-id="4">
         <td class="rec-src" style="color:#ef4444">TradingView</td>
         <td data-en="Set up 3-email automated KYC sequence for TV sign-ups" data-ru="&#1053;&#1072;&#1089;&#1090;&#1088;&#1086;&#1080;&#1090;&#1100; &#1094;&#1077;&#1087;&#1086;&#1095;&#1082;&#1091; &#1080;&#1079; 3 email &#1076;&#1083;&#1103; KYC TV-&#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1081;"></td>
         <td>&#128308;</td>
-        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+        <td><span class="rec-st new" data-default="new" onclick="toggleRec(this)"><span class="rec-check"></span><span class="rec-lbl" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;"></span></span></td>
       </tr>
-      <tr>
+      <tr data-rec-id="5">
         <td class="rec-src" style="color:#ef4444">TradingView</td>
         <td data-en="Send activation email to KYC-passed users with $0 deposit" data-ru="&#1054;&#1090;&#1087;&#1088;&#1072;&#1074;&#1080;&#1090;&#1100; &#1072;&#1082;&#1090;&#1080;&#1074;&#1072;&#1094;&#1080;&#1086;&#1085;&#1085;&#1086;&#1077; &#1087;&#1080;&#1089;&#1100;&#1084;&#1086; KYC-&#1074;&#1077;&#1088;&#1080;&#1092;&#1080;&#1094;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1085;&#1099;&#1084; &#1073;&#1077;&#1079; &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;&#1072;"></td>
         <td>&#128308;</td>
-        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+        <td><span class="rec-st new" data-default="new" onclick="toggleRec(this)"><span class="rec-check"></span><span class="rec-lbl" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;"></span></span></td>
       </tr>
-      <tr>
+      <tr data-rec-id="6">
         <td class="rec-src" style="color:#ef4444">TradingView</td>
         <td data-en="Update /platforms/tradingview page with KYC benefits section" data-ru="&#1054;&#1073;&#1085;&#1086;&#1074;&#1080;&#1090;&#1100; /platforms/tradingview &#1089; &#1073;&#1083;&#1086;&#1082;&#1086;&#1084; &#1087;&#1088;&#1077;&#1080;&#1084;&#1091;&#1097;&#1077;&#1089;&#1090;&#1074; KYC"></td>
         <td>&#128992;</td>
-        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+        <td><span class="rec-st new" data-default="new" onclick="toggleRec(this)"><span class="rec-check"></span><span class="rec-lbl" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;"></span></span></td>
       </tr>
-      <tr>
+      <tr data-rec-id="7">
         <td class="rec-src" style="color:#3b82f6">Direct</td>
         <td data-en="Activate 13 KYC-passed users without deposit (priority campaign)" data-ru="&#1040;&#1082;&#1090;&#1080;&#1074;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100; 13 KYC-&#1087;&#1086;&#1083;&#1100;&#1079;&#1086;&#1074;&#1072;&#1090;&#1077;&#1083;&#1077;&#1081; &#1073;&#1077;&#1079; &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;&#1072; (&#1087;&#1088;&#1080;&#1086;&#1088;&#1080;&#1090;&#1077;&#1090;&#1085;&#1072;&#1103; &#1082;&#1072;&#1084;&#1087;&#1072;&#1085;&#1080;&#1103;)"></td>
         <td>&#128308;</td>
-        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+        <td><span class="rec-st new" data-default="new" onclick="toggleRec(this)"><span class="rec-check"></span><span class="rec-lbl" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;"></span></span></td>
       </tr>
-      <tr>
+      <tr data-rec-id="8">
         <td class="rec-src" style="color:#3b82f6">Direct</td>
         <td data-en="Implement GA4 unwanted referrals to fix attribution" data-ru="&#1053;&#1072;&#1089;&#1090;&#1088;&#1086;&#1080;&#1090;&#1100; GA4 unwanted referrals &#1076;&#1083;&#1103; &#1092;&#1080;&#1082;&#1089;&#1072; &#1072;&#1090;&#1088;&#1080;&#1073;&#1091;&#1094;&#1080;&#1080;"></td>
         <td>&#128992;</td>
-        <td><span class="rec-st done" data-en="Done" data-ru="&#1043;&#1086;&#1090;&#1086;&#1074;&#1086;">Done</span></td>
+        <td><span class="rec-st done" data-default="done" onclick="toggleRec(this)"><span class="rec-check"></span><span class="rec-lbl" data-en="Done" data-ru="&#1043;&#1086;&#1090;&#1086;&#1074;&#1086;"></span></span></td>
       </tr>
-      <tr>
+      <tr data-rec-id="9">
         <td class="rec-src" style="color:#8b5cf6">Influencers</td>
         <td data-en="Connect influencer costs to Roistat for ROI calculation" data-ru="&#1055;&#1086;&#1076;&#1082;&#1083;&#1102;&#1095;&#1080;&#1090;&#1100; &#1088;&#1072;&#1089;&#1093;&#1086;&#1076;&#1099; &#1085;&#1072; &#1080;&#1085;&#1092;&#1083;&#1102;&#1077;&#1085;&#1089;&#1077;&#1088;&#1086;&#1074; &#1074; Roistat &#1076;&#1083;&#1103; ROI"></td>
         <td>&#128308;</td>
-        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+        <td><span class="rec-st new" data-default="new" onclick="toggleRec(this)"><span class="rec-check"></span><span class="rec-lbl" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;"></span></span></td>
       </tr>
-      <tr>
+      <tr data-rec-id="10">
         <td class="rec-src" style="color:#8b5cf6">Influencers</td>
         <td data-en="Create influencer content kit (banners, posts, PDF with conditions)" data-ru="&#1057;&#1086;&#1079;&#1076;&#1072;&#1090;&#1100; &#1082;&#1080;&#1090; &#1076;&#1083;&#1103; &#1080;&#1085;&#1092;&#1083;&#1102;&#1077;&#1085;&#1089;&#1077;&#1088;&#1086;&#1074; (&#1073;&#1072;&#1085;&#1085;&#1077;&#1088;&#1099;, &#1087;&#1086;&#1089;&#1090;&#1099;, PDF)"></td>
         <td>&#128992;</td>
-        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+        <td><span class="rec-st new" data-default="new" onclick="toggleRec(this)"><span class="rec-check"></span><span class="rec-lbl" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;"></span></span></td>
       </tr>
-      <tr>
+      <tr data-rec-id="11">
         <td class="rec-src" style="color:#8b5cf6">Influencers</td>
         <td data-en="Recruit influencers in SA, Brazil, Nigeria (YouTube, TikTok, Telegram)" data-ru="&#1056;&#1077;&#1082;&#1088;&#1091;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100; &#1080;&#1085;&#1092;&#1083;&#1102;&#1077;&#1085;&#1089;&#1077;&#1088;&#1086;&#1074; &#1074; &#1070;&#1040;&#1056;, &#1041;&#1088;&#1072;&#1079;&#1080;&#1083;&#1080;&#1080;, &#1053;&#1080;&#1075;&#1077;&#1088;&#1080;&#1080;"></td>
         <td>&#128992;</td>
-        <td><span class="rec-st new" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;">New</span></td>
+        <td><span class="rec-st new" data-default="new" onclick="toggleRec(this)"><span class="rec-check"></span><span class="rec-lbl" data-en="New" data-ru="&#1053;&#1086;&#1074;&#1072;&#1103;"></span></span></td>
       </tr>
     </table>
   </div>
 <!-- SECTION:SOURCES END -->
 
   <div class="report-footer">
-    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-14 09:42 &middot; Roistat API &middot; Project 295989
+    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-14 09:50 &middot; Roistat API &middot; Project 295989
   </div>
 </div>
 
@@ -583,6 +605,73 @@ function setLang(lang) {
 (function() {
   var saved = localStorage.getItem('b2prime_lang') || 'en';
   setLang(saved);
+})();
+
+/* Recommendation tracking -- defaults from rec_status.json */
+var REC_DEFAULTS = {"8":"done"};
+var REC_KEY = 'b2prime_rec_status';
+var STATES = ['new','progress','done'];
+var LABELS = {new:{en:'New',ru:'\u041d\u043e\u0432\u0430\u044f'},progress:{en:'In Progress',ru:'\u0412 \u0440\u0430\u0431\u043e\u0442\u0435'},done:{en:'Done',ru:'\u0413\u043e\u0442\u043e\u0432\u043e'}};
+
+function getRecStore() { try { return JSON.parse(localStorage.getItem(REC_KEY)) || {}; } catch(e) { return {}; } }
+
+function toggleRec(el) {
+  var row = el.closest('tr');
+  var id = row.getAttribute('data-rec-id');
+  var cur = el.className.replace('rec-st ','');
+  var idx = STATES.indexOf(cur);
+  var next = STATES[(idx + 1) % STATES.length];
+  applyRecState(el, row, next);
+  var store = getRecStore(); store[id] = next; localStorage.setItem(REC_KEY, JSON.stringify(store));
+  updateRecProgress();
+}
+
+function applyRecState(el, row, state) {
+  el.className = 'rec-st ' + state;
+  var lang = localStorage.getItem('b2prime_lang') || 'en';
+  var lbl = el.querySelector('.rec-lbl');
+  if (lbl) { lbl.setAttribute('data-en', LABELS[state].en); lbl.setAttribute('data-ru', LABELS[state].ru); lbl.innerHTML = LABELS[state][lang]; }
+  if (state === 'done') { row.classList.add('rec-done'); } else { row.classList.remove('rec-done'); }
+}
+
+function updateRecProgress() {
+  var rows = document.querySelectorAll('#recTable tr[data-rec-id]');
+  var total = rows.length, done = 0;
+  rows.forEach(function(r) { if (r.querySelector('.rec-st.done')) done++; });
+  var fill = document.getElementById('recProgFill');
+  var txt = document.getElementById('recProgText');
+  if (fill) fill.style.width = (done / total * 100) + '%';
+  if (txt) txt.textContent = done + ' / ' + total;
+}
+
+function exportRecStatus() {
+  var data = {};
+  document.querySelectorAll('#recTable tr[data-rec-id]').forEach(function(row) {
+    var id = row.getAttribute('data-rec-id');
+    var el = row.querySelector('.rec-st');
+    var state = el.className.replace('rec-st ','');
+    var desc = row.querySelector('td:nth-child(2)').getAttribute('data-en');
+    var src = row.querySelector('td:nth-child(1)').textContent.trim();
+    data[id] = { source: src, recommendation: desc, status: state };
+  });
+  var json = JSON.stringify(data, null, 2);
+  var blob = new Blob([json], {type: 'application/json'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'rec_status.json';
+  a.click();
+}
+
+(function initRec() {
+  var store = getRecStore();
+  document.querySelectorAll('#recTable tr[data-rec-id]').forEach(function(row) {
+    var id = row.getAttribute('data-rec-id');
+    var el = row.querySelector('.rec-st');
+    /* Priority: localStorage > REC_DEFAULTS (from rec_status.json) > HTML data-default > 'new' */
+    var state = store[id] || (REC_DEFAULTS[id]) || el.getAttribute('data-default') || 'new';
+    applyRecState(el, row, state);
+  });
+  updateRecProgress();
 })();
 </script>
 </body>
