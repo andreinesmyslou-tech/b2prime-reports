@@ -211,9 +211,18 @@
   .rec-mini-fill { height: 100%; background: linear-gradient(90deg, #22c55e, #16a34a); border-radius: 3px; transition: width 0.3s; }
   .rec-mini-text { font-weight: 700; white-space: nowrap; }
   .rec-mini-arrow { font-size: 16px; }
-  .rec-export { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 8px; border: 1px solid #cbd5e1; background: #fff; color: #334155; cursor: pointer; transition: all 0.15s; }
-  .rec-export:hover { background: #f1f5f9; border-color: #94a3b8; }
-  .rec-export svg { width: 14px; height: 14px; }
+  .rec-sync { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 8px; border: none; background: transparent; color: #94a3b8; transition: all 0.3s; cursor: pointer; }
+  .rec-sync:hover { opacity: 0.8; }
+  .rec-sync.syncing { color: #f59e0b; }
+  .rec-sync.synced { color: #22c55e; }
+  .rec-sync.error { color: #ef4444; }
+  .rec-sync.notoken { color: #3b82f6; }
+  .rec-sync svg { width: 12px; height: 12px; }
+  .rec-setup { display: none; align-items: center; gap: 8px; padding: 8px 14px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; margin-bottom: 10px; font-size: 12px; }
+  .rec-setup.show { display: flex; }
+  .rec-setup input { flex: 1; padding: 5px 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px; font-family: monospace; }
+  .rec-setup button { padding: 5px 12px; background: #3b82f6; color: #fff; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; }
+  .rec-setup button:hover { background: #2563eb; }
   .rec-progress-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
   .rec-prog-track { flex: 1; height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; }
   .rec-prog-fill { height: 100%; background: linear-gradient(90deg, #22c55e, #16a34a); border-radius: 4px; transition: width 0.3s; }
@@ -608,7 +617,7 @@
 <!-- SECTION:AGE END -->
 
   <div class="report-footer">
-    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-22 09:38 &middot; Roistat API &middot; Project 295989
+    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-22 10:02 &middot; Roistat API &middot; Project 295989
   </div>
 </div>
 
@@ -628,7 +637,7 @@ function setLang(lang) {
 })();
 
 /* Recommendation tracking -- defaults from rec_status.json */
-var REC_DEFAULTS = {"8":"done"};
+var REC_DEFAULTS = {};
 var REC_KEY = 'b2prime_rec_status';
 var STATES = ['new','progress','done'];
 var LABELS = {new:{en:'New',ru:'\u041d\u043e\u0432\u0430\u044f'},progress:{en:'In Progress',ru:'\u0412 \u0440\u0430\u0431\u043e\u0442\u0435'},done:{en:'Done',ru:'\u0413\u043e\u0442\u043e\u0432\u043e'}};
@@ -644,6 +653,7 @@ function toggleRec(el) {
   applyRecState(el, row, next);
   var store = getRecStore(); store[id] = next; localStorage.setItem(REC_KEY, JSON.stringify(store));
   updateRecProgress();
+  pushToGitHub();
 }
 
 function applyRecState(el, row, state) {
@@ -664,53 +674,157 @@ function updateRecProgress() {
   if (txt) txt.textContent = done + ' / ' + total;
 }
 
-function exportRecStatus() {
-  var data = {};
-  document.querySelectorAll('#recTable tr[data-rec-id]').forEach(function(row) {
-    var id = row.getAttribute('data-rec-id');
-    var el = row.querySelector('.rec-st');
-    var state = el.className.replace('rec-st ','');
-    var desc = row.querySelector('td:nth-child(2)').getAttribute('data-en');
-    var src = row.querySelector('td:nth-child(1)').textContent.trim();
-    data[id] = { source: src, recommendation: desc, status: state };
-  });
-  var json = JSON.stringify(data, null, 2);
-  var blob = new Blob([json], {type: 'application/json'});
-  var a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'rec_status.json';
-  a.click();
-}
+/* GitHub sync -- token stored in browser localStorage, not in source */
+var GH_REPO = 'andreinesmyslou-tech/b2prime-reports';
+var GH_FILE = 'rec_status.json';
+var GH_TOKEN_KEY = 'b2prime_gh_token';
+var ghSha = null;
 
-(function initRec() {
-  var store = getRecStore();
-  var total = 12, done = 0;
-  /* Full table on Sources page */
-  var rows = document.querySelectorAll('#recTable tr[data-rec-id]');
-  if (rows.length > 0) {
+function getGHToken() { return localStorage.getItem(GH_TOKEN_KEY) || ''; }
+
+function saveRecToken() {
+  var input = document.getElementById('recTokenInput');
+  if (!input || !input.value.trim()) return;
+  localStorage.setItem(GH_TOKEN_KEY, input.value.trim());
+  document.getElementById('recSetup').classList.remove('show');
+  setSyncStatus('synced');
+  /* Reload from GitHub with new token */
+  loadFromGitHub(function(ghStore) {
+    var store = getRecStore();
+    for (var k in ghStore) { store[k] = ghStore[k]; }
+    localStorage.setItem(REC_KEY, JSON.stringify(store));
+    var rows = document.querySelectorAll('#recTable tr[data-rec-id]');
     rows.forEach(function(row) {
       var id = row.getAttribute('data-rec-id');
       var el = row.querySelector('.rec-st');
-      var state = store[id] || (REC_DEFAULTS[id]) || el.getAttribute('data-default') || 'new';
-      applyRecState(el, row, state);
+      applyRecState(el, row, store[id] || 'new');
     });
     updateRecProgress();
+  });
+}
+
+function setSyncStatus(state) {
+  var el = document.getElementById('recSyncStatus');
+  var txt = document.getElementById('recSyncText');
+  if (!el) return;
+  el.className = 'rec-sync ' + state;
+  var labels = { syncing: {en:'syncing...', ru:'\u0441\u0438\u043d\u0445\u0440\u043e\u043d\u0438\u0437\u0430\u0446\u0438\u044f...'}, synced: {en:'synced', ru:'\u0441\u0438\u043d\u0445\u0440\u043e\u043d\u0438\u0437\u0438\u0440\u043e\u0432\u0430\u043d\u043e'}, error: {en:'sync error', ru:'\u043e\u0448\u0438\u0431\u043a\u0430 \u0441\u0438\u043d\u0445\u0440.'}, notoken: {en:'setup sync', ru:'\u043d\u0430\u0441\u0442\u0440\u043e\u0438\u0442\u044c \u0441\u0438\u043d\u0445\u0440.'} };
+  if (txt && labels[state]) {
+    var lang = localStorage.getItem('b2prime_lang') || 'en';
+    txt.setAttribute('data-en', labels[state].en);
+    txt.setAttribute('data-ru', labels[state].ru);
+    txt.innerHTML = labels[state][lang];
   }
-  /* Mini-widget on Age/Audit pages */
+}
+
+function buildRecData() {
+  var data = {};
+  var rows = document.querySelectorAll('#recTable tr[data-rec-id]');
+  if (rows.length === 0) {
+    /* On age/audit pages вЂ” build from localStorage + defaults */
+    var store = getRecStore();
+    for (var i = 0; i < 12; i++) {
+      var st = store[String(i)] || (REC_DEFAULTS[String(i)]) || 'new';
+      data[String(i)] = { status: st };
+    }
+  } else {
+    rows.forEach(function(row) {
+      var id = row.getAttribute('data-rec-id');
+      var el = row.querySelector('.rec-st');
+      var state = el.className.replace('rec-st ', '');
+      var desc = row.querySelector('td:nth-child(2)').getAttribute('data-en');
+      var src = row.querySelector('td:nth-child(1)').textContent.trim();
+      data[id] = { source: src, recommendation: desc, status: state };
+    });
+  }
+  return data;
+}
+
+function pushToGitHub() {
+  if (!getGHToken()) return;
+  setSyncStatus('syncing');
+  var data = buildRecData();
+  var json = JSON.stringify(data, null, 2);
+  var body = { message: 'Update recommendation status', content: btoa(unescape(encodeURIComponent(json))) };
+  if (ghSha) body.sha = ghSha;
+  fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + GH_FILE, {
+    method: 'PUT',
+    headers: { 'Authorization': 'Bearer ' + getGHToken(), 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  }).then(function(r) { return r.json(); })
+  .then(function(d) {
+    if (d.content && d.content.sha) { ghSha = d.content.sha; setSyncStatus('synced'); }
+    else { setSyncStatus('error'); }
+  }).catch(function() { setSyncStatus('error'); });
+}
+
+function loadFromGitHub(callback) {
+  if (!getGHToken()) { callback({}); return; }
+  fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + GH_FILE + '?ref=main&t=' + Date.now(), {
+    headers: { 'Authorization': 'Bearer ' + getGHToken(), 'Accept': 'application/vnd.github.v3+json' }
+  }).then(function(r) { if (r.ok) return r.json(); throw 'not found'; })
+  .then(function(d) {
+    ghSha = d.sha;
+    var json = decodeURIComponent(escape(atob(d.content.replace(/\n/g, ''))));
+    var data = JSON.parse(json);
+    /* Convert to simple id->status map */
+    var map = {};
+    for (var k in data) { map[k] = (typeof data[k] === 'object') ? data[k].status : data[k]; }
+    callback(map);
+  }).catch(function() { callback({}); });
+}
+
+function updateMiniWidget(store) {
   var miniText = document.getElementById('recMiniText');
   var miniFill = document.getElementById('recMiniFill');
-  if (miniText && miniFill) {
-    for (var i = 0; i < total; i++) {
-      var st = store[String(i)] || (REC_DEFAULTS[String(i)]) || 'new';
-      if (st === 'done') done++;
-    }
-    var lang = localStorage.getItem('b2prime_lang') || 'en';
-    var pct = Math.round(done / total * 100);
-    miniText.setAttribute('data-en', done + '/' + total + ' recommendations done');
-    miniText.setAttribute('data-ru', done + '/' + total + ' \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0430\u0446\u0438\u0439 \u0433\u043e\u0442\u043e\u0432\u043e');
-    miniText.innerHTML = miniText.getAttribute('data-' + lang);
-    miniFill.style.width = pct + '%';
+  if (!miniText || !miniFill) return;
+  var total = 12, done = 0;
+  for (var i = 0; i < total; i++) {
+    var st = store[String(i)] || (REC_DEFAULTS[String(i)]) || 'new';
+    if (st === 'done') done++;
   }
+  var lang = localStorage.getItem('b2prime_lang') || 'en';
+  var pct = Math.round(done / total * 100);
+  miniText.setAttribute('data-en', done + '/' + total + ' recommendations done');
+  miniText.setAttribute('data-ru', done + '/' + total + ' \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0430\u0446\u0438\u0439 \u0433\u043e\u0442\u043e\u0432\u043e');
+  miniText.innerHTML = miniText.getAttribute('data-' + lang);
+  miniFill.style.width = pct + '%';
+}
+
+(function initRec() {
+  /* Show setup bar if no token and on Sources page */
+  var hasToken = !!getGHToken();
+  var setupEl = document.getElementById('recSetup');
+  if (!hasToken && setupEl) { setupEl.classList.add('show'); setSyncStatus('notoken'); }
+  /* Make sync indicator clickable to show setup */
+  var syncEl = document.getElementById('recSyncStatus');
+  if (syncEl) { syncEl.onclick = function() { if (setupEl) { setupEl.classList.toggle('show'); } }; }
+  /* Load from GitHub first, fallback to localStorage + defaults */
+  loadFromGitHub(function(ghStore) {
+    var localStore = getRecStore();
+    /* GitHub is source of truth, merge with local */
+    var store = {};
+    for (var i = 0; i < 12; i++) {
+      var k = String(i);
+      store[k] = ghStore[k] || localStore[k] || (REC_DEFAULTS[k]) || 'new';
+    }
+    /* Save merged to localStorage */
+    localStorage.setItem(REC_KEY, JSON.stringify(store));
+
+    /* Full table on Sources page */
+    var rows = document.querySelectorAll('#recTable tr[data-rec-id]');
+    if (rows.length > 0) {
+      rows.forEach(function(row) {
+        var id = row.getAttribute('data-rec-id');
+        var el = row.querySelector('.rec-st');
+        applyRecState(el, row, store[id] || 'new');
+      });
+      updateRecProgress();
+      setSyncStatus('synced');
+    }
+    /* Mini-widget on Age/Audit pages */
+    updateMiniWidget(store);
+  });
 })();
 </script>
 </body>
