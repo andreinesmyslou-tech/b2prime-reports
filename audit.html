@@ -252,7 +252,7 @@
     <a href="audit.html" class="nav-link active" data-en="Reputation" data-ru="&#1056;&#1077;&#1087;&#1091;&#1090;&#1072;&#1094;&#1080;&#1103;">Reputation</a>
   </nav>
   <a href="index.html#recTable" class="rec-mini" id="recMiniLink">
-    <span class="rec-mini-text" id="recMiniText" data-en="Recommendations: 0/12 done" data-ru="&#1056;&#1077;&#1082;&#1086;&#1084;&#1077;&#1085;&#1076;&#1072;&#1094;&#1080;&#1080;: 0/12 &#1075;&#1086;&#1090;&#1086;&#1074;&#1086;">Recommendations: 0/12 done</span>
+    <span class="rec-mini-text" id="recMiniText" data-en="Recommendations: 0/11 done" data-ru="&#1056;&#1077;&#1082;&#1086;&#1084;&#1077;&#1085;&#1076;&#1072;&#1094;&#1080;&#1080;: 0/11 &#1075;&#1086;&#1090;&#1086;&#1074;&#1086;">Recommendations: 0/11 done</span>
     <div class="rec-mini-bar"><div class="rec-mini-fill" id="recMiniFill" style="width:0%"></div></div>
     <span class="rec-mini-arrow">&#8594;</span>
   </a>
@@ -490,7 +490,7 @@
   <!-- SECTION:AUDIT END -->
 
   <div class="report-footer">
-    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-22 10:54 &middot; Roistat API &middot; Project 295989
+    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-22 11:14 &middot; Roistat API &middot; Project 295989
   </div>
 </div>
 
@@ -596,9 +596,10 @@ function buildRecData() {
   if (rows.length === 0) {
     /* On age/audit pages вЂ” build from localStorage + defaults */
     var store = getRecStore();
-    for (var i = 0; i < 12; i++) {
-      var st = store[String(i)] || (REC_DEFAULTS[String(i)]) || 'new';
-      data[String(i)] = { status: st };
+    var recIds = ['0','1','2','3','4','6','7','8','9','10','11'];
+    for (var i = 0; i < recIds.length; i++) {
+      var st = store[recIds[i]] || (REC_DEFAULTS[recIds[i]]) || 'new';
+      data[recIds[i]] = { status: st };
     }
   } else {
     rows.forEach(function(row) {
@@ -651,9 +652,10 @@ function updateMiniWidget(store) {
   var miniText = document.getElementById('recMiniText');
   var miniFill = document.getElementById('recMiniFill');
   if (!miniText || !miniFill) return;
-  var total = 12, done = 0;
-  for (var i = 0; i < total; i++) {
-    var st = store[String(i)] || (REC_DEFAULTS[String(i)]) || 'new';
+  var recIds = ['0','1','2','3','4','6','7','8','9','10','11'];
+  var total = recIds.length, done = 0;
+  for (var i = 0; i < recIds.length; i++) {
+    var st = store[recIds[i]] || (REC_DEFAULTS[recIds[i]]) || 'new';
     if (st === 'done') done++;
   }
   var lang = localStorage.getItem('b2prime_lang') || 'en';
@@ -677,8 +679,9 @@ function updateMiniWidget(store) {
     var localStore = getRecStore();
     /* GitHub is source of truth, merge with local */
     var store = {};
-    for (var i = 0; i < 12; i++) {
-      var k = String(i);
+    var recIdsInit = ['0','1','2','3','4','6','7','8','9','10','11'];
+    for (var i = 0; i < recIdsInit.length; i++) {
+      var k = recIdsInit[i];
       store[k] = ghStore[k] || localStore[k] || (REC_DEFAULTS[k]) || 'new';
     }
     /* Save merged to localStorage */
