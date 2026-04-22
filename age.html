@@ -205,6 +205,12 @@
   .rec-check { width: 14px; height: 14px; border: 2px solid currentColor; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .rec-st.done .rec-check { background: currentColor; }
   .rec-st.done .rec-check::after { content: '\\2713'; color: #fff; font-size: 10px; }
+  .rec-mini { display: flex; align-items: center; gap: 10px; max-width: 520px; margin: -16px auto 20px auto; padding: 8px 16px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; font-size: 13px; text-decoration: none; color: #166534; transition: all 0.15s; }
+  .rec-mini:hover { background: #dcfce7; border-color: #86efac; }
+  .rec-mini-bar { flex: 1; height: 6px; background: #e2e8f0; border-radius: 3px; overflow: hidden; }
+  .rec-mini-fill { height: 100%; background: linear-gradient(90deg, #22c55e, #16a34a); border-radius: 3px; transition: width 0.3s; }
+  .rec-mini-text { font-weight: 700; white-space: nowrap; }
+  .rec-mini-arrow { font-size: 16px; }
   .rec-export { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 8px; border: 1px solid #cbd5e1; background: #fff; color: #334155; cursor: pointer; transition: all 0.15s; }
   .rec-export:hover { background: #f1f5f9; border-color: #94a3b8; }
   .rec-export svg { width: 14px; height: 14px; }
@@ -236,6 +242,11 @@
     <a href="age.html" class="nav-link active" data-en="Age Groups" data-ru="&#1042;&#1086;&#1079;&#1088;&#1072;&#1089;&#1090;">Age Groups</a>
     <a href="audit.html" class="nav-link " data-en="Reputation" data-ru="&#1056;&#1077;&#1087;&#1091;&#1090;&#1072;&#1094;&#1080;&#1103;">Reputation</a>
   </nav>
+  <a href="index.html#recTable" class="rec-mini" id="recMiniLink">
+    <span class="rec-mini-text" id="recMiniText" data-en="Recommendations: 0/12 done" data-ru="&#1056;&#1077;&#1082;&#1086;&#1084;&#1077;&#1085;&#1076;&#1072;&#1094;&#1080;&#1080;: 0/12 &#1075;&#1086;&#1090;&#1086;&#1074;&#1086;">Recommendations: 0/12 done</span>
+    <div class="rec-mini-bar"><div class="rec-mini-fill" id="recMiniFill" style="width:0%"></div></div>
+    <span class="rec-mini-arrow">&#8594;</span>
+  </a>
   <div class="report-header">
     <h1><span class="brand">B2</span><span class="brand-green">PRIME</span> <span class="brand-green">Monthly</span> <span data-en="Marketing Report" data-ru="&#1052;&#1072;&#1088;&#1082;&#1077;&#1090;&#1080;&#1085;&#1075;&#1086;&#1074;&#1099;&#1081; &#1054;&#1090;&#1095;&#1105;&#1090;">Marketing Report</span></h1>
     <div class="period">01 March - 31 March 2026</div>
@@ -254,13 +265,13 @@
     </div>
     <div class="kpi-card">
       <div class="label" data-en="KYC Passed" data-ru="&#1055;&#1088;&#1086;&#1096;&#1083;&#1080; KYC"></div>
-      <div class="value">70</div>
-      <div class="cr"><span>9.7%</span> <i data-en="of registrations" data-ru="&#1086;&#1090; &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1081;"></i></div>
+      <div class="value">71</div>
+      <div class="cr"><span>9.8%</span> <i data-en="of registrations" data-ru="&#1086;&#1090; &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1081;"></i></div>
     </div>
     <div class="kpi-card">
       <div class="label" data-en="Deposited" data-ru="&#1042;&#1085;&#1077;&#1089;&#1083;&#1080; &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;"></div>
       <div class="value">20</div>
-      <div class="cr"><span>28.6%</span> <i data-en="of KYC" data-ru="&#1086;&#1090; KYC"></i></div>
+      <div class="cr"><span>28.2%</span> <i data-en="of KYC" data-ru="&#1086;&#1090; KYC"></i></div>
     </div>
     <div class="kpi-card">
       <div class="label" data-en="Active Traders" data-ru="&#1040;&#1082;&#1090;&#1080;&#1074;&#1085;&#1099;&#1077; &#1090;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1099;"></div>
@@ -274,9 +285,9 @@
     <div class="funnel-arrow">&#8594;</div>
     <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="Registrations" data-ru="&#1056;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1080;"></div><div class="step-value">16.6%</div></div>
     <div class="funnel-arrow">&#8594;</div>
-    <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="KYC Passed" data-ru="&#1055;&#1088;&#1086;&#1096;&#1083;&#1080; KYC"></div><div class="step-value">9.7%</div></div>
+    <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="KYC Passed" data-ru="&#1055;&#1088;&#1086;&#1096;&#1083;&#1080; KYC"></div><div class="step-value">9.8%</div></div>
     <div class="funnel-arrow">&#8594;</div>
-    <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="Deposited" data-ru="&#1044;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;"></div><div class="step-value">28.6%</div></div>
+    <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="Deposited" data-ru="&#1044;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;"></div><div class="step-value">28.2%</div></div>
     <div class="funnel-arrow">&#8594;</div>
     <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="Active Traders" data-ru="&#1058;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1099;"></div><div class="step-value">90%</div></div>
   </div>
@@ -284,7 +295,7 @@
 <!-- SECTION:AGE START -->
   <h2 class="section-title" data-en="Audience by Age Group" data-ru="&#1040;&#1091;&#1076;&#1080;&#1090;&#1086;&#1088;&#1080;&#1103; &#1087;&#1086; &#1074;&#1086;&#1079;&#1088;&#1072;&#1089;&#1090;&#1085;&#1099;&#1084; &#1075;&#1088;&#1091;&#1087;&#1087;&#1072;&#1084;"></h2>
 
-  <div class="age-note" data-en="&#128202; Data source: Roistat CRM field order_field_7 (date of birth). Age is known for users who submitted DOB during registration or KYC. Available for 89 of 725 registrations (12%). The remaining 636 registrations have no age data. All insights below are based on the age-identified segment only." data-ru="&#128202; &#1048;&#1089;&#1090;&#1086;&#1095;&#1085;&#1080;&#1082; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093;: &#1087;&#1086;&#1083;&#1077; Roistat CRM order_field_7 (&#1076;&#1072;&#1090;&#1072; &#1088;&#1086;&#1078;&#1076;&#1077;&#1085;&#1080;&#1103;). &#1042;&#1086;&#1079;&#1088;&#1072;&#1089;&#1090; &#1080;&#1079;&#1074;&#1077;&#1089;&#1090;&#1077;&#1085; &#1076;&#1083;&#1103; &#1087;&#1086;&#1083;&#1100;&#1079;&#1086;&#1074;&#1072;&#1090;&#1077;&#1083;&#1077;&#1081;, &#1091;&#1082;&#1072;&#1079;&#1072;&#1074;&#1096;&#1080;&#1093; &#1076;&#1072;&#1090;&#1091; &#1088;&#1086;&#1078;&#1076;&#1077;&#1085;&#1080;&#1103; &#1087;&#1088;&#1080; &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1080; &#1080;&#1083;&#1080; KYC. &#1044;&#1086;&#1089;&#1090;&#1091;&#1087;&#1085;&#1086; &#1076;&#1083;&#1103; 89 &#1080;&#1079; 725 &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1081; (12%). &#1054;&#1089;&#1090;&#1072;&#1083;&#1100;&#1085;&#1099;&#1077; 636 &#1073;&#1077;&#1079; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093;. &#1042;&#1089;&#1077; &#1080;&#1085;&#1089;&#1072;&#1081;&#1090;&#1099; &#1085;&#1080;&#1078;&#1077; &#1086;&#1089;&#1085;&#1086;&#1074;&#1072;&#1085;&#1099; &#1090;&#1086;&#1083;&#1100;&#1082;&#1086; &#1085;&#1072; &#1089;&#1077;&#1075;&#1084;&#1077;&#1085;&#1090;&#1077; &#1089; &#1080;&#1079;&#1074;&#1077;&#1089;&#1090;&#1085;&#1099;&#1084; &#1074;&#1086;&#1079;&#1088;&#1072;&#1089;&#1090;&#1086;&#1084;."></div>
+  <div class="age-note" data-en="&#128202; Data source: Roistat CRM field order_field_7 (date of birth). Age is known for users who submitted DOB during registration or KYC. Available for 90 of 725 registrations (12%). The remaining 635 registrations have no age data. All insights below are based on the age-identified segment only." data-ru="&#128202; &#1048;&#1089;&#1090;&#1086;&#1095;&#1085;&#1080;&#1082; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093;: &#1087;&#1086;&#1083;&#1077; Roistat CRM order_field_7 (&#1076;&#1072;&#1090;&#1072; &#1088;&#1086;&#1078;&#1076;&#1077;&#1085;&#1080;&#1103;). &#1042;&#1086;&#1079;&#1088;&#1072;&#1089;&#1090; &#1080;&#1079;&#1074;&#1077;&#1089;&#1090;&#1077;&#1085; &#1076;&#1083;&#1103; &#1087;&#1086;&#1083;&#1100;&#1079;&#1086;&#1074;&#1072;&#1090;&#1077;&#1083;&#1077;&#1081;, &#1091;&#1082;&#1072;&#1079;&#1072;&#1074;&#1096;&#1080;&#1093; &#1076;&#1072;&#1090;&#1091; &#1088;&#1086;&#1078;&#1076;&#1077;&#1085;&#1080;&#1103; &#1087;&#1088;&#1080; &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1080; &#1080;&#1083;&#1080; KYC. &#1044;&#1086;&#1089;&#1090;&#1091;&#1087;&#1085;&#1086; &#1076;&#1083;&#1103; 90 &#1080;&#1079; 725 &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1081; (12%). &#1054;&#1089;&#1090;&#1072;&#1083;&#1100;&#1085;&#1099;&#1077; 635 &#1073;&#1077;&#1079; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093;. &#1042;&#1089;&#1077; &#1080;&#1085;&#1089;&#1072;&#1081;&#1090;&#1099; &#1085;&#1080;&#1078;&#1077; &#1086;&#1089;&#1085;&#1086;&#1074;&#1072;&#1085;&#1099; &#1090;&#1086;&#1083;&#1100;&#1082;&#1086; &#1085;&#1072; &#1089;&#1077;&#1075;&#1084;&#1077;&#1085;&#1090;&#1077; &#1089; &#1080;&#1079;&#1074;&#1077;&#1089;&#1090;&#1085;&#1099;&#1084; &#1074;&#1086;&#1079;&#1088;&#1072;&#1089;&#1090;&#1086;&#1084;."></div>
 
   <table class="age-table">
     <tr>
@@ -300,7 +311,7 @@
       <th data-en="Rev/Trader" data-ru="&#1044;&#1086;&#1093;/&#1058;&#1088;."></th>
     </tr>
     <tr>
-      <td>18-24</td><td>39</td><td>44%</td>
+      <td>18-24</td><td>39</td><td>43%</td>
       <td>27</td><td>4</td><td>4</td>
       <td>69.2%</td><td class="worst">14.8%</td><td>$6,798</td>
       <td>$1,700</td>
@@ -312,9 +323,9 @@
       <td>$1,459</td>
     </tr>
     <tr>
-      <td>35-44</td><td>20</td><td>22%</td>
-      <td>16</td><td>5</td><td>4</td>
-      <td>80%</td><td>31.2%</td><td>$3,720</td>
+      <td>35-44</td><td>21</td><td>23%</td>
+      <td>17</td><td>5</td><td>4</td>
+      <td>81%</td><td>29.4%</td><td>$3,720</td>
       <td>$930</td>
     </tr>
     <tr>
@@ -354,11 +365,11 @@
 <div class="age-pie-card">
   <div class="age-pie-label" style="border-color:#2563eb;color:#2563eb">35-44</div>
   <div class="age-pie-sub" data-en="Sources" data-ru="&#1048;&#1089;&#1090;&#1086;&#1095;&#1085;&#1080;&#1082;&#1080;">Sources</div>
-  <div class="age-pie-chart"><svg viewBox='0 0 100 100' width='100' height='100'><path d='M50,50 L50,5 A45,45 0 0,1 92.8,63.91 Z' fill='#2962FF'/><path d='M50,50 L92.8,63.91 A45,45 0 0,1 36.09,92.8 Z' fill='#7C3AED'/><path d='M50,50 L36.09,92.8 A45,45 0 0,1 5,50 Z' fill='#059669'/><path d='M50,50 L5,50 A45,45 0 0,1 36.09,7.2 Z' fill='#D97706'/><path d='M50,50 L36.09,7.2 A45,45 0 0,1 50,5 Z' fill='#94A3B8'/></svg></div>
-  <div class="age-pie-legend"><div class='pie-leg'><span class='pie-dot' style='background:#2962FF'></span><span class='pie-lbl'>nocookie</span><span class='pie-pct'>30%</span></div><div class='pie-leg'><span class='pie-dot' style='background:#7C3AED'></span><span class='pie-lbl'>tradingview</span><span class='pie-pct'>25%</span></div><div class='pie-leg'><span class='pie-dot' style='background:#059669'></span><span class='pie-lbl'>seo</span><span class='pie-pct'>20%</span></div><div class='pie-leg'><span class='pie-dot' style='background:#D97706'></span><span class='pie-lbl'>(direct)</span><span class='pie-pct'>20%</span></div><div class='pie-leg'><span class='pie-dot' style='background:#94A3B8'></span><span class='pie-lbl'>other</span><span class='pie-pct'>5%</span></div></div>
+  <div class="age-pie-chart"><svg viewBox='0 0 100 100' width='100' height='100'><path d='M50,50 L50,5 A45,45 0 0,1 93.87,60.01 Z' fill='#2962FF'/><path d='M50,50 L93.87,60.01 A45,45 0 0,1 43.29,94.5 Z' fill='#7C3AED'/><path d='M50,50 L43.29,94.5 A45,45 0 0,1 5.13,46.64 Z' fill='#059669'/><path d='M50,50 L5.13,46.64 A45,45 0 0,1 36.74,7 Z' fill='#D97706'/><path d='M50,50 L36.74,7 A45,45 0 0,1 50,5 Z' fill='#94A3B8'/></svg></div>
+  <div class="age-pie-legend"><div class='pie-leg'><span class='pie-dot' style='background:#2962FF'></span><span class='pie-lbl'>nocookie</span><span class='pie-pct'>29%</span></div><div class='pie-leg'><span class='pie-dot' style='background:#7C3AED'></span><span class='pie-lbl'>tradingview</span><span class='pie-pct'>24%</span></div><div class='pie-leg'><span class='pie-dot' style='background:#059669'></span><span class='pie-lbl'>(direct)</span><span class='pie-pct'>24%</span></div><div class='pie-leg'><span class='pie-dot' style='background:#D97706'></span><span class='pie-lbl'>seo</span><span class='pie-pct'>19%</span></div><div class='pie-leg'><span class='pie-dot' style='background:#94A3B8'></span><span class='pie-lbl'>other</span><span class='pie-pct'>5%</span></div></div>
   <div class="age-pie-sub" data-en="Geography" data-ru="&#1043;&#1077;&#1086;&#1075;&#1088;&#1072;&#1092;&#1080;&#1103;">Geography</div>
-  <div class="age-pie-chart"><svg viewBox='0 0 100 100' width='100' height='100'><path d='M50,50 L50,5 A45,45 0 0,1 92.8,36.09 Z' fill='#0EA5E9'/><path d='M50,50 L92.8,36.09 A45,45 0 0,1 86.41,76.45 Z' fill='#F43F5E'/><path d='M50,50 L86.41,76.45 A45,45 0 0,1 63.91,92.8 Z' fill='#10B981'/><path d='M50,50 L63.91,92.8 A45,45 0 0,1 50,95 Z' fill='#F59E0B'/><path d='M50,50 L50,95 A45,45 0 0,1 50,5 Z' fill='#94A3B8'/></svg></div>
-  <div class="age-pie-legend"><div class='pie-leg'><span class='pie-dot' style='background:#0EA5E9'></span><span class='pie-lbl'>(Unknown)</span><span class='pie-pct'>20%</span></div><div class='pie-leg'><span class='pie-dot' style='background:#F43F5E'></span><span class='pie-lbl'>Uganda</span><span class='pie-pct'>15%</span></div><div class='pie-leg'><span class='pie-dot' style='background:#10B981'></span><span class='pie-lbl'>South Africa</span><span class='pie-pct'>10%</span></div><div class='pie-leg'><span class='pie-dot' style='background:#F59E0B'></span><span class='pie-lbl'>Russia</span><span class='pie-pct'>5%</span></div><div class='pie-leg'><span class='pie-dot' style='background:#94A3B8'></span><span class='pie-lbl'>Other</span><span class='pie-pct'>50%</span></div></div>
+  <div class="age-pie-chart"><svg viewBox='0 0 100 100' width='100' height='100'><path d='M50,50 L50,5 A45,45 0 0,1 91.89,33.56 Z' fill='#0EA5E9'/><path d='M50,50 L91.89,33.56 A45,45 0 0,1 80.61,82.99 Z' fill='#F43F5E'/><path d='M50,50 L80.61,82.99 A45,45 0 0,1 56.71,94.5 Z' fill='#10B981'/><path d='M50,50 L56.71,94.5 A45,45 0 0,1 43.29,94.5 Z' fill='#F59E0B'/><path d='M50,50 L43.29,94.5 A45,45 0 0,1 50,5 Z' fill='#94A3B8'/></svg></div>
+  <div class="age-pie-legend"><div class='pie-leg'><span class='pie-dot' style='background:#0EA5E9'></span><span class='pie-lbl'>(Unknown)</span><span class='pie-pct'>19%</span></div><div class='pie-leg'><span class='pie-dot' style='background:#F43F5E'></span><span class='pie-lbl'>Uganda</span><span class='pie-pct'>19%</span></div><div class='pie-leg'><span class='pie-dot' style='background:#10B981'></span><span class='pie-lbl'>South Africa</span><span class='pie-pct'>10%</span></div><div class='pie-leg'><span class='pie-dot' style='background:#F59E0B'></span><span class='pie-lbl'>Russia</span><span class='pie-pct'>5%</span></div><div class='pie-leg'><span class='pie-dot' style='background:#94A3B8'></span><span class='pie-lbl'>Other</span><span class='pie-pct'>48%</span></div></div>
 </div>
 <div class="age-pie-card">
   <div class="age-pie-label" style="border-color:#d97706;color:#d97706">45-54</div>
@@ -493,7 +504,7 @@
 
   <!-- 35-44 insights -->
   <div class="age-insight-card age-3544">
-    <h4>35-44 -- 20 <span style="font-weight:400;font-size:13px" data-en="leads" data-ru="&#1083;&#1080;&#1076;&#1086;&#1074;"></span></h4>
+    <h4>35-44 -- 21 <span style="font-weight:400;font-size:13px" data-en="leads" data-ru="&#1083;&#1080;&#1076;&#1086;&#1074;"></span></h4>
     <div class="age-meta">
       <span data-en="Top source: direct (30%+)" data-ru="&#1058;&#1086;&#1087; &#1080;&#1089;&#1090;&#1086;&#1095;&#1085;&#1080;&#1082;: direct (30%+)"></span>
       <span data-en="Most diverse geo: 13 countries" data-ru="&#1057;&#1072;&#1084;&#1086;&#1077; &#1088;&#1072;&#1079;&#1085;&#1086;&#1086;&#1073;&#1088;&#1072;&#1079;&#1085;&#1086;&#1077; &#1075;&#1077;&#1086;: 13 &#1089;&#1090;&#1088;&#1072;&#1085;"></span>
@@ -534,7 +545,7 @@
       <div class="age-result">
         <strong data-en="Expected Results" data-ru="&#1054;&#1078;&#1080;&#1076;&#1072;&#1077;&#1084;&#1099;&#1081; &#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;"></strong>
         <ul>
-          <li data-en="Improve CR from 31.2% to 30-35% with premium messaging &#8594; +$1860-$2790 revenue" data-ru="&#1059;&#1083;&#1091;&#1095;&#1096;&#1080;&#1090;&#1100; CR &#1089; 31.2% &#1076;&#1086; 30-35% &#8594; +$1860-$2790 &#1076;&#1086;&#1093;&#1086;&#1076;&#1072;"></li>
+          <li data-en="Improve CR from 29.4% to 30-35% with premium messaging &#8594; +$1860-$2790 revenue" data-ru="&#1059;&#1083;&#1091;&#1095;&#1096;&#1080;&#1090;&#1100; CR &#1089; 29.4% &#1076;&#1086; 30-35% &#8594; +$1860-$2790 &#1076;&#1086;&#1093;&#1086;&#1076;&#1072;"></li>
           <li data-en="UAE market: DFSA license = regulatory advantage. High-value per-trader potential." data-ru="&#1056;&#1099;&#1085;&#1086;&#1082; &#1054;&#1040;&#1069;: &#1083;&#1080;&#1094;&#1077;&#1085;&#1079;&#1080;&#1103; DFSA = &#1088;&#1077;&#1075;&#1091;&#1083;&#1103;&#1090;&#1086;&#1088;&#1085;&#1086;&#1077; &#1087;&#1088;&#1077;&#1080;&#1084;&#1091;&#1097;&#1077;&#1089;&#1090;&#1074;&#1086;. &#1042;&#1099;&#1089;&#1086;&#1082;&#1072;&#1103; &#1094;&#1077;&#1085;&#1085;&#1086;&#1089;&#1090;&#1100; &#1085;&#1072; &#1090;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1072;."></li>
           <li data-en="RAW upsell: rev/trader from $930 toward $1459 (25-34 benchmark)" data-ru="RAW-&#1072;&#1087;&#1089;&#1077;&#1081;&#1083;: &#1076;&#1086;&#1093;&#1086;&#1076;/&#1090;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088; &#1089; $930 &#1076;&#1086; $1459 (&#1073;&#1077;&#1085;&#1095;&#1084;&#1072;&#1088;&#1082; 25-34)"></li>
         </ul>
@@ -597,7 +608,7 @@
 <!-- SECTION:AGE END -->
 
   <div class="report-footer">
-    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-14 09:50 &middot; Roistat API &middot; Project 295989
+    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-22 09:38 &middot; Roistat API &middot; Project 295989
   </div>
 </div>
 
@@ -673,14 +684,33 @@ function exportRecStatus() {
 
 (function initRec() {
   var store = getRecStore();
-  document.querySelectorAll('#recTable tr[data-rec-id]').forEach(function(row) {
-    var id = row.getAttribute('data-rec-id');
-    var el = row.querySelector('.rec-st');
-    /* Priority: localStorage > REC_DEFAULTS (from rec_status.json) > HTML data-default > 'new' */
-    var state = store[id] || (REC_DEFAULTS[id]) || el.getAttribute('data-default') || 'new';
-    applyRecState(el, row, state);
-  });
-  updateRecProgress();
+  var total = 12, done = 0;
+  /* Full table on Sources page */
+  var rows = document.querySelectorAll('#recTable tr[data-rec-id]');
+  if (rows.length > 0) {
+    rows.forEach(function(row) {
+      var id = row.getAttribute('data-rec-id');
+      var el = row.querySelector('.rec-st');
+      var state = store[id] || (REC_DEFAULTS[id]) || el.getAttribute('data-default') || 'new';
+      applyRecState(el, row, state);
+    });
+    updateRecProgress();
+  }
+  /* Mini-widget on Age/Audit pages */
+  var miniText = document.getElementById('recMiniText');
+  var miniFill = document.getElementById('recMiniFill');
+  if (miniText && miniFill) {
+    for (var i = 0; i < total; i++) {
+      var st = store[String(i)] || (REC_DEFAULTS[String(i)]) || 'new';
+      if (st === 'done') done++;
+    }
+    var lang = localStorage.getItem('b2prime_lang') || 'en';
+    var pct = Math.round(done / total * 100);
+    miniText.setAttribute('data-en', done + '/' + total + ' recommendations done');
+    miniText.setAttribute('data-ru', done + '/' + total + ' \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0430\u0446\u0438\u0439 \u0433\u043e\u0442\u043e\u0432\u043e');
+    miniText.innerHTML = miniText.getAttribute('data-' + lang);
+    miniFill.style.width = pct + '%';
+  }
 })();
 </script>
 </body>

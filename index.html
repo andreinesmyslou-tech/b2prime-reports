@@ -205,6 +205,12 @@
   .rec-check { width: 14px; height: 14px; border: 2px solid currentColor; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .rec-st.done .rec-check { background: currentColor; }
   .rec-st.done .rec-check::after { content: '\\2713'; color: #fff; font-size: 10px; }
+  .rec-mini { display: flex; align-items: center; gap: 10px; max-width: 520px; margin: -16px auto 20px auto; padding: 8px 16px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; font-size: 13px; text-decoration: none; color: #166534; transition: all 0.15s; }
+  .rec-mini:hover { background: #dcfce7; border-color: #86efac; }
+  .rec-mini-bar { flex: 1; height: 6px; background: #e2e8f0; border-radius: 3px; overflow: hidden; }
+  .rec-mini-fill { height: 100%; background: linear-gradient(90deg, #22c55e, #16a34a); border-radius: 3px; transition: width 0.3s; }
+  .rec-mini-text { font-weight: 700; white-space: nowrap; }
+  .rec-mini-arrow { font-size: 16px; }
   .rec-export { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 8px; border: 1px solid #cbd5e1; background: #fff; color: #334155; cursor: pointer; transition: all 0.15s; }
   .rec-export:hover { background: #f1f5f9; border-color: #94a3b8; }
   .rec-export svg { width: 14px; height: 14px; }
@@ -236,6 +242,7 @@
     <a href="age.html" class="nav-link " data-en="Age Groups" data-ru="&#1042;&#1086;&#1079;&#1088;&#1072;&#1089;&#1090;">Age Groups</a>
     <a href="audit.html" class="nav-link " data-en="Reputation" data-ru="&#1056;&#1077;&#1087;&#1091;&#1090;&#1072;&#1094;&#1080;&#1103;">Reputation</a>
   </nav>
+
   <div class="report-header">
     <h1><span class="brand">B2</span><span class="brand-green">PRIME</span> <span class="brand-green">Monthly</span> <span data-en="Marketing Report" data-ru="&#1052;&#1072;&#1088;&#1082;&#1077;&#1090;&#1080;&#1085;&#1075;&#1086;&#1074;&#1099;&#1081; &#1054;&#1090;&#1095;&#1105;&#1090;">Marketing Report</span></h1>
     <div class="period">01 March - 31 March 2026</div>
@@ -254,13 +261,13 @@
     </div>
     <div class="kpi-card">
       <div class="label" data-en="KYC Passed" data-ru="&#1055;&#1088;&#1086;&#1096;&#1083;&#1080; KYC"></div>
-      <div class="value">70</div>
-      <div class="cr"><span>9.7%</span> <i data-en="of registrations" data-ru="&#1086;&#1090; &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1081;"></i></div>
+      <div class="value">71</div>
+      <div class="cr"><span>9.8%</span> <i data-en="of registrations" data-ru="&#1086;&#1090; &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1081;"></i></div>
     </div>
     <div class="kpi-card">
       <div class="label" data-en="Deposited" data-ru="&#1042;&#1085;&#1077;&#1089;&#1083;&#1080; &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;"></div>
       <div class="value">20</div>
-      <div class="cr"><span>28.6%</span> <i data-en="of KYC" data-ru="&#1086;&#1090; KYC"></i></div>
+      <div class="cr"><span>28.2%</span> <i data-en="of KYC" data-ru="&#1086;&#1090; KYC"></i></div>
     </div>
     <div class="kpi-card">
       <div class="label" data-en="Active Traders" data-ru="&#1040;&#1082;&#1090;&#1080;&#1074;&#1085;&#1099;&#1077; &#1090;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1099;"></div>
@@ -274,9 +281,9 @@
     <div class="funnel-arrow">&#8594;</div>
     <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="Registrations" data-ru="&#1056;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1080;"></div><div class="step-value">16.6%</div></div>
     <div class="funnel-arrow">&#8594;</div>
-    <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="KYC Passed" data-ru="&#1055;&#1088;&#1086;&#1096;&#1083;&#1080; KYC"></div><div class="step-value">9.7%</div></div>
+    <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="KYC Passed" data-ru="&#1055;&#1088;&#1086;&#1096;&#1083;&#1080; KYC"></div><div class="step-value">9.8%</div></div>
     <div class="funnel-arrow">&#8594;</div>
-    <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="Deposited" data-ru="&#1044;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;"></div><div class="step-value">28.6%</div></div>
+    <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="Deposited" data-ru="&#1044;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;"></div><div class="step-value">28.2%</div></div>
     <div class="funnel-arrow">&#8594;</div>
     <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="Active Traders" data-ru="&#1058;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1099;"></div><div class="step-value">90%</div></div>
   </div>
@@ -299,6 +306,7 @@
       <div class="sm"><span class="sm-val">7</span><span class="sm-label" data-en="Deposited" data-ru="&#1044;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;"></span></div>
       <div class="sm"><span class="sm-val">7</span><span class="sm-label" data-en="Traders" data-ru="&#1058;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1099;"></span></div>
       <div class="sm"><span class="sm-val">$13,300</span><span class="sm-label" data-en="Revenue" data-ru="&#1044;&#1086;&#1093;&#1086;&#1076;"></span></div>
+      <div class="sm"><span class="sm-val">3.2%</span><span class="sm-label" data-en="Visit&#8594;Reg" data-ru="Visit&#8594;Reg"></span></div>
       <div class="sm"><span class="sm-val">36.4%</span><span class="sm-label" data-en="Reg&#8594;KYC" data-ru="Reg&#8594;KYC"></span></div>
       <div class="sm"><span class="sm-val">43.8%</span><span class="sm-label" data-en="KYC&#8594;Dep" data-ru="KYC&#8594;Dep"></span></div>
     </div>
@@ -351,6 +359,7 @@
       <div class="sm"><span class="sm-val">0</span><span class="sm-label" data-en="Deposited" data-ru="&#1044;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;"></span></div>
       <div class="sm"><span class="sm-val">0</span><span class="sm-label" data-en="Traders" data-ru="&#1058;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1099;"></span></div>
       <div class="sm"><span class="sm-val">$0</span><span class="sm-label" data-en="Revenue" data-ru="&#1044;&#1086;&#1093;&#1086;&#1076;"></span></div>
+      <div class="sm"><span class="sm-val">39.5%</span><span class="sm-label" data-en="Visit&#8594;Reg" data-ru="Visit&#8594;Reg"></span></div>
       <div class="sm"><span class="sm-val">4.8%</span><span class="sm-label" data-en="Reg&#8594;KYC" data-ru="Reg&#8594;KYC"></span></div>
       <div class="sm"><span class="sm-val">0%</span><span class="sm-label" data-en="KYC&#8594;Dep" data-ru="KYC&#8594;Dep"></span></div>
     </div>
@@ -399,23 +408,24 @@
     <div class="source-metrics">
       <div class="sm"><span class="sm-val">1,407</span><span class="sm-label" data-en="Visits" data-ru="&#1042;&#1080;&#1079;&#1080;&#1090;&#1099;"></span></div>
       <div class="sm"><span class="sm-val">61</span><span class="sm-label" data-en="Registrations" data-ru="&#1056;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1080;"></span></div>
-      <div class="sm"><span class="sm-val">14</span><span class="sm-label" data-en="KYC Passed" data-ru="&#1055;&#1088;&#1086;&#1096;&#1083;&#1080; KYC"></span></div>
+      <div class="sm"><span class="sm-val">15</span><span class="sm-label" data-en="KYC Passed" data-ru="&#1055;&#1088;&#1086;&#1096;&#1083;&#1080; KYC"></span></div>
       <div class="sm"><span class="sm-val">7</span><span class="sm-label" data-en="Deposited" data-ru="&#1044;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;"></span></div>
       <div class="sm"><span class="sm-val">5</span><span class="sm-label" data-en="Traders" data-ru="&#1058;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1099;"></span></div>
       <div class="sm"><span class="sm-val">$8,084</span><span class="sm-label" data-en="Revenue" data-ru="&#1044;&#1086;&#1093;&#1086;&#1076;"></span></div>
-      <div class="sm"><span class="sm-val">23%</span><span class="sm-label" data-en="Reg&#8594;KYC" data-ru="Reg&#8594;KYC"></span></div>
-      <div class="sm"><span class="sm-val">50%</span><span class="sm-label" data-en="KYC&#8594;Dep" data-ru="KYC&#8594;Dep"></span></div>
+      <div class="sm"><span class="sm-val">4.3%</span><span class="sm-label" data-en="Visit&#8594;Reg" data-ru="Visit&#8594;Reg"></span></div>
+      <div class="sm"><span class="sm-val">24.6%</span><span class="sm-label" data-en="Reg&#8594;KYC" data-ru="Reg&#8594;KYC"></span></div>
+      <div class="sm"><span class="sm-val">46.7%</span><span class="sm-label" data-en="KYC&#8594;Dep" data-ru="KYC&#8594;Dep"></span></div>
     </div>
 
     <div class="source-body">
       <div class="source-col">
         <h3 data-en="Insights" data-ru="&#1048;&#1085;&#1089;&#1072;&#1081;&#1090;&#1099;"></h3>
         <ul class="insight-list">
-        <li data-en="Second best quality: 23% Reg&#8594;KYC and 50% KYC&#8594;Dep" data-ru="&#1042;&#1090;&#1086;&#1088;&#1086;&#1077; &#1083;&#1091;&#1095;&#1096;&#1077;&#1077; &#1082;&#1072;&#1095;&#1077;&#1089;&#1090;&#1074;&#1086;: 23% Reg&#8594;KYC &#1080; 50% KYC&#8594;Dep"></li>
+        <li data-en="Second best quality: 24.6% Reg&#8594;KYC and 46.7% KYC&#8594;Dep" data-ru="&#1042;&#1090;&#1086;&#1088;&#1086;&#1077; &#1083;&#1091;&#1095;&#1096;&#1077;&#1077; &#1082;&#1072;&#1095;&#1077;&#1089;&#1090;&#1074;&#1086;: 24.6% Reg&#8594;KYC &#1080; 46.7% KYC&#8594;Dep"></li>
         <li data-en="These are brand-aware users who type b2prime.com directly or use bookmarks" data-ru="&#1069;&#1090;&#1086; &#1087;&#1086;&#1083;&#1100;&#1079;&#1086;&#1074;&#1072;&#1090;&#1077;&#1083;&#1080; &#1089; &#1091;&#1079;&#1085;&#1072;&#1074;&#1072;&#1077;&#1084;&#1086;&#1089;&#1090;&#1100;&#1102; &#1073;&#1088;&#1077;&#1085;&#1076;&#1072; -- &#1074;&#1074;&#1086;&#1076;&#1103;&#1090; b2prime.com &#1085;&#1072;&#1087;&#1088;&#1103;&#1084;&#1091;&#1102;"></li>
         <li data-en="$8,084 revenue from 61 leads -- $133 per lead" data-ru="$8,084 &#1076;&#1086;&#1093;&#1086;&#1076;&#1072; &#1086;&#1090; 61 &#1083;&#1080;&#1076;&#1086;&#1074; -- $133 &#1085;&#1072; &#1083;&#1080;&#1076;"></li>
         <li data-en="Some direct traffic may be unattributed campaigns (missing UTM tags on email/social links)" data-ru="&#1063;&#1072;&#1089;&#1090;&#1100; &#1087;&#1088;&#1103;&#1084;&#1086;&#1075;&#1086; &#1090;&#1088;&#1072;&#1092;&#1080;&#1082;&#1072; &#1084;&#1086;&#1078;&#1077;&#1090; &#1073;&#1099;&#1090;&#1100; &#1085;&#1077;&#1088;&#1072;&#1079;&#1084;&#1077;&#1095;&#1077;&#1085;&#1085;&#1099;&#1084;&#1080; &#1082;&#1072;&#1084;&#1087;&#1072;&#1085;&#1080;&#1103;&#1084;&#1080; (&#1073;&#1077;&#1079; UTM)"></li>
-        <li data-en="7 users stuck at KYC stage without depositing -- activation target" data-ru="7 &#1087;&#1086;&#1083;&#1100;&#1079;&#1086;&#1074;&#1072;&#1090;&#1077;&#1083;&#1077;&#1081; &#1079;&#1072;&#1089;&#1090;&#1088;&#1103;&#1083;&#1080; &#1085;&#1072; KYC &#1073;&#1077;&#1079; &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;&#1072; -- &#1094;&#1077;&#1083;&#1100; &#1076;&#1083;&#1103; &#1072;&#1082;&#1090;&#1080;&#1074;&#1072;&#1094;&#1080;&#1080;"></li>
+        <li data-en="8 users stuck at KYC stage without depositing -- activation target" data-ru="8 &#1087;&#1086;&#1083;&#1100;&#1079;&#1086;&#1074;&#1072;&#1090;&#1077;&#1083;&#1077;&#1081; &#1079;&#1072;&#1089;&#1090;&#1088;&#1103;&#1083;&#1080; &#1085;&#1072; KYC &#1073;&#1077;&#1079; &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;&#1072; -- &#1094;&#1077;&#1083;&#1100; &#1076;&#1083;&#1103; &#1072;&#1082;&#1090;&#1080;&#1074;&#1072;&#1094;&#1080;&#1080;"></li>
         </ul>
         <div class="summary-box">
           <strong data-en="Summary" data-ru="&#1056;&#1077;&#1079;&#1102;&#1084;&#1077;"></strong>
@@ -427,13 +437,13 @@
         <ol class="action-list">
         <li data-en="Audit these specific links for UTM tags: Telegram post links, KYC reminder email links, IB partner referral links, social media bio URLs -- any link to b2prime.com or my.b2prime.com without ?utm_source= creates false direct attribution" data-ru="&#1055;&#1088;&#1086;&#1074;&#1077;&#1088;&#1080;&#1090;&#1100; UTM-&#1088;&#1072;&#1079;&#1084;&#1077;&#1090;&#1082;&#1091; &#1085;&#1072;: &#1089;&#1089;&#1099;&#1083;&#1082;&#1080; &#1074; Telegram, email KYC-&#1085;&#1072;&#1087;&#1086;&#1084;&#1080;&#1085;&#1072;&#1085;&#1080;&#1103;, &#1088;&#1077;&#1092;&#1077;&#1088;&#1072;&#1083;&#1100;&#1085;&#1099;&#1077; &#1089;&#1089;&#1099;&#1083;&#1082;&#1080; IB, bio &#1074; &#1089;&#1086;&#1094;&#1089;&#1077;&#1090;&#1103;&#1093; -- &#1083;&#1102;&#1073;&#1072;&#1103; &#1089;&#1089;&#1099;&#1083;&#1082;&#1072; &#1073;&#1077;&#1079; ?utm_source= &#1089;&#1086;&#1079;&#1076;&#1072;&#1105;&#1090; &#1083;&#1086;&#1078;&#1085;&#1099;&#1081; direct"></li>
         <li data-en="Publish B2Prime brand mentions in industry media: Finance Magnates, FX News Group, LeapRate, Forex Magnates -- Drofa PR agency is already a partner (visible in UTM data), coordinate regular press releases through them" data-ru="&#1055;&#1091;&#1073;&#1083;&#1080;&#1082;&#1086;&#1074;&#1072;&#1090;&#1100; B2Prime &#1074; &#1086;&#1090;&#1088;&#1072;&#1089;&#1083;&#1077;&#1074;&#1099;&#1093; &#1057;&#1052;&#1048;: Finance Magnates, FX News Group, LeapRate -- PR-&#1072;&#1075;&#1077;&#1085;&#1090;&#1089;&#1090;&#1074;&#1086; Drofa &#1091;&#1078;&#1077; &#1087;&#1072;&#1088;&#1090;&#1085;&#1105;&#1088; (&#1074;&#1080;&#1076;&#1085;&#1086; &#1074; UTM), &#1082;&#1086;&#1086;&#1088;&#1076;&#1080;&#1085;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100; &#1088;&#1077;&#1075;&#1091;&#1083;&#1103;&#1088;&#1085;&#1099;&#1077; &#1087;&#1088;&#1077;&#1089;&#1089;-&#1088;&#1077;&#1083;&#1080;&#1079;&#1099;"></li>
-        <li data-en="Send deposit activation email to 7 KYC-passed users: 'Your account is verified. Deposit from $10 by card or $50 by bank transfer to start trading today' + direct link to my.b2prime.com/en/wallets" data-ru="&#1054;&#1090;&#1087;&#1088;&#1072;&#1074;&#1080;&#1090;&#1100; &#1072;&#1082;&#1090;&#1080;&#1074;&#1072;&#1094;&#1080;&#1086;&#1085;&#1085;&#1086;&#1077; &#1087;&#1080;&#1089;&#1100;&#1084;&#1086; 7 KYC-&#1087;&#1086;&#1083;&#1100;&#1079;&#1086;&#1074;&#1072;&#1090;&#1077;&#1083;&#1103;&#1084;: '&#1040;&#1082;&#1082;&#1072;&#1091;&#1085;&#1090; &#1074;&#1077;&#1088;&#1080;&#1092;&#1080;&#1094;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;. &#1044;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090; &#1086;&#1090; $10 &#1082;&#1072;&#1088;&#1090;&#1086;&#1081; &#1080;&#1083;&#1080; $50 &#1073;&#1072;&#1085;&#1082;&#1086;&#1084; &#1076;&#1083;&#1103; &#1085;&#1072;&#1095;&#1072;&#1083;&#1072; &#1090;&#1086;&#1088;&#1075;&#1086;&#1074;&#1083;&#1080;' + &#1089;&#1089;&#1099;&#1083;&#1082;&#1072; &#1085;&#1072; my.b2prime.com/en/wallets"></li>
+        <li data-en="Send deposit activation email to 8 KYC-passed users: 'Your account is verified. Deposit from $10 by card or $50 by bank transfer to start trading today' + direct link to my.b2prime.com/en/wallets" data-ru="&#1054;&#1090;&#1087;&#1088;&#1072;&#1074;&#1080;&#1090;&#1100; &#1072;&#1082;&#1090;&#1080;&#1074;&#1072;&#1094;&#1080;&#1086;&#1085;&#1085;&#1086;&#1077; &#1087;&#1080;&#1089;&#1100;&#1084;&#1086; 8 KYC-&#1087;&#1086;&#1083;&#1100;&#1079;&#1086;&#1074;&#1072;&#1090;&#1077;&#1083;&#1103;&#1084;: '&#1040;&#1082;&#1082;&#1072;&#1091;&#1085;&#1090; &#1074;&#1077;&#1088;&#1080;&#1092;&#1080;&#1094;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;. &#1044;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090; &#1086;&#1090; $10 &#1082;&#1072;&#1088;&#1090;&#1086;&#1081; &#1080;&#1083;&#1080; $50 &#1073;&#1072;&#1085;&#1082;&#1086;&#1084; &#1076;&#1083;&#1103; &#1085;&#1072;&#1095;&#1072;&#1083;&#1072; &#1090;&#1086;&#1088;&#1075;&#1086;&#1074;&#1083;&#1080;' + &#1089;&#1089;&#1099;&#1083;&#1082;&#1072; &#1085;&#1072; my.b2prime.com/en/wallets"></li>
         </ol>
         <div class="result-box">
           <strong data-en="Expected Results" data-ru="&#1054;&#1078;&#1080;&#1076;&#1072;&#1077;&#1084;&#1099;&#1081; &#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;"></strong>
           <ul>
         <li data-en="UTM audit reveals true channel attribution -- enables smarter budget allocation" data-ru="UTM-&#1072;&#1091;&#1076;&#1080;&#1090; &#1088;&#1072;&#1089;&#1082;&#1088;&#1086;&#1077;&#1090; &#1088;&#1077;&#1072;&#1083;&#1100;&#1085;&#1091;&#1102; &#1072;&#1090;&#1088;&#1080;&#1073;&#1091;&#1094;&#1080;&#1102; -- &#1087;&#1086;&#1079;&#1074;&#1086;&#1083;&#1080;&#1090; &#1086;&#1087;&#1090;&#1080;&#1084;&#1080;&#1079;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100; &#1073;&#1102;&#1076;&#1078;&#1077;&#1090;"></li>
-        <li data-en="Activating 7 KYC users at 50% conversion = 4 potential new depositors" data-ru="&#1040;&#1082;&#1090;&#1080;&#1074;&#1072;&#1094;&#1080;&#1103; 7 KYC-&#1087;&#1086;&#1083;&#1100;&#1079;&#1086;&#1074;&#1072;&#1090;&#1077;&#1083;&#1077;&#1081; &#1087;&#1088;&#1080; 50% &#1082;&#1086;&#1085;&#1074;&#1077;&#1088;&#1089;&#1080;&#1080; = 4 &#1087;&#1086;&#1090;&#1077;&#1085;&#1094;&#1080;&#1072;&#1083;&#1100;&#1085;&#1099;&#1093; &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;&#1086;&#1088;&#1086;&#1074;"></li>
+        <li data-en="Activating 8 KYC users at 46.7% conversion = 4 potential new depositors" data-ru="&#1040;&#1082;&#1090;&#1080;&#1074;&#1072;&#1094;&#1080;&#1103; 8 KYC-&#1087;&#1086;&#1083;&#1100;&#1079;&#1086;&#1074;&#1072;&#1090;&#1077;&#1083;&#1077;&#1081; &#1087;&#1088;&#1080; 46.7% &#1082;&#1086;&#1085;&#1074;&#1077;&#1088;&#1089;&#1080;&#1080; = 4 &#1087;&#1086;&#1090;&#1077;&#1085;&#1094;&#1080;&#1072;&#1083;&#1100;&#1085;&#1099;&#1093; &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;&#1086;&#1088;&#1086;&#1074;"></li>
           </ul>
         </div>
       </div>
@@ -454,6 +464,7 @@
       <div class="sm"><span class="sm-val">0</span><span class="sm-label" data-en="Deposited" data-ru="&#1044;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;"></span></div>
       <div class="sm"><span class="sm-val">0</span><span class="sm-label" data-en="Traders" data-ru="&#1058;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1099;"></span></div>
       <div class="sm"><span class="sm-val">$0</span><span class="sm-label" data-en="Revenue" data-ru="&#1044;&#1086;&#1093;&#1086;&#1076;"></span></div>
+      <div class="sm"><span class="sm-val">16.4%</span><span class="sm-label" data-en="Visit&#8594;Reg" data-ru="Visit&#8594;Reg"></span></div>
       <div class="sm"><span class="sm-val">10%</span><span class="sm-label" data-en="Reg&#8594;KYC" data-ru="Reg&#8594;KYC"></span></div>
       <div class="sm"><span class="sm-val">0%</span><span class="sm-label" data-en="KYC&#8594;Dep" data-ru="KYC&#8594;Dep"></span></div>
     </div>
@@ -588,7 +599,7 @@
 <!-- SECTION:SOURCES END -->
 
   <div class="report-footer">
-    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-14 09:50 &middot; Roistat API &middot; Project 295989
+    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-22 09:38 &middot; Roistat API &middot; Project 295989
   </div>
 </div>
 
@@ -664,14 +675,33 @@ function exportRecStatus() {
 
 (function initRec() {
   var store = getRecStore();
-  document.querySelectorAll('#recTable tr[data-rec-id]').forEach(function(row) {
-    var id = row.getAttribute('data-rec-id');
-    var el = row.querySelector('.rec-st');
-    /* Priority: localStorage > REC_DEFAULTS (from rec_status.json) > HTML data-default > 'new' */
-    var state = store[id] || (REC_DEFAULTS[id]) || el.getAttribute('data-default') || 'new';
-    applyRecState(el, row, state);
-  });
-  updateRecProgress();
+  var total = 12, done = 0;
+  /* Full table on Sources page */
+  var rows = document.querySelectorAll('#recTable tr[data-rec-id]');
+  if (rows.length > 0) {
+    rows.forEach(function(row) {
+      var id = row.getAttribute('data-rec-id');
+      var el = row.querySelector('.rec-st');
+      var state = store[id] || (REC_DEFAULTS[id]) || el.getAttribute('data-default') || 'new';
+      applyRecState(el, row, state);
+    });
+    updateRecProgress();
+  }
+  /* Mini-widget on Age/Audit pages */
+  var miniText = document.getElementById('recMiniText');
+  var miniFill = document.getElementById('recMiniFill');
+  if (miniText && miniFill) {
+    for (var i = 0; i < total; i++) {
+      var st = store[String(i)] || (REC_DEFAULTS[String(i)]) || 'new';
+      if (st === 'done') done++;
+    }
+    var lang = localStorage.getItem('b2prime_lang') || 'en';
+    var pct = Math.round(done / total * 100);
+    miniText.setAttribute('data-en', done + '/' + total + ' recommendations done');
+    miniText.setAttribute('data-ru', done + '/' + total + ' \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0430\u0446\u0438\u0439 \u0433\u043e\u0442\u043e\u0432\u043e');
+    miniText.innerHTML = miniText.getAttribute('data-' + lang);
+    miniFill.style.width = pct + '%';
+  }
 })();
 </script>
 </body>

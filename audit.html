@@ -205,6 +205,12 @@
   .rec-check { width: 14px; height: 14px; border: 2px solid currentColor; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .rec-st.done .rec-check { background: currentColor; }
   .rec-st.done .rec-check::after { content: '\\2713'; color: #fff; font-size: 10px; }
+  .rec-mini { display: flex; align-items: center; gap: 10px; max-width: 520px; margin: -16px auto 20px auto; padding: 8px 16px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; font-size: 13px; text-decoration: none; color: #166534; transition: all 0.15s; }
+  .rec-mini:hover { background: #dcfce7; border-color: #86efac; }
+  .rec-mini-bar { flex: 1; height: 6px; background: #e2e8f0; border-radius: 3px; overflow: hidden; }
+  .rec-mini-fill { height: 100%; background: linear-gradient(90deg, #22c55e, #16a34a); border-radius: 3px; transition: width 0.3s; }
+  .rec-mini-text { font-weight: 700; white-space: nowrap; }
+  .rec-mini-arrow { font-size: 16px; }
   .rec-export { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 8px; border: 1px solid #cbd5e1; background: #fff; color: #334155; cursor: pointer; transition: all 0.15s; }
   .rec-export:hover { background: #f1f5f9; border-color: #94a3b8; }
   .rec-export svg { width: 14px; height: 14px; }
@@ -236,6 +242,11 @@
     <a href="age.html" class="nav-link " data-en="Age Groups" data-ru="&#1042;&#1086;&#1079;&#1088;&#1072;&#1089;&#1090;">Age Groups</a>
     <a href="audit.html" class="nav-link active" data-en="Reputation" data-ru="&#1056;&#1077;&#1087;&#1091;&#1090;&#1072;&#1094;&#1080;&#1103;">Reputation</a>
   </nav>
+  <a href="index.html#recTable" class="rec-mini" id="recMiniLink">
+    <span class="rec-mini-text" id="recMiniText" data-en="Recommendations: 0/12 done" data-ru="&#1056;&#1077;&#1082;&#1086;&#1084;&#1077;&#1085;&#1076;&#1072;&#1094;&#1080;&#1080;: 0/12 &#1075;&#1086;&#1090;&#1086;&#1074;&#1086;">Recommendations: 0/12 done</span>
+    <div class="rec-mini-bar"><div class="rec-mini-fill" id="recMiniFill" style="width:0%"></div></div>
+    <span class="rec-mini-arrow">&#8594;</span>
+  </a>
   <div class="report-header">
     <h1><span class="brand">B2</span><span class="brand-green">PRIME</span> <span class="brand-green">Monthly</span> <span data-en="Marketing Report" data-ru="&#1052;&#1072;&#1088;&#1082;&#1077;&#1090;&#1080;&#1085;&#1075;&#1086;&#1074;&#1099;&#1081; &#1054;&#1090;&#1095;&#1105;&#1090;">Marketing Report</span></h1>
     <div class="period">01 March - 31 March 2026</div>
@@ -254,13 +265,13 @@
     </div>
     <div class="kpi-card">
       <div class="label" data-en="KYC Passed" data-ru="&#1055;&#1088;&#1086;&#1096;&#1083;&#1080; KYC"></div>
-      <div class="value">70</div>
-      <div class="cr"><span>9.7%</span> <i data-en="of registrations" data-ru="&#1086;&#1090; &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1081;"></i></div>
+      <div class="value">71</div>
+      <div class="cr"><span>9.8%</span> <i data-en="of registrations" data-ru="&#1086;&#1090; &#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1081;"></i></div>
     </div>
     <div class="kpi-card">
       <div class="label" data-en="Deposited" data-ru="&#1042;&#1085;&#1077;&#1089;&#1083;&#1080; &#1076;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;"></div>
       <div class="value">20</div>
-      <div class="cr"><span>28.6%</span> <i data-en="of KYC" data-ru="&#1086;&#1090; KYC"></i></div>
+      <div class="cr"><span>28.2%</span> <i data-en="of KYC" data-ru="&#1086;&#1090; KYC"></i></div>
     </div>
     <div class="kpi-card">
       <div class="label" data-en="Active Traders" data-ru="&#1040;&#1082;&#1090;&#1080;&#1074;&#1085;&#1099;&#1077; &#1090;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1099;"></div>
@@ -274,9 +285,9 @@
     <div class="funnel-arrow">&#8594;</div>
     <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="Registrations" data-ru="&#1056;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1080;"></div><div class="step-value">16.6%</div></div>
     <div class="funnel-arrow">&#8594;</div>
-    <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="KYC Passed" data-ru="&#1055;&#1088;&#1086;&#1096;&#1083;&#1080; KYC"></div><div class="step-value">9.7%</div></div>
+    <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="KYC Passed" data-ru="&#1055;&#1088;&#1086;&#1096;&#1083;&#1080; KYC"></div><div class="step-value">9.8%</div></div>
     <div class="funnel-arrow">&#8594;</div>
-    <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="Deposited" data-ru="&#1044;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;"></div><div class="step-value">28.6%</div></div>
+    <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="Deposited" data-ru="&#1044;&#1077;&#1087;&#1086;&#1079;&#1080;&#1090;"></div><div class="step-value">28.2%</div></div>
     <div class="funnel-arrow">&#8594;</div>
     <div class="funnel-step"><div class="bar"></div><div class="step-label" data-en="Active Traders" data-ru="&#1058;&#1088;&#1077;&#1081;&#1076;&#1077;&#1088;&#1099;"></div><div class="step-value">90%</div></div>
   </div>
@@ -470,7 +481,7 @@
   <!-- SECTION:AUDIT END -->
 
   <div class="report-footer">
-    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-14 09:50 &middot; Roistat API &middot; Project 295989
+    <span data-en="Generated" data-ru="&#1057;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1086;"></span> 2026-04-22 09:38 &middot; Roistat API &middot; Project 295989
   </div>
 </div>
 
@@ -546,14 +557,33 @@ function exportRecStatus() {
 
 (function initRec() {
   var store = getRecStore();
-  document.querySelectorAll('#recTable tr[data-rec-id]').forEach(function(row) {
-    var id = row.getAttribute('data-rec-id');
-    var el = row.querySelector('.rec-st');
-    /* Priority: localStorage > REC_DEFAULTS (from rec_status.json) > HTML data-default > 'new' */
-    var state = store[id] || (REC_DEFAULTS[id]) || el.getAttribute('data-default') || 'new';
-    applyRecState(el, row, state);
-  });
-  updateRecProgress();
+  var total = 12, done = 0;
+  /* Full table on Sources page */
+  var rows = document.querySelectorAll('#recTable tr[data-rec-id]');
+  if (rows.length > 0) {
+    rows.forEach(function(row) {
+      var id = row.getAttribute('data-rec-id');
+      var el = row.querySelector('.rec-st');
+      var state = store[id] || (REC_DEFAULTS[id]) || el.getAttribute('data-default') || 'new';
+      applyRecState(el, row, state);
+    });
+    updateRecProgress();
+  }
+  /* Mini-widget on Age/Audit pages */
+  var miniText = document.getElementById('recMiniText');
+  var miniFill = document.getElementById('recMiniFill');
+  if (miniText && miniFill) {
+    for (var i = 0; i < total; i++) {
+      var st = store[String(i)] || (REC_DEFAULTS[String(i)]) || 'new';
+      if (st === 'done') done++;
+    }
+    var lang = localStorage.getItem('b2prime_lang') || 'en';
+    var pct = Math.round(done / total * 100);
+    miniText.setAttribute('data-en', done + '/' + total + ' recommendations done');
+    miniText.setAttribute('data-ru', done + '/' + total + ' \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0430\u0446\u0438\u0439 \u0433\u043e\u0442\u043e\u0432\u043e');
+    miniText.innerHTML = miniText.getAttribute('data-' + lang);
+    miniFill.style.width = pct + '%';
+  }
 })();
 </script>
 </body>
