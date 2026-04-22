@@ -7,7 +7,7 @@
   "1": {
     "source": "SEO",
     "recommendation": "Add Portuguese /pt version (Brazil = #2 revenue country)",
-    "status": "progress"
+    "status": "done"
   },
   "2": {
     "source": "SEO",
@@ -16,17 +16,12 @@
   },
   "3": {
     "source": "SEO",
-    "recommendation": "Grow presence on broker directories (TradingView reviews, Myfxbook, FXEmpire)",
+    "recommendation": "Claim profiles on Myfxbook and FXEmpire (TradingView already 4.2/5, 34 reviews)",
     "status": "new"
   },
   "4": {
     "source": "TradingView",
     "recommendation": "Set up 3-email automated KYC sequence for TV sign-ups",
-    "status": "new"
-  },
-  "5": {
-    "source": "TradingView",
-    "recommendation": "Send activation email to KYC-passed users with $0 deposit",
     "status": "new"
   },
   "6": {
