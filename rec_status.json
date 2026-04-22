@@ -1,0 +1,62 @@
+{
+  "0": {
+    "source": "SEO",
+    "recommendation": "Publish 3-5 comparison articles (B2Prime vs competitors)",
+    "status": "new"
+  },
+  "1": {
+    "source": "SEO",
+    "recommendation": "Add Portuguese /pt version (Brazil = #2 revenue country)",
+    "status": "progress"
+  },
+  "2": {
+    "source": "SEO",
+    "recommendation": "Optimize H1/meta on /forex, /crypto-cfd, /precious-metals",
+    "status": "new"
+  },
+  "3": {
+    "source": "SEO",
+    "recommendation": "Grow presence on broker directories (TradingView reviews, Myfxbook, FXEmpire)",
+    "status": "new"
+  },
+  "4": {
+    "source": "TradingView",
+    "recommendation": "Set up 3-email automated KYC sequence for TV sign-ups",
+    "status": "new"
+  },
+  "5": {
+    "source": "TradingView",
+    "recommendation": "Send activation email to KYC-passed users with $0 deposit",
+    "status": "new"
+  },
+  "6": {
+    "source": "TradingView",
+    "recommendation": "Update /platforms/tradingview page with KYC benefits section",
+    "status": "new"
+  },
+  "7": {
+    "source": "Direct",
+    "recommendation": "Activate 13 KYC-passed users without deposit (priority campaign)",
+    "status": "new"
+  },
+  "8": {
+    "source": "Direct",
+    "recommendation": "Implement GA4 unwanted referrals to fix attribution",
+    "status": "done"
+  },
+  "9": {
+    "source": "Influencers",
+    "recommendation": "Connect influencer costs to Roistat for ROI calculation",
+    "status": "new"
+  },
+  "10": {
+    "source": "Influencers",
+    "recommendation": "Create influencer content kit (banners, posts, PDF with conditions)",
+    "status": "new"
+  },
+  "11": {
+    "source": "Influencers",
+    "recommendation": "Recruit influencers in SA, Brazil, Nigeria (YouTube, TikTok, Telegram)",
+    "status": "new"
+  }
+}
